@@ -73,8 +73,8 @@ export function ThemeSwitcher() {
   }, [mode]);
 
   const triggerIcon = useMemo(() => {
-    if (!mounted) return "/icons/moon.svg";
-    return resolvedTheme === "light" ? "/icons/sun.svg" : "/icons/moon.svg";
+    if (!mounted) return "moon";
+    return resolvedTheme === "light" ? "sun" : "moon";
   }, [mounted, resolvedTheme]);
 
   function setThemeMode(nextMode: ThemeMode): void {
@@ -95,7 +95,7 @@ export function ThemeSwitcher() {
         aria-haspopup="menu"
         onClick={() => setOpen((current) => !current)}
       >
-        <img src={triggerIcon} alt="" width={18} height={18} />
+        {triggerIcon === "sun" ? <SunIcon /> : <MoonIcon />}
       </button>
 
       {open && (
@@ -107,7 +107,7 @@ export function ThemeSwitcher() {
             className={`theme-option ${mode === "light" ? "active" : ""}`}
             onClick={() => setThemeMode("light")}
           >
-            <img src="/icons/sun.svg" alt="" width={16} height={16} />
+            <SunIcon />
             Light
           </button>
           <button
@@ -117,7 +117,7 @@ export function ThemeSwitcher() {
             className={`theme-option ${mode === "dark" ? "active" : ""}`}
             onClick={() => setThemeMode("dark")}
           >
-            <img src="/icons/moon.svg" alt="" width={16} height={16} />
+            <MoonIcon />
             Dark
           </button>
           <button
@@ -127,11 +127,73 @@ export function ThemeSwitcher() {
             className={`theme-option ${mode === "system" ? "active" : ""}`}
             onClick={() => setThemeMode("system")}
           >
-            <img src="/icons/system.svg" alt="" width={16} height={16} />
+            <SystemIcon />
             System
           </button>
         </div>
       )}
     </div>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg
+      className="theme-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2.2M12 19.8V22M4.22 4.22l1.56 1.56M18.22 18.22l1.56 1.56M2 12h2.2M19.8 12H22M4.22 19.78l1.56-1.56M18.22 5.78l1.56-1.56" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg
+      className="theme-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z" />
+    </svg>
+  );
+}
+
+function SystemIcon() {
+  return (
+    <svg
+      className="theme-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M8 20h8M12 16v4" />
+    </svg>
   );
 }

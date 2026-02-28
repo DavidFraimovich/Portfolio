@@ -36,8 +36,8 @@
 html[data-theme="light"] {
   --bg: #f4f7fc;
   --bg-soft: #e8edf5;
-  --panel: rgba(255, 255, 255, 0.88);
-  --panel-strong: rgba(255, 255, 255, 0.98);
+  --panel: rgba(255, 255, 255, 0.56);
+  --panel-strong: rgba(255, 255, 255, 0.72);
   --text: #1a2235;
   --muted: #4e5a74;
   --purple: #6041e8;
@@ -45,12 +45,12 @@ html[data-theme="light"] {
   --gray: #67748f;
   --border: rgba(52, 66, 98, 0.18);
   --bg-orb-1: rgba(96, 65, 232, 0.16);
-  --bg-orb-2: rgba(255, 255, 255, 0.58);
+  --bg-orb-2: rgba(255, 255, 255, 0.46);
   --bg-grad-1: #f4f7fc;
   --bg-grad-2: #eff3fa;
   --bg-grad-3: #e6edf8;
-  --shell-grad-1: rgba(255, 255, 255, 0.78);
-  --shell-grad-2: rgba(255, 255, 255, 0.6);
+  --shell-grad-1: rgba(255, 255, 255, 0.52);
+  --shell-grad-2: rgba(255, 255, 255, 0.36);
   --shell-shadow: rgba(33, 45, 76, 0.12);
   --surface-hover: rgba(96, 65, 232, 0.08);
   --accent-strong: rgba(96, 65, 232, 0.5);
@@ -72,8 +72,8 @@ html[data-theme="light"] {
   html:not([data-theme="dark"]) {
     --bg: #f4f7fc;
     --bg-soft: #e8edf5;
-    --panel: rgba(255, 255, 255, 0.88);
-    --panel-strong: rgba(255, 255, 255, 0.98);
+    --panel: rgba(255, 255, 255, 0.56);
+    --panel-strong: rgba(255, 255, 255, 0.72);
     --text: #1a2235;
     --muted: #4e5a74;
     --purple: #6041e8;
@@ -81,12 +81,12 @@ html[data-theme="light"] {
     --gray: #67748f;
     --border: rgba(52, 66, 98, 0.18);
     --bg-orb-1: rgba(96, 65, 232, 0.16);
-    --bg-orb-2: rgba(255, 255, 255, 0.58);
+    --bg-orb-2: rgba(255, 255, 255, 0.46);
     --bg-grad-1: #f4f7fc;
     --bg-grad-2: #eff3fa;
     --bg-grad-3: #e6edf8;
-    --shell-grad-1: rgba(255, 255, 255, 0.78);
-    --shell-grad-2: rgba(255, 255, 255, 0.6);
+    --shell-grad-1: rgba(255, 255, 255, 0.52);
+    --shell-grad-2: rgba(255, 255, 255, 0.36);
     --shell-shadow: rgba(33, 45, 76, 0.12);
     --surface-hover: rgba(96, 65, 232, 0.08);
     --accent-strong: rgba(96, 65, 232, 0.5);
@@ -137,6 +137,9 @@ main {
   width: min(1100px, 92vw);
   margin: 1.25rem auto 0;
   padding: 0.8rem;
+  position: relative;
+  z-index: 40;
+  overflow: visible;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: linear-gradient(120deg, var(--shell-grad-1), var(--shell-grad-2));
@@ -363,6 +366,7 @@ main {
 
 .theme-switcher {
   position: relative;
+  z-index: 120;
 }
 
 .theme-trigger {
@@ -391,7 +395,12 @@ main {
   right: 0;
   min-width: 9rem;
   padding: 0.45rem;
-  z-index: 20;
+  z-index: 500;
+  box-shadow: 0 10px 28px var(--shell-shadow);
+}
+
+.theme-icon {
+  flex-shrink: 0;
 }
 
 .theme-option {

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
-import { siteUrl } from "@/lib/site";
+import { basePath, siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -67,6 +67,7 @@ export default async function LocalizedHomePage({ params }: Props) {
       image: "/images/featured/mvp-6-months.svg"
     }
   ];
+  const assetPath = (path: string): string => `${basePath}${path}`;
 
   return (
     <>
@@ -238,7 +239,7 @@ export default async function LocalizedHomePage({ params }: Props) {
         <section className="grid" aria-label={isHebrew ? "עבודות נבחרות" : "Featured case studies"}>
           {featuredCards.map((item) => (
             <article key={item.slug} className="card featured-card">
-              <img src={item.image} alt={item.title} className="featured-thumb" />
+              <img src={assetPath(item.image)} alt={item.title} className="featured-thumb" />
               <h3>
                 <Link href={withLocalePath(locale, `/case-studies/${item.slug}`)}>{item.title}</Link>
               </h3>
