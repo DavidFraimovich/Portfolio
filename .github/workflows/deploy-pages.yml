@@ -37,6 +37,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
+          NEXT_PUBLIC_SITE_URL: https://davidfraimovich.github.io/portfolio/
 
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3

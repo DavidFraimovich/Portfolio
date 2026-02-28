@@ -44,6 +44,24 @@ For production GitHub login, set OAuth values in `config.yml`:
 - `backend.base_url`: URL of your OAuth proxy/provider
 - `backend.auth_endpoint`: auth endpoint (commonly `/auth`)
 
+### Local CMS login
+
+Use Decap local backend to avoid OAuth while developing locally:
+
+```bash
+npm run cms
+```
+
+In a second terminal:
+
+```bash
+npm run dev
+```
+
+Then open:
+
+- `http://localhost:3000/admin/` (or your active dev port)
+
 ## GitHub Pages
 
 The workflow in `.github/workflows/deploy-pages.yml` builds and deploys `out/` on push to `main`.

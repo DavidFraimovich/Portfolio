@@ -4,7 +4,7 @@ export const basePath = repoName && !isUserPagesRepo ? `/${repoName}` : "";
 
 function parseSiteUrl(raw: string | undefined): URL {
   const candidate = (raw || "").trim();
-  if (!candidate) return new URL("https://example.com");
+  if (!candidate) return new URL("https://davidfraimovich.github.io/portfolio/");
 
   try {
     return new URL(candidate);
@@ -12,7 +12,7 @@ function parseSiteUrl(raw: string | undefined): URL {
     try {
       return new URL(`https://${candidate}`);
     } catch {
-      return new URL("https://example.com");
+      return new URL("https://davidfraimovich.github.io/portfolio/");
     }
   }
 }

@@ -1,9 +1,14 @@
 backend:
   name: github
-  repo: your-github-username/your-repo-name
+  repo: DavidFraimovich/Portfolio
   branch: main
+  # Production OAuth provider URL for Decap GitHub backend
   base_url: https://your-oauth-provider.example.com
   auth_endpoint: /auth
+
+site_url: https://davidfraimovich.github.io/portfolio/
+display_url: https://davidfraimovich.github.io/portfolio/
+local_backend: true
 
 publish_mode: editorial_workflow
 media_folder: public/images/uploads
