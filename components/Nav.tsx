@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n";
 import { withLocalePath } from "@/lib/i18n";
 import type { SiteContent } from "@/lib/siteContent";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 type Props = {
   locale: Locale;
@@ -32,7 +33,10 @@ export function Nav({ locale, site }: Props) {
               </Link>
             ))}
           </div>
-          <LanguageSwitcher locale={locale} />
+          <div className="toolbar-controls">
+            <LanguageSwitcher locale={locale} />
+            <ThemeSwitcher />
+          </div>
         </div>
       </nav>
     </header>

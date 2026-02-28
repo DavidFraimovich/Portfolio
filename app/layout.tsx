@@ -34,8 +34,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeInitScript = `
+    (function () {
+      try {
+        var key = "site-theme";
+        var stored = localStorage.getItem(key);
+        if (stored === "light" || stored === "dark") {
+          document.documentElement.setAttribute("data-theme", stored);
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );
