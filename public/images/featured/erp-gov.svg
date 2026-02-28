@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">ERP and Government API Thumbnail</title>
+  <desc id="desc">Abstract thumbnail for ERP and government API integrations case study.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121723"/>
+      <stop offset="100%" stop-color="#080a0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="110" y="150" width="380" height="380" rx="28" fill="#5a31f4" fill-opacity="0.25"/>
+  <rect x="430" y="210" width="380" height="310" rx="28" fill="#ffffff" fill-opacity="0.12"/>
+  <rect x="760" y="140" width="320" height="390" rx="28" fill="#5a31f4" fill-opacity="0.15"/>
+  <text x="90" y="620" fill="#ffffff" font-size="52" font-family="Helvetica, Arial, sans-serif">ERP + Gov APIs</text>
+</svg>
