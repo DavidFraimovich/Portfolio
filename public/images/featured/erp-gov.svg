@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-  <title id="title">ERP and Government API Thumbnail</title>
-  <desc id="desc">Abstract thumbnail for ERP and government API integrations case study.</desc>
+  <title id="title">ERP and government API integrations thumbnail</title>
+  <desc id="desc">Abstract thumbnail for ERP and government API integration project.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#121723"/>
-      <stop offset="100%" stop-color="#080a0f"/>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0A0E14"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="675" fill="url(#bg)"/>
-  <rect x="110" y="150" width="380" height="380" rx="28" fill="#5a31f4" fill-opacity="0.25"/>
-  <rect x="430" y="210" width="380" height="310" rx="28" fill="#ffffff" fill-opacity="0.12"/>
-  <rect x="760" y="140" width="320" height="390" rx="28" fill="#5a31f4" fill-opacity="0.15"/>
-  <text x="90" y="620" fill="#ffffff" font-size="52" font-family="Helvetica, Arial, sans-serif">ERP + Gov APIs</text>
+  <rect width="1200" height="675" fill="url(#g2)"/>
+  <rect x="120" y="150" width="280" height="360" rx="24" fill="#6A4CFF" fill-opacity="0.18" stroke="#CFC7FF" stroke-opacity="0.35"/>
+  <rect x="450" y="110" width="300" height="420" rx="24" fill="#FFFFFF" fill-opacity="0.10" stroke="#FFFFFF" stroke-opacity="0.28"/>
+  <rect x="800" y="180" width="280" height="300" rx="24" fill="#6A4CFF" fill-opacity="0.14" stroke="#CFC7FF" stroke-opacity="0.3"/>
+  <text x="90" y="605" fill="#FFFFFF" font-size="50" font-family="Helvetica, Arial, sans-serif">ERP + Government APIs</text>
 </svg>

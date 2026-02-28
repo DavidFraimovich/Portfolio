@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-  <title id="title">AI Agent Case Thumbnail</title>
-  <desc id="desc">Abstract thumbnail for AI Agent competitive edge case study.</desc>
+  <title id="title">AI Agent case thumbnail</title>
+  <desc id="desc">High contrast abstract thumbnail for AI Agent case study.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1c1238"/>
-      <stop offset="100%" stop-color="#0a0b12"/>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15172A"/>
+      <stop offset="100%" stop-color="#0A0B12"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="940" cy="120" r="210" fill="#5a31f4" fill-opacity="0.22"/>
-  <circle cx="260" cy="520" r="180" fill="#ffffff" fill-opacity="0.08"/>
-  <text x="80" y="280" fill="#ffffff" font-size="64" font-family="Helvetica, Arial, sans-serif">AI Agent</text>
-  <text x="80" y="350" fill="#d7dbe7" font-size="34" font-family="Helvetica, Arial, sans-serif">Competitive Edge</text>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <circle cx="930" cy="130" r="180" fill="#6A4CFF" fill-opacity="0.20"/>
+  <circle cx="260" cy="500" r="130" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="80" y="220" width="420" height="190" rx="22" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <text x="110" y="300" fill="#FFFFFF" font-size="56" font-family="Helvetica, Arial, sans-serif">AI Agent</text>
+  <text x="110" y="350" fill="#D9DEEB" font-size="30" font-family="Helvetica, Arial, sans-serif">Competitive edge</text>
 </svg>

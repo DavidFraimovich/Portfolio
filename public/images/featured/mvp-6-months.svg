@@ -1,16 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-  <title id="title">0 to 1 MVP in 6 Months Thumbnail</title>
-  <desc id="desc">Abstract thumbnail for 0 to 1 MVP delivery case study.</desc>
+  <title id="title">Zero to one MVP in six months thumbnail</title>
+  <desc id="desc">Accessible timeline style thumbnail for MVP delivery project.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f1018"/>
-      <stop offset="100%" stop-color="#1a1130"/>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10131F"/>
+      <stop offset="100%" stop-color="#1B1230"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="675" fill="url(#bg)"/>
-  <path d="M120 470 C220 290 350 220 500 230 C720 245 860 110 1080 160" stroke="#8f72ff" stroke-width="22" fill="none"/>
-  <circle cx="120" cy="470" r="18" fill="#ffffff"/>
-  <circle cx="500" cy="230" r="18" fill="#ffffff"/>
-  <circle cx="1080" cy="160" r="18" fill="#ffffff"/>
-  <text x="90" y="610" fill="#ffffff" font-size="56" font-family="Helvetica, Arial, sans-serif">0→1 MVP in 6 months</text>
+  <rect width="1200" height="675" fill="url(#g3)"/>
+  <line x1="120" y1="470" x2="1080" y2="200" stroke="#8F72FF" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="120" cy="470" r="16" fill="#FFFFFF"/>
+  <circle cx="540" cy="350" r="16" fill="#FFFFFF"/>
+  <circle cx="1080" cy="200" r="16" fill="#FFFFFF"/>
+  <rect x="80" y="520" width="560" height="90" rx="14" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.24"/>
+  <text x="110" y="575" fill="#FFFFFF" font-size="44" font-family="Helvetica, Arial, sans-serif">0 to 1 MVP in 6 months</text>
 </svg>
