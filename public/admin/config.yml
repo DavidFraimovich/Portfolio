@@ -6,8 +6,8 @@ backend:
   base_url: https://your-oauth-provider.example.com
   auth_endpoint: /auth
 
-site_url: https://davidfraimovich.github.io/portfolio/
-display_url: https://davidfraimovich.github.io/portfolio/
+site_url: https://davidfraimovich.github.io/Portfolio/
+display_url: https://davidfraimovich.github.io/Portfolio/
 local_backend: true
 
 publish_mode: editorial_workflow
