@@ -2,19 +2,27 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MdxContent } from "@/components/MdxContent";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
+import { formatStableDate } from "@/lib/date";
+import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { getSiteContent } from "@/lib/siteContent";
 import { siteUrl } from "@/lib/site";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
-export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
-  return getAllCaseStudies().map((item) => ({ slug: item.slug }));
+export const dynamicParams = false;
+
+export function generateStaticParams(): Array<{ locale: Locale; slug: string }> {
+  return locales.flatMap((locale) =>
+    getAllCaseStudies(locale).map((item) => ({ locale, slug: item.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getCaseStudyBySlug(slug);
+  const { locale, slug } = await params;
+  const safeLocale = isLocale(locale) ? locale : "en";
+  const entry = getCaseStudyBySlug(safeLocale, slug);
 
   if (!entry) {
     return {
@@ -29,14 +37,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: entry.frontmatter.title,
       description: entry.frontmatter.description,
       type: "article",
-      url: `${siteUrl}/case-studies/${entry.slug}`
+      url: `${siteUrl}/${safeLocale}/case-studies/${entry.slug}`
     }
   };
 }
 
-export default async function CaseStudyDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const entry = getCaseStudyBySlug(slug);
+export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+
+  const site = getSiteContent(locale);
+  const entry = getCaseStudyBySlug(locale, slug);
   if (!entry) notFound();
 
   return (
@@ -45,7 +56,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         <h1>{entry.frontmatter.title}</h1>
         <p>{entry.frontmatter.description}</p>
         <p className="meta">
-          {new Date(entry.frontmatter.date).toLocaleDateString()} | Role: {entry.frontmatter.role}
+          {formatStableDate(entry.frontmatter.date)} | {site.detail_role_label}: {entry.frontmatter.role}
         </p>
         <div className="pill-row">
           {entry.frontmatter.tags.map((tag) => (
@@ -56,30 +67,31 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="grid" aria-label="Project summary blocks">
+      <section className="grid" aria-label={site.case_studies_title}>
         <article className="card">
-          <h2>Context</h2>
+          <h2>{site.detail_context_label}</h2>
           <p>{entry.frontmatter.context}</p>
         </article>
         <article className="card">
-          <h2>Goal Metrics</h2>
+          <h2>{site.detail_goal_metrics_label}</h2>
           <p>{entry.frontmatter.goal_metrics}</p>
         </article>
         <article className="card">
-          <h2>Discovery</h2>
+          <h2>{site.detail_discovery_label}</h2>
           <p>{entry.frontmatter.discovery}</p>
         </article>
         <article className="card">
-          <h2>Options and Tradeoffs</h2>
+          <h2>{site.detail_options_tradeoffs_label}</h2>
           <p>{entry.frontmatter.options_tradeoffs}</p>
         </article>
         <article className="card">
-          <h2>Execution</h2>
+          <h2>{site.detail_execution_label}</h2>
           <p>{entry.frontmatter.execution}</p>
         </article>
         <article className="card">
-          <h2>Results and Learnings</h2>
+          <h2>{site.detail_results_label}</h2>
           <p>{entry.frontmatter.results}</p>
+          <h3>{site.detail_learnings_label}</h3>
           <p>{entry.frontmatter.learnings}</p>
         </article>
       </section>

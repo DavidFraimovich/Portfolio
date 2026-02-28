@@ -1,6 +1,6 @@
 # Portfolio (Next.js + GitHub Pages + Decap CMS)
 
-Static portfolio site using Next.js App Router and `output: "export"` for GitHub Pages.
+Static portfolio site using Next.js App Router and `output: "export"` for GitHub Pages, with bilingual routing (`/en`, `/he`).
 
 ## Local development
 
@@ -9,25 +9,43 @@ npm install
 npm run dev
 ```
 
+## Language architecture
+
+- English: `/en`
+- Hebrew: `/he`
+- Hebrew pages render in RTL (`dir="rtl"`) automatically.
+- Global language picker is in the top navigation.
+
 ## Content structure
 
-- `content/case-studies/*.mdx`
-- `content/posts/*.mdx` (optional)
-- `content/site.json`
+- English case studies: `content/en/case-studies/*.mdx`
+- Hebrew case studies: `content/he/case-studies/*.mdx`
+- English posts: `content/en/posts/*.mdx`
+- Hebrew posts: `content/he/posts/*.mdx`
+- UI/labels:
+  - `content/site/en.json`
+  - `content/site/he.json`
 
-## Decap CMS
+## Decap CMS (2 languages)
 
-Admin UI is at `public/admin/index.html` and config at `public/admin/config.yml`.
+Admin UI: `public/admin/index.html`
+Config: `public/admin/config.yml`
 
-For production GitHub login, set an OAuth proxy with these values in `config.yml`:
+Collections:
+- `Case Studies (EN)`
+- `Case Studies (HE)`
+- `Posts (EN)`
+- `Posts (HE)`
+- `Site UI (EN)`
+- `Site UI (HE)`
 
-- `backend.base_url`: your OAuth provider/proxy URL
-- `backend.auth_endpoint`: usually `/auth`
+For production GitHub login, set OAuth values in `config.yml`:
 
-Common setup: deploy a Decap OAuth provider, then update those two values to match that deployment.
+- `backend.base_url`: URL of your OAuth proxy/provider
+- `backend.auth_endpoint`: auth endpoint (commonly `/auth`)
 
 ## GitHub Pages
 
-The workflow in `.github/workflows/deploy-pages.yml` builds the site and deploys `out/` to GitHub Pages on pushes to `main`.
+The workflow in `.github/workflows/deploy-pages.yml` builds and deploys `out/` on push to `main`.
 
 `next.config.ts` auto-applies `basePath` and `assetPrefix` from `GITHUB_REPOSITORY` for project pages (`username.github.io/repo`).

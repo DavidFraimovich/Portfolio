@@ -10,9 +10,9 @@ media_folder: public/images/uploads
 public_folder: /images/uploads
 
 collections:
-  - name: case-studies
-    label: Case Studies
-    folder: content/case-studies
+  - name: case-studies-en
+    label: Case Studies (EN)
+    folder: content/en/case-studies
     create: true
     slug: "{{slug}}"
     extension: mdx
@@ -32,9 +32,31 @@ collections:
       - { name: learnings, label: Learnings, widget: text }
       - { name: body, label: Body, widget: markdown }
 
-  - name: posts
-    label: Posts
-    folder: content/posts
+  - name: case-studies-he
+    label: Case Studies (HE)
+    folder: content/he/case-studies
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { name: title, label: כותרת, widget: string }
+      - { name: description, label: תיאור, widget: text }
+      - { name: date, label: תאריך, widget: datetime }
+      - { name: tags, label: תגיות, widget: list, default: [] }
+      - { name: role, label: תפקיד, widget: string }
+      - { name: context, label: הקשר, widget: text }
+      - { name: goal_metrics, label: יעדי הצלחה, widget: text }
+      - { name: discovery, label: תובנות מחקר, widget: text }
+      - { name: options_tradeoffs, label: אפשרויות ופשרות, widget: text }
+      - { name: execution, label: ביצוע, widget: text }
+      - { name: results, label: תוצאות, widget: text }
+      - { name: learnings, label: תובנות, widget: text }
+      - { name: body, label: תוכן, widget: markdown }
+
+  - name: posts-en
+    label: Posts (EN)
+    folder: content/en/posts
     create: true
     slug: "{{slug}}"
     extension: mdx
@@ -46,16 +68,113 @@ collections:
       - { name: tags, label: Tags, widget: list, default: [] }
       - { name: body, label: Body, widget: markdown }
 
+  - name: posts-he
+    label: Posts (HE)
+    folder: content/he/posts
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { name: title, label: כותרת, widget: string }
+      - { name: description, label: תיאור, widget: text }
+      - { name: date, label: תאריך, widget: datetime }
+      - { name: tags, label: תגיות, widget: list, default: [] }
+      - { name: body, label: תוכן, widget: markdown }
+
   - name: site
     label: Site Content
     files:
-      - name: homepage
-        label: Home Content
-        file: content/site.json
+      - name: site_en
+        label: Site UI (EN)
+        file: content/site/en.json
         format: json
         fields:
+          - { name: site_title, label: Site Title, widget: string }
+          - { name: brand_name, label: Brand Name, widget: string }
           - { name: headline, label: Headline, widget: string }
           - { name: subheadline, label: Subheadline, widget: text }
           - { name: primary_cta_text, label: Primary CTA Text, widget: string }
           - { name: linkedin_url, label: LinkedIn URL, widget: string }
           - { name: email, label: Email, widget: string }
+          - { name: nav_home, label: Nav Home, widget: string }
+          - { name: nav_case_studies, label: Nav Case Studies, widget: string }
+          - { name: nav_resume, label: Nav Resume, widget: string }
+          - { name: nav_about, label: Nav About, widget: string }
+          - { name: nav_contact, label: Nav Contact, widget: string }
+          - { name: home_selected_case_studies, label: Home Selected Case Studies, widget: string }
+          - { name: home_latest_posts, label: Home Latest Posts, widget: string }
+          - { name: case_studies_title, label: Case Studies Title, widget: string }
+          - { name: case_studies_intro, label: Case Studies Intro, widget: text }
+          - { name: about_title, label: About Title, widget: string }
+          - { name: about_intro, label: About Intro, widget: text }
+          - { name: about_how_i_work_title, label: About How I Work Title, widget: string }
+          - { name: about_how_i_work_text, label: About How I Work Text, widget: text }
+          - { name: about_core_strengths_title, label: About Core Strengths Title, widget: string }
+          - { name: about_core_strengths_text, label: About Core Strengths Text, widget: text }
+          - { name: resume_title, label: Resume Title, widget: string }
+          - { name: resume_intro, label: Resume Intro, widget: text }
+          - { name: resume_experience_title, label: Resume Experience Title, widget: string }
+          - { name: resume_experience_text, label: Resume Experience Text, widget: text }
+          - { name: resume_technology_title, label: Resume Technology Title, widget: string }
+          - { name: resume_technology_text, label: Resume Technology Text, widget: text }
+          - { name: contact_title, label: Contact Title, widget: string }
+          - { name: contact_intro, label: Contact Intro, widget: text }
+          - { name: contact_email_label, label: Contact Email Label, widget: string }
+          - { name: contact_linkedin_label, label: Contact LinkedIn Label, widget: string }
+          - { name: detail_role_label, label: Detail Role Label, widget: string }
+          - { name: detail_context_label, label: Detail Context Label, widget: string }
+          - { name: detail_goal_metrics_label, label: Detail Goal Metrics Label, widget: string }
+          - { name: detail_discovery_label, label: Detail Discovery Label, widget: string }
+          - { name: detail_options_tradeoffs_label, label: Detail Options Tradeoffs Label, widget: string }
+          - { name: detail_execution_label, label: Detail Execution Label, widget: string }
+          - { name: detail_results_label, label: Detail Results Label, widget: string }
+          - { name: detail_learnings_label, label: Detail Learnings Label, widget: string }
+          - { name: footer_note, label: Footer Note, widget: string }
+
+      - name: site_he
+        label: Site UI (HE)
+        file: content/site/he.json
+        format: json
+        fields:
+          - { name: site_title, label: כותרת אתר, widget: string }
+          - { name: brand_name, label: שם מותג, widget: string }
+          - { name: headline, label: כותרת ראשית, widget: string }
+          - { name: subheadline, label: כותרת משנה, widget: text }
+          - { name: primary_cta_text, label: טקסט CTA ראשי, widget: string }
+          - { name: linkedin_url, label: קישור לינקדאין, widget: string }
+          - { name: email, label: אימייל, widget: string }
+          - { name: nav_home, label: ניווט בית, widget: string }
+          - { name: nav_case_studies, label: ניווט מחקרי מקרה, widget: string }
+          - { name: nav_resume, label: ניווט קורות חיים, widget: string }
+          - { name: nav_about, label: ניווט אודות, widget: string }
+          - { name: nav_contact, label: ניווט יצירת קשר, widget: string }
+          - { name: home_selected_case_studies, label: בית מחקרי מקרה נבחרים, widget: string }
+          - { name: home_latest_posts, label: בית פוסטים אחרונים, widget: string }
+          - { name: case_studies_title, label: כותרת מחקרי מקרה, widget: string }
+          - { name: case_studies_intro, label: פתיח מחקרי מקרה, widget: text }
+          - { name: about_title, label: כותרת אודות, widget: string }
+          - { name: about_intro, label: פתיח אודות, widget: text }
+          - { name: about_how_i_work_title, label: כותרת איך אני עובד, widget: string }
+          - { name: about_how_i_work_text, label: טקסט איך אני עובד, widget: text }
+          - { name: about_core_strengths_title, label: כותרת חוזקות מרכזיות, widget: string }
+          - { name: about_core_strengths_text, label: טקסט חוזקות מרכזיות, widget: text }
+          - { name: resume_title, label: כותרת קורות חיים, widget: string }
+          - { name: resume_intro, label: פתיח קורות חיים, widget: text }
+          - { name: resume_experience_title, label: כותרת ניסיון, widget: string }
+          - { name: resume_experience_text, label: טקסט ניסיון, widget: text }
+          - { name: resume_technology_title, label: כותרת טכנולוגיות, widget: string }
+          - { name: resume_technology_text, label: טקסט טכנולוגיות, widget: text }
+          - { name: contact_title, label: כותרת יצירת קשר, widget: string }
+          - { name: contact_intro, label: פתיח יצירת קשר, widget: text }
+          - { name: contact_email_label, label: תווית אימייל, widget: string }
+          - { name: contact_linkedin_label, label: תווית לינקדאין, widget: string }
+          - { name: detail_role_label, label: תווית תפקיד, widget: string }
+          - { name: detail_context_label, label: תווית הקשר, widget: string }
+          - { name: detail_goal_metrics_label, label: תווית יעדי הצלחה, widget: string }
+          - { name: detail_discovery_label, label: תווית תובנות מחקר, widget: string }
+          - { name: detail_options_tradeoffs_label, label: תווית אפשרויות ופשרות, widget: string }
+          - { name: detail_execution_label, label: תווית ביצוע, widget: string }
+          - { name: detail_results_label, label: תווית תוצאות, widget: string }
+          - { name: detail_learnings_label, label: תווית תובנות, widget: string }
+          - { name: footer_note, label: טקסט פוטר, widget: string }

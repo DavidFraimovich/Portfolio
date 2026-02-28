@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Locale } from "@/lib/i18n";
 
 export type CaseStudyFrontmatter = {
   title: string;
@@ -47,8 +48,12 @@ function byDateDesc<T extends { frontmatter: { date: string } }>(a: T, b: T): nu
   return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
 }
 
-export function getAllCaseStudies(): ParsedContent<CaseStudyFrontmatter>[] {
-  const dir = path.join(root, "content", "case-studies");
+function contentDir(locale: Locale, section: "case-studies" | "posts"): string {
+  return path.join(root, "content", locale, section);
+}
+
+export function getAllCaseStudies(locale: Locale): ParsedContent<CaseStudyFrontmatter>[] {
+  const dir = contentDir(locale, "case-studies");
 
   return readDirSafe(dir)
     .map((file) => {
@@ -59,15 +64,18 @@ export function getAllCaseStudies(): ParsedContent<CaseStudyFrontmatter>[] {
     .sort(byDateDesc);
 }
 
-export function getCaseStudyBySlug(slug: string): ParsedContent<CaseStudyFrontmatter> | null {
-  const filePath = path.join(root, "content", "case-studies", `${slug}.mdx`);
+export function getCaseStudyBySlug(
+  locale: Locale,
+  slug: string
+): ParsedContent<CaseStudyFrontmatter> | null {
+  const filePath = path.join(contentDir(locale, "case-studies"), `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
   const parsed = parseMdxFile<CaseStudyFrontmatter>(filePath);
   return { slug, ...parsed };
 }
 
-export function getAllPosts(): ParsedContent<PostFrontmatter>[] {
-  const dir = path.join(root, "content", "posts");
+export function getAllPosts(locale: Locale): ParsedContent<PostFrontmatter>[] {
+  const dir = contentDir(locale, "posts");
 
   return readDirSafe(dir)
     .map((file) => {

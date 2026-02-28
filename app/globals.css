@@ -70,6 +70,13 @@ main {
   flex-wrap: wrap;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
 .nav-links a {
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
@@ -162,6 +169,29 @@ main {
   font-weight: 600;
 }
 
+.cta-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border);
+}
+
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lang-switch a {
+  padding: 0.4rem 0.72rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.lang-switch a.active {
+  background: rgba(123, 92, 255, 0.32);
+  color: #f1eaff;
+}
+
 .meta {
   color: var(--gray);
   font-size: 0.88rem;
@@ -188,6 +218,33 @@ main {
   font-size: 0.9rem;
 }
 
+.locale-root[dir="rtl"] {
+  text-align: right;
+}
+
+.locale-root[dir="rtl"] .pill-row {
+  justify-content: flex-end;
+}
+
+.locale-chooser-wrap {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.locale-chooser {
+  width: min(560px, 92vw);
+  text-align: center;
+}
+
+.locale-buttons {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 640px) {
   .hero {
     padding-top: 2rem;
@@ -195,5 +252,10 @@ main {
 
   main {
     padding-top: 1.5rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }
