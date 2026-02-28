@@ -3,6 +3,8 @@ import { getAllCaseStudies } from "@/lib/content";
 import { locales, withLocalePath } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const rootRoute: MetadataRoute.Sitemap = [
     {

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 function resolveSiteBaseUrl(): string {
   const candidate = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
   const fallback = "https://example.com";
