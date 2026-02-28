@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function CaseStudiesPage(): JSX.Element {
+export default function CaseStudiesPage() {
   const caseStudies = getAllCaseStudies();
 
   return (

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CaseStudyDetailPage({ params }: Props): Promise<JSX.Element> {
+export default async function CaseStudyDetailPage({ params }: Props) {
   const { slug } = await params;
   const entry = getCaseStudyBySlug(slug);
   if (!entry) notFound();

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function AboutPage(): JSX.Element {
+export default function AboutPage() {
   return (
     <section className="hero">
       <h1>About</h1>

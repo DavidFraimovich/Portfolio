@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function ContactPage(): JSX.Element {
+export default function ContactPage() {
   const site = getSiteContent();
 
   return (

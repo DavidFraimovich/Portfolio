@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function HomePage(): JSX.Element {
+export default function HomePage() {
   const site = getSiteContent();
   const caseStudies = getAllCaseStudies().slice(0, 3);
   const posts = getAllPosts().slice(0, 2);

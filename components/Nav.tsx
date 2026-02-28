@@ -8,7 +8,7 @@ const navItems = [
   { href: "/contact", label: "Contact" }
 ];
 
-export function Nav(): JSX.Element {
+export function Nav() {
   return (
     <header className="site-shell">
       <nav className="nav" aria-label="Main navigation">

@@ -5,7 +5,7 @@ type Props = {
   source: string;
 };
 
-export function MdxContent({ source }: Props): JSX.Element {
+export function MdxContent({ source }: Props) {
   return (
     <article className="content">
       <MDXRemote source={source} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
