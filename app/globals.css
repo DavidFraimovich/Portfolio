@@ -130,7 +130,7 @@ a {
 main {
   width: min(1100px, 92vw);
   margin: 0 auto;
-  padding: 2rem 0 4rem;
+  padding: 4rem 0 8rem;
 }
 
 .site-shell {
@@ -195,9 +195,9 @@ main {
 }
 
 .hero {
-  padding: 3.2rem 0 2rem;
+  padding: 3.6rem 0 2.4rem;
   display: grid;
-  gap: 1.2rem;
+  gap: 1.6rem;
 }
 
 .hero h1 {
@@ -211,40 +211,43 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: clamp(1.02rem, 2vw, 1.15rem);
+  line-height: 1.75;
   max-width: 70ch;
 }
 
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.35rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card {
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 1.15rem;
+  padding: 1.5rem;
   background: var(--panel);
   backdrop-filter: blur(14px) saturate(130%);
   -webkit-backdrop-filter: blur(14px) saturate(130%);
-  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
   border-color: var(--accent-strong);
   background: var(--panel-strong);
+  box-shadow: 0 8px 26px var(--shell-shadow);
 }
 
 .card h2,
 .card h3 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.35;
 }
 
 .section-title {
-  margin: 2rem 0 1rem;
+  margin: 2.6rem 0 1.35rem;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
+  line-height: 1.25;
 }
 
 .pill-row {
@@ -280,8 +283,9 @@ main {
 
 .cta-row {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
+  margin-top: 0.35rem;
 }
 
 .cta-row.compact .cta {
@@ -294,20 +298,22 @@ main {
 
 .plain-list {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.35rem;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.72rem;
+  line-height: 1.75;
 }
 
 .brief-hero h1 {
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .brief-hero > p {
   color: var(--muted);
   margin-top: 0;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.6rem;
+  line-height: 1.8;
 }
 
 .impact-tile h3 {
@@ -317,7 +323,7 @@ main {
 
 .featured-card {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.9rem;
 }
 
 .featured-thumb {
@@ -330,9 +336,10 @@ main {
 
 .timeline {
   margin: 0;
-  padding-left: 1.3rem;
+  padding-left: 1.45rem;
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
+  line-height: 1.8;
 }
 
 .timeline li::marker {
@@ -344,6 +351,7 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 1rem;
+  line-height: 1.9;
 }
 
 .lang-switch {
@@ -453,6 +461,7 @@ main {
   margin: 0 auto 2rem;
   color: var(--gray);
   font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .locale-root[dir="rtl"] {

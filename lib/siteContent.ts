@@ -49,8 +49,8 @@ export type SiteContent = {
 const defaults: Record<Locale, SiteContent> = {
   en: {
     site_title: "Portfolio",
-    brand_name: "Your Name",
-    headline: "Product designer and engineer turning complex systems into clear experiences.",
+    brand_name: "David Fraimovich",
+    headline: "Product Manager and Ux engineer turning complex systems into clear experiences.",
     subheadline:
       "I build business-grade digital products with measurable outcomes, from discovery to launch.",
     primary_cta_text: "View Case Studies",
@@ -101,7 +101,7 @@ const defaults: Record<Locale, SiteContent> = {
   },
   he: {
     site_title: "תיק עבודות",
-    brand_name: "השם שלך",
+    brand_name: "דוד ",
     headline: "מעצב מוצר ומפתח שהופך מערכות מורכבות לחוויות ברורות.",
     subheadline: "אני בונה מוצרים עסקיים עם תוצאות מדידות, משלב המחקר ועד ההשקה.",
     primary_cta_text: "לצפייה במחקרי מקרה",
