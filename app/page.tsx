@@ -1,4 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Choose Language",
+  description: "Select your language to view the portfolio in English or Hebrew.",
+  alternates: {
+    canonical: siteUrl
+  },
+  openGraph: {
+    title: "Choose Language",
+    description: "Select your language to view the portfolio in English or Hebrew.",
+    type: "website",
+    url: siteUrl
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Choose Language",
+    description: "Select your language to view the portfolio in English or Hebrew."
+  }
+};
 
 export default function LocaleEntryPage() {
   return (

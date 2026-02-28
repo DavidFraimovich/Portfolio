@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { MdxContent } from "@/components/MdxContent";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { isLocale, locales, type Locale, withLocalePath } from "@/lib/i18n";
 import { getSiteContent } from "@/lib/siteContent";
 import { siteUrl } from "@/lib/site";
 
@@ -30,14 +30,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const canonical = `${siteUrl}${withLocalePath(safeLocale, `/case-studies/${entry.slug}`)}`;
+
   return {
     title: entry.frontmatter.title,
     description: entry.frontmatter.description,
+    alternates: {
+      canonical
+    },
     openGraph: {
       title: entry.frontmatter.title,
       description: entry.frontmatter.description,
       type: "article",
-      url: `${siteUrl}/${safeLocale}/case-studies/${entry.slug}`
+      url: canonical
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: entry.frontmatter.title,
+      description: entry.frontmatter.description
     }
   };
 }

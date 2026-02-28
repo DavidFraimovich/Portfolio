@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale } from "@/lib/i18n";
+import { isLocale, withLocalePath } from "@/lib/i18n";
+import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -11,11 +12,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isLocale(locale) ? locale : "en";
   const site = getSiteContent(safeLocale);
+  const canonical = `${siteUrl}${withLocalePath(safeLocale, "/resume")}`;
 
   return {
     title: site.nav_resume,
     description: site.resume_intro,
+    alternates: {
+      canonical
+    },
     openGraph: {
+      title: site.nav_resume,
+      description: site.resume_intro,
+      type: "website",
+      url: canonical
+    },
+    twitter: {
+      card: "summary_large_image",
       title: site.nav_resume,
       description: site.resume_intro
     }

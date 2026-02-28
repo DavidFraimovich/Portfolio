@@ -9,11 +9,23 @@ export const metadata: Metadata = {
     template: `%s | ${siteDefaults.title}`
   },
   description: siteDefaults.description,
+  alternates: {
+    canonical: siteUrl
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
   openGraph: {
     title: siteDefaults.title,
     description: siteDefaults.description,
     type: "website",
     url: siteUrl
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteDefaults.title,
+    description: siteDefaults.description
   }
 };
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
+import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -14,11 +15,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isLocale(locale) ? locale : "en";
   const site = getSiteContent(safeLocale);
+  const canonical = `${siteUrl}${withLocalePath(safeLocale)}`;
 
   return {
     title: site.nav_home,
     description: site.subheadline,
+    alternates: {
+      canonical
+    },
     openGraph: {
+      title: site.nav_home,
+      description: site.subheadline,
+      type: "website",
+      url: canonical
+    },
+    twitter: {
+      card: "summary_large_image",
       title: site.nav_home,
       description: site.subheadline
     }

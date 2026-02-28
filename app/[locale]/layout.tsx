@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
-import { isLocale, localeDirection, locales, type Locale } from "@/lib/i18n";
+import { isLocale, localeDirection, locales, type Locale, withLocalePath } from "@/lib/i18n";
 
 type Props = {
   children: React.ReactNode;
@@ -20,6 +21,10 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const { locale } = await params;
   const safeLocale = isLocale(locale) ? locale : "en";
   const site = getSiteContent(safeLocale);
+  const canonicalPath = withLocalePath(safeLocale);
+  const localeAlternates = Object.fromEntries(
+    locales.map((currentLocale) => [currentLocale, `${siteUrl}${withLocalePath(currentLocale)}`])
+  );
 
   return {
     title: {
@@ -27,7 +32,26 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       template: `%s | ${site.site_title}`
     },
     description: site.subheadline,
+    alternates: {
+      canonical: `${siteUrl}${canonicalPath}`,
+      languages: {
+        ...localeAlternates,
+        "x-default": siteUrl
+      }
+    },
+    robots: {
+      index: true,
+      follow: true
+    },
     openGraph: {
+      title: site.site_title,
+      description: site.subheadline,
+      type: "website",
+      url: `${siteUrl}${canonicalPath}`,
+      locale: safeLocale === "he" ? "he_IL" : "en_US"
+    },
+    twitter: {
+      card: "summary_large_image",
       title: site.site_title,
       description: site.subheadline
     }
