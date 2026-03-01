@@ -69,11 +69,84 @@
   pointer-events: none;
 }
 
+.shaderLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.92;
+  filter: saturate(108%) brightness(0.8);
+}
+
+.shaderCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+.bubbleLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 42%),
+    var(--bubble-color);
+  border: 1px solid rgba(218, 220, 245, 0.14);
+  opacity: 0.5;
+  transform: translate3d(0, 0, 0);
+  animation: bubbleFloat var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.centerWaveLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.centerWave {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(58vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.88);
+  border: 1px solid rgba(170, 178, 255, 0.24);
+  box-shadow:
+    0 0 70px rgba(112, 95, 224, 0.16),
+    inset 0 0 36px rgba(75, 118, 217, 0.12);
+  opacity: 0.44;
+  animation: centerRipple 11s cubic-bezier(0.28, 0.12, 0.14, 1) infinite;
+}
+
+.centerWaveTwo {
+  width: min(46vw, 500px);
+  animation-duration: 9.4s;
+  animation-delay: -2.2s;
+  border-color: rgba(136, 158, 255, 0.22);
+}
+
+.centerWaveThree {
+  width: min(34vw, 370px);
+  animation-duration: 8.2s;
+  animation-delay: -3.6s;
+  border-color: rgba(94, 176, 255, 0.19);
+}
+
 .layerFar,
 .layerMid,
 .layerNear {
   position: absolute;
   inset: -12%;
+  z-index: 2;
 }
 
 .gradientVeil {
@@ -233,31 +306,55 @@
     border-color 220ms ease,
     background-color 220ms ease,
     box-shadow 220ms ease,
-    transform 220ms ease;
+    transform 220ms ease,
+    filter 220ms ease;
 }
 
 .primaryButton {
   color: #eef7ff;
-  border-color: rgba(162, 229, 255, 0.44);
-  background: linear-gradient(135deg, rgba(56, 173, 233, 0.85), rgba(107, 133, 241, 0.84));
+  border-color: rgba(180, 188, 255, 0.42);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(88, 58, 182, 0.92) 0%,
+      rgba(116, 86, 224, 0.9) 48%,
+      rgba(67, 121, 204, 0.86) 100%
+    );
+  background-size: 220% 220%;
+  animation: buttonGradientShift 8s ease-in-out infinite alternate;
   box-shadow: 0 12px 28px rgba(27, 90, 146, 0.36);
 }
 
 .primaryButton:hover {
   box-shadow: 0 16px 32px rgba(37, 110, 175, 0.44);
+  filter: saturate(108%) brightness(1.03);
 }
 
 .secondaryButton {
   color: #e8f0ff;
-  border-color: rgba(155, 181, 247, 0.42);
-  background: rgba(14, 23, 44, 0.56);
+  border-color: rgba(161, 172, 226, 0.4);
+  background:
+    linear-gradient(
+      140deg,
+      rgba(48, 36, 85, 0.56) 0%,
+      rgba(25, 27, 51, 0.72) 46%,
+      rgba(46, 53, 92, 0.58) 100%
+    );
+  background-size: 220% 220%;
+  animation: buttonGradientShift 11s ease-in-out infinite alternate-reverse;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 .secondaryButton:hover {
   border-color: rgba(175, 199, 255, 0.62);
-  background: rgba(18, 31, 59, 0.66);
+  box-shadow: 0 10px 24px rgba(30, 41, 78, 0.34);
+  filter: saturate(108%) brightness(1.03);
+}
+
+.button:focus-visible {
+  outline: 2px solid rgba(188, 203, 255, 0.92);
+  outline-offset: 2px;
 }
 
 .linksRow {
@@ -471,6 +568,23 @@
   animation: none;
 }
 
+.reduced .bubble,
+.reduced .centerWave,
+.reduced .primaryButton,
+.reduced .secondaryButton {
+  animation: none;
+}
+
+.reduced .bubble {
+  transform: none;
+  opacity: 0.36;
+}
+
+.reduced .centerWave {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.2;
+}
+
 .reduced.heroAnimatedBg {
   animation: none;
   background-position: 30% 40%;
@@ -499,6 +613,45 @@
   }
   100% {
     transform: translate3d(16vw, 9vh, 0) scale(1.12);
+  }
+}
+
+@keyframes bubbleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate3d(calc(var(--drift) * 0.5), calc(var(--drift) * -0.72), 0) scale(1.03);
+    opacity: 0.56;
+  }
+  100% {
+    transform: translate3d(var(--drift), calc(var(--drift) * -1), 0) scale(1.06);
+    opacity: 0.38;
+  }
+}
+
+@keyframes centerRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.84);
+    opacity: 0.52;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.24;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.22);
+    opacity: 0.05;
+  }
+}
+
+@keyframes buttonGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 
@@ -603,6 +756,23 @@
   .heroAnimatedBg::before {
     animation: none !important;
     transform: none !important;
+  }
+
+  .bubble,
+  .centerWave,
+  .primaryButton,
+  .secondaryButton {
+    animation: none !important;
+  }
+
+  .bubble {
+    transform: none !important;
+    opacity: 0.36;
+  }
+
+  .centerWave {
+    transform: translate(-50%, -50%) scale(1) !important;
+    opacity: 0.2 !important;
   }
 
   .gradientVeil,

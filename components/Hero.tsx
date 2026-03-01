@@ -3,6 +3,7 @@
 import type { CSSProperties, MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
 import type { Locale } from "@/lib/i18n";
 import styles from "./Hero.module.css";
 
@@ -98,6 +99,26 @@ const particles: Array<{ size: number; left: number; top: number; duration: numb
   { size: 5, left: 91, top: 22, duration: 8.2, delay: 0.7 }
 ];
 
+const bubbles: Array<{
+  size: number;
+  left: number;
+  top: number;
+  duration: number;
+  delay: number;
+  drift: number;
+  color: string;
+}> = [
+  { size: 220, left: 8, top: 20, duration: 24, delay: -3, drift: 22, color: "rgba(143, 124, 255, 0.2)" },
+  { size: 160, left: 18, top: 68, duration: 20, delay: -11, drift: 16, color: "rgba(115, 105, 206, 0.18)" },
+  { size: 120, left: 28, top: 34, duration: 18, delay: -4, drift: 20, color: "rgba(170, 170, 186, 0.13)" },
+  { size: 200, left: 39, top: 58, duration: 26, delay: -9, drift: 24, color: "rgba(121, 95, 230, 0.15)" },
+  { size: 150, left: 50, top: 20, duration: 22, delay: -6, drift: 18, color: "rgba(88, 170, 244, 0.12)" },
+  { size: 260, left: 62, top: 42, duration: 30, delay: -1, drift: 28, color: "rgba(113, 89, 213, 0.16)" },
+  { size: 130, left: 74, top: 18, duration: 19, delay: -8, drift: 14, color: "rgba(174, 174, 192, 0.12)" },
+  { size: 180, left: 84, top: 60, duration: 23, delay: -13, drift: 20, color: "rgba(126, 98, 238, 0.16)" },
+  { size: 96, left: 90, top: 30, duration: 17, delay: -2, drift: 12, color: "rgba(97, 185, 255, 0.13)" }
+];
+
 function LinkIcon({ name }: { name: IconName }) {
   if (name === "mail") {
     return (
@@ -190,6 +211,69 @@ export function Hero({ locale = "en" }: HeroProps) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.background} aria-hidden="true">
+        <div className={styles.shaderLayer}>
+          <ShaderGradientCanvas
+            className={styles.shaderCanvas}
+            style={{ width: "100%", height: "100%" }}
+            pointerEvents="none"
+            pixelDensity={1}
+            lazyLoad
+          >
+            <ShaderGradient
+              control="props"
+              type="plane"
+              animate={shouldReduceMotion ? "off" : "on"}
+              uSpeed={0.21}
+              uDensity={1.02}
+              uStrength={1.28}
+              uFrequency={3.05}
+              uAmplitude={44}
+              color1="#7b4dff"
+              color2="#131322"
+              color3="#3aa7ff"
+              brightness={0.92}
+              grain="off"
+              reflection={0.18}
+              lightType="3d"
+              cDistance={4.2}
+              cPolarAngle={124}
+              cAzimuthAngle={174}
+              positionX={0}
+              positionY={0}
+              positionZ={0}
+              rotationX={0}
+              rotationY={0}
+              rotationZ={0}
+            />
+          </ShaderGradientCanvas>
+        </div>
+
+        <div className={styles.bubbleLayer}>
+          {bubbles.map((bubble, index) => (
+            <span
+              key={`bubble-${index}`}
+              className={styles.bubble}
+              style={
+                {
+                  "--size": `${bubble.size}px`,
+                  "--left": `${bubble.left}%`,
+                  "--top": `${bubble.top}%`,
+                  "--duration": `${bubble.duration}s`,
+                  "--delay": `${bubble.delay}s`,
+                  "--drift": `${bubble.drift}px`,
+                  "--bubble-color": bubble.color
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+
+        <div className={styles.centerWaveLayer}>
+          <span className={styles.centerWave} />
+          <span className={`${styles.centerWave} ${styles.centerWaveTwo}`} />
+          <span className={`${styles.centerWave} ${styles.centerWaveThree}`} />
+        </div>
+
         <motion.div className={styles.layerFar} style={{ x: farX, y: farY }}>
           <motion.div className={styles.gradientVeil} />
           <motion.div
