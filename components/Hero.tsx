@@ -14,6 +14,8 @@ const LINKS = {
   linkedin: "https://www.linkedin.com/in/david-fraimovich-843207172"
 } as const;
 
+const HERO_PROFILE_IMAGE = "/images/hero/David-Fraimovich.jpeg";
+
 type IconName = "mail" | "linkedin" | "cv";
 
 type QuickLink = { label: string; href: string; icon: IconName; external?: boolean };
@@ -28,6 +30,7 @@ type HeroCopy = {
   panelKicker: string;
   panelTitle: string;
   panelText: string;
+  panelImageAlt: string;
   quickLinks: QuickLink[];
   statChips: StatChip[];
 };
@@ -44,6 +47,7 @@ const heroCopy: Record<Locale, HeroCopy> = {
     panelKicker: "Execution Snapshot",
     panelTitle: "Build direction, design confidence, and shipping momentum.",
     panelText: "One workflow from discovery to release, tuned for signal, speed, and maintainable delivery.",
+    panelImageAlt: "Generated portrait placeholder for hero panel",
     quickLinks: [
       { label: "Email", href: LINKS.email, icon: "mail" },
       { label: "LinkedIn", href: LINKS.linkedin, icon: "linkedin", external: true },
@@ -67,6 +71,7 @@ const heroCopy: Record<Locale, HeroCopy> = {
     panelKicker: "תמונת מצב",
     panelTitle: "כיוון מוצרי ברור, חוויית משתמש מדויקת וקצב שילוח מהיר.",
     panelText: "תהליך אחד מקצה לקצה: מבעיה, דרך החלטות מוצר, עד השקה יציבה עם תוצאות מדידות.",
+    panelImageAlt: "תמונת פרופיל דמו להחלפה",
     quickLinks: [
       { label: "אימייל", href: LINKS.email, icon: "mail" },
       { label: "לינקדאין", href: LINKS.linkedin, icon: "linkedin", external: true },
@@ -322,17 +327,16 @@ export function Hero({ locale = "en" }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={enterTransition(0.22)}
         >
+          <div className={styles.profileVisual}>
+            <div className={styles.profileShape}>
+              <img src={HERO_PROFILE_IMAGE} alt={copy.panelImageAlt} className={styles.profileImage} />
+            </div>
+            <span className={styles.sparkTop} aria-hidden="true" />
+            <span className={styles.sparkBottom} aria-hidden="true" />
+          </div>
           <p className={styles.panelKicker}>{copy.panelKicker}</p>
           <h2 className={styles.panelTitle}>{copy.panelTitle}</h2>
           <p className={styles.panelText}>{copy.panelText}</p>
-          <div className={styles.statGrid}>
-            {copy.statChips.map((chip) => (
-              <div key={chip.title} className={styles.statChip}>
-                <p className={styles.statTitle}>{chip.title}</p>
-                <p className={styles.statDetail}>{chip.detail}</p>
-              </div>
-            ))}
-          </div>
         </motion.aside>
       </div>
     </section>
