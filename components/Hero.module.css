@@ -1,0 +1,529 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 2.8rem;
+  padding-block: clamp(4rem, 11vw, 7.5rem);
+  min-height: clamp(460px, 70vh, 700px);
+  background-color: #050507;
+}
+
+.heroAnimatedBg {
+  background-image:
+    radial-gradient(circle at 10% 6%, rgba(123, 92, 255, 0.42) 0%, rgba(123, 92, 255, 0) 52%),
+    radial-gradient(circle at 88% 8%, rgba(90, 49, 244, 0.36) 0%, rgba(90, 49, 244, 0) 56%),
+    radial-gradient(circle at 54% 26%, rgba(78, 192, 255, 0.16) 0%, rgba(78, 192, 255, 0) 62%),
+    linear-gradient(180deg, #28124b 0%, #130c24 46%, #050507 100%);
+  background-size: 240% 240%;
+  background-position: 0% 50%;
+  animation: heroGradientShift 26s ease-in-out infinite alternate;
+}
+
+.heroAnimatedBg::before {
+  content: "";
+  position: absolute;
+  width: min(54vw, 760px);
+  aspect-ratio: 1;
+  left: -12vw;
+  top: -34%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(116, 82, 255, 0.42), rgba(116, 82, 255, 0));
+  filter: blur(24px);
+  opacity: 0.62;
+  transform: translate3d(0, 0, 0);
+  animation: heroBlobDrift 22s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.heroAnimatedBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(120% 80% at 50% 56%, rgba(5, 5, 9, 0) 36%, rgba(5, 5, 9, 0.64) 100%),
+    linear-gradient(180deg, rgba(8, 6, 16, 0.06) 0%, rgba(5, 5, 9, 0.72) 100%);
+}
+
+.inner {
+  position: relative;
+  z-index: 3;
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(1.35rem, 3.4vw, 3rem);
+  align-items: center;
+  min-height: clamp(360px, 56vh, 560px);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.layerFar,
+.layerMid,
+.layerNear {
+  position: absolute;
+  inset: -12%;
+}
+
+.gradientVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(132, 109, 255, 0.26) 0%, transparent 48%),
+    radial-gradient(circle at 84% 18%, rgba(98, 72, 228, 0.2) 0%, transparent 52%),
+    linear-gradient(118deg, rgba(36, 24, 74, 0.16) 0%, rgba(6, 6, 12, 0.56) 100%);
+  background-size: 160% 160%;
+  opacity: 0.95;
+}
+
+.ambientGlowOne {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  left: -90px;
+  top: -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 42%, rgba(130, 102, 255, 0.45), rgba(130, 102, 255, 0));
+  filter: blur(8px);
+}
+
+.ambientGlowTwo {
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  right: -160px;
+  bottom: -250px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgba(89, 127, 255, 0.36), rgba(89, 127, 255, 0));
+  filter: blur(14px);
+}
+
+.dotMatrix {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(170, 189, 255, 0.22) 1px, transparent 1.15px);
+  background-size: 26px 26px;
+  opacity: 0.22;
+  mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.78), transparent 95%);
+}
+
+.movingLine {
+  position: absolute;
+  left: -32%;
+  top: 73%;
+  width: 164%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(70, 189, 255, 0),
+    rgba(70, 189, 255, 0.8),
+    rgba(127, 140, 255, 0.85),
+    rgba(70, 189, 255, 0)
+  );
+  opacity: 0.85;
+  animation: lineSweep 8s ease-in-out infinite;
+}
+
+.orbitRing {
+  position: absolute;
+  width: clamp(250px, 38vw, 390px);
+  aspect-ratio: 1;
+  right: 8%;
+  top: 9%;
+  border-radius: 50%;
+  border: 1px solid rgba(137, 180, 255, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(96, 157, 255, 0.14),
+    inset 0 0 40px rgba(85, 124, 222, 0.12);
+  animation: ringTurn 30s linear infinite;
+}
+
+.orbitRing::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(176, 245, 255, 0.94), rgba(176, 245, 255, 0.18));
+  box-shadow: 0 0 18px rgba(176, 245, 255, 0.58);
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(190, 220, 255, 0.9), rgba(146, 176, 246, 0.35));
+  opacity: 0.45;
+  box-shadow: 0 0 12px rgba(157, 210, 255, 0.45);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  max-width: 660px;
+}
+
+.credibility {
+  margin: 0 0 0.95rem;
+  color: rgba(204, 219, 255, 0.88);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.title {
+  margin: 0;
+  color: #f4f8ff;
+  font-size: clamp(2rem, 5.4vw, 4.3rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.subtitle {
+  margin: 1.15rem 0 0;
+  color: rgba(211, 224, 248, 0.88);
+  font-size: clamp(1.02rem, 2vw, 1.21rem);
+  line-height: 1.75;
+  max-width: 61ch;
+}
+
+.ctaRow {
+  margin-top: 1.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.82rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 0.72rem 1.22rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.primaryButton {
+  color: #eef7ff;
+  border-color: rgba(162, 229, 255, 0.44);
+  background: linear-gradient(135deg, rgba(56, 173, 233, 0.85), rgba(107, 133, 241, 0.84));
+  box-shadow: 0 12px 28px rgba(27, 90, 146, 0.36);
+}
+
+.primaryButton:hover {
+  box-shadow: 0 16px 32px rgba(37, 110, 175, 0.44);
+}
+
+.secondaryButton {
+  color: #e8f0ff;
+  border-color: rgba(155, 181, 247, 0.42);
+  background: rgba(14, 23, 44, 0.56);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.secondaryButton:hover {
+  border-color: rgba(175, 199, 255, 0.62);
+  background: rgba(18, 31, 59, 0.66);
+}
+
+.linksRow {
+  margin-top: 1.05rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.linkItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.46rem;
+  padding: 0.35rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid rgba(156, 186, 252, 0.26);
+  color: rgba(215, 228, 255, 0.88);
+  font-size: 0.86rem;
+  line-height: 1;
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.linkItem:hover {
+  color: #eff5ff;
+  border-color: rgba(195, 216, 255, 0.56);
+  background: rgba(28, 42, 73, 0.56);
+}
+
+.linkIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(175, 210, 255, 0.95);
+  background: rgba(147, 180, 255, 0.13);
+}
+
+.linkIcon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.linkedinGlyph {
+  fill: currentColor;
+  stroke: none;
+}
+
+.linkedinIcon {
+  background: linear-gradient(160deg, rgba(43, 129, 255, 0.34), rgba(26, 93, 214, 0.18));
+  color: rgba(216, 235, 255, 0.98);
+  box-shadow: inset 0 0 0 1px rgba(130, 191, 255, 0.28);
+}
+
+.linkItem:hover .linkedinIcon {
+  background: linear-gradient(160deg, rgba(53, 145, 255, 0.42), rgba(31, 106, 230, 0.24));
+  color: #f4f9ff;
+}
+
+.panel {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  border-radius: 24px;
+  border: 1px solid rgba(178, 204, 255, 0.2);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+    rgba(10, 15, 30, 0.54);
+  backdrop-filter: blur(16px) saturate(134%);
+  -webkit-backdrop-filter: blur(16px) saturate(134%);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.4);
+  padding: 1.2rem;
+}
+
+.panelKicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(186, 202, 240, 0.84);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.panelTitle {
+  margin: 0.58rem 0 0;
+  color: #f0f4ff;
+  font-size: 1.22rem;
+  line-height: 1.35;
+}
+
+.panelText {
+  margin: 0.72rem 0 1.1rem;
+  color: rgba(202, 216, 240, 0.85);
+  line-height: 1.6;
+  font-size: 0.93rem;
+}
+
+.statGrid {
+  display: grid;
+  gap: 0.68rem;
+}
+
+.statChip {
+  border-radius: 14px;
+  border: 1px solid rgba(177, 206, 255, 0.22);
+  background: rgba(159, 188, 249, 0.1);
+  padding: 0.72rem 0.78rem;
+}
+
+.statTitle {
+  margin: 0;
+  color: #f6fbff;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.statDetail {
+  margin: 0.34rem 0 0;
+  color: rgba(208, 222, 243, 0.84);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.reduced .gradientVeil,
+.reduced .movingLine,
+.reduced .orbitRing {
+  animation: none;
+}
+
+.reduced.heroAnimatedBg {
+  animation: none;
+  background-position: 30% 40%;
+}
+
+.reduced.heroAnimatedBg::before {
+  animation: none;
+  transform: none;
+}
+
+@keyframes heroGradientShift {
+  0% {
+    background-position: 0% 45%;
+  }
+  50% {
+    background-position: 85% 60%;
+  }
+  100% {
+    background-position: 30% 20%;
+  }
+}
+
+@keyframes heroBlobDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(16vw, 9vh, 0) scale(1.12);
+  }
+}
+
+@keyframes lineSweep {
+  0% {
+    transform: translateX(-6%);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translateX(6%);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateX(-6%);
+    opacity: 0.42;
+  }
+}
+
+@keyframes ringTurn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 980px) {
+  .hero {
+    padding-block: clamp(3.4rem, 11vw, 5.2rem);
+    min-height: 0;
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .panel {
+    max-width: 520px;
+  }
+
+  .orbitRing {
+    width: min(74vw, 320px);
+    right: -4%;
+    top: 16%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 3rem;
+    margin-bottom: 2.1rem;
+  }
+
+  .inner {
+    width: min(1120px, 94vw);
+    gap: 1.15rem;
+  }
+
+  .credibility {
+    font-size: 0.72rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .linksRow {
+    gap: 0.52rem;
+  }
+
+  .linkItem {
+    font-size: 0.82rem;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroAnimatedBg {
+    animation: none !important;
+    background-position: 30% 40% !important;
+  }
+
+  .heroAnimatedBg::before {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .gradientVeil,
+  .movingLine,
+  .orbitRing {
+    animation: none !important;
+  }
+}

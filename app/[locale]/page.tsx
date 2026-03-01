@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Hero } from "@/components/Hero";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
@@ -71,8 +72,10 @@ export default async function LocalizedHomePage({ params }: Props) {
 
   return (
     <>
+      <Hero locale={locale} />
+
       <section className="brief-hero card">
-        <h1>{isHebrew ? "האתר הזה הוא מוצר." : "This website is a product."}</h1>
+        <h2 className="topless-title">{isHebrew ? "האתר הזה הוא מוצר." : "This website is a product."}</h2>
         <p>
           {isHebrew
             ? "נבנה כדי לעזור ל-3 קבוצות משתמשים להחליט מהר אם אני ה-PM שיכול לייצר ערך: מגייסים, מנהלים מגייסים ומפנים."
@@ -289,16 +292,6 @@ export default async function LocalizedHomePage({ params }: Props) {
             {isHebrew ? "פירוט מלא על דרך העבודה" : "Read full How I work"}
           </Link>
         </div>
-      </section>
-
-      <section className="hero">
-        <h1>{site.headline}</h1>
-        <p>{site.subheadline}</p>
-        <p>
-          <Link className="cta" href={withLocalePath(locale, "/case-studies")}>
-            {site.primary_cta_text}
-          </Link>
-        </p>
       </section>
 
       <h2 className="section-title">{site.home_selected_case_studies}</h2>
