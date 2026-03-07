@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
+import { SkillsRibbon } from "@/components/SkillsRibbon";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
@@ -73,6 +74,7 @@ export default async function LocalizedHomePage({ params }: Props) {
   return (
     <>
       <Hero locale={locale} />
+      <SkillsRibbon locale={locale} />
 
       <section className="brief-hero card">
         <h2 className="topless-title">{isHebrew ? "האתר הזה הוא מוצר." : "This website is a product."}</h2>
