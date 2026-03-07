@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { withBasePath } from "@/lib/site";
 import type { SiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -6,6 +6,9 @@ type Props = {
 };
 
 export function Footer({ site }: Props) {
+  const cvHeLink = withBasePath("/cv/David-Fraimovich-CV-HE.pdf");
+  const cvEnLink = withBasePath("/cv/David-Fraimovich-CV-EN.pdf");
+
   return (
     <footer className="footer">
       <p>{site.footer_note}</p>
@@ -16,12 +19,12 @@ export function Footer({ site }: Props) {
         <a className="cta cta-secondary" href="mailto:davidfr97@gmail.com">
           Mail me
         </a>
-        <Link className="cta cta-secondary" href="/cv/David-Fraimovich-CV-HE.pdf" target="_blank">
+        <a className="cta cta-secondary" href={cvHeLink} target="_blank" rel="noreferrer">
           Download CV (HE)
-        </Link>
-        <Link className="cta cta-secondary" href="/cv/David-Fraimovich-CV-EN.pdf" target="_blank">
+        </a>
+        <a className="cta cta-secondary" href={cvEnLink} target="_blank" rel="noreferrer">
           Download CV (EN)
-        </Link>
+        </a>
         <a
           className="cta cta-secondary"
           href="https://www.linkedin.com/in/david-fraimovich-843207172"

@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
-import { basePath, siteUrl } from "@/lib/site";
+import { siteUrl, withBasePath } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -68,7 +68,7 @@ export default async function LocalizedHomePage({ params }: Props) {
       image: "/images/featured/mvp-6-months.svg"
     }
   ];
-  const assetPath = (path: string): string => `${basePath}${path}`;
+  const assetPath = (path: string): string => withBasePath(path);
 
   return (
     <>
@@ -111,9 +111,9 @@ export default async function LocalizedHomePage({ params }: Props) {
           <Link className="cta" href={withLocalePath(locale, "/case-studies")}>
             {isHebrew ? "למחקרי מקרה" : "View Case Studies"}
           </Link>
-          <Link className="cta cta-secondary" href="/cv/David-Fraimovich-CV-EN.pdf" target="_blank">
+          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-EN.pdf")} target="_blank" rel="noreferrer">
             {isHebrew ? "הורדת קורות חיים" : "Download CV"}
-          </Link>
+          </a>
           <Link className="cta cta-secondary" href={withLocalePath(locale, "/contact")}>
             {isHebrew ? "יצירת קשר" : "Contact"}
           </Link>
@@ -350,12 +350,12 @@ export default async function LocalizedHomePage({ params }: Props) {
           <a className="cta cta-secondary" href="https://www.linkedin.com/in/david-fraimovich-843207172" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <Link className="cta cta-secondary" href="/cv/David-Fraimovich-CV-HE.pdf" target="_blank">
+          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-HE.pdf")} target="_blank" rel="noreferrer">
             Download CV (HE)
-          </Link>
-          <Link className="cta cta-secondary" href="/cv/David-Fraimovich-CV-EN.pdf" target="_blank">
+          </a>
+          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-EN.pdf")} target="_blank" rel="noreferrer">
             Download CV (EN)
-          </Link>
+          </a>
         </div>
       </section>
     </>

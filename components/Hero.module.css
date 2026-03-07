@@ -1,6 +1,6 @@
 .hero {
   --hero-min-height: clamp(620px, 86vh, 860px);
-  --hero-padding-top: 0px;
+  --hero-padding-top: max(0px, calc(var(--nav-shell-offset, 0px) - 19.2px));
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -132,18 +132,6 @@
   max-width: 920px;
   margin: 0 auto;
   text-align: center;
-}
-
-.helloPill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5.76px 13.76px;
-  border-radius: 999px;
-  border: 1px solid rgba(212, 223, 255, 0.38);
-  color: rgba(233, 241, 255, 0.94);
-  font-size: 14.4px;
-  margin-bottom: 17.6px;
 }
 
 .title {

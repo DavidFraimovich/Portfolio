@@ -31,6 +31,8 @@
   --cta-grad-1: rgba(90, 49, 244, 0.75);
   --cta-grad-2: rgba(123, 92, 255, 0.5);
   --cta-text: #ffffff;
+  --nav-shell-top: 4px;
+  --nav-shell-offset: 107.2px;
 }
 
 html[data-theme="light"] {
@@ -127,18 +129,25 @@ a {
   text-decoration: none;
 }
 
-main {
+.locale-root > main {
   width: min(1100px, 92vw);
   margin: 0 auto;
-  padding: 0 0 128px;
+  padding: var(--nav-shell-offset) 0 128px;
+}
+
+.locale-root > main > .hero-root:first-child {
+  margin-top: calc(var(--nav-shell-offset) * -1);
 }
 
 .site-shell {
-  width: min(1100px, 92vw);
-  margin: 0 auto;
+  width: min(1100px, calc(100vw - 25.6px));
+  margin: 8px;
   padding: 12.8px;
-  position: relative;
-  z-index: 40;
+  position: fixed;
+  top: var(--nav-shell-top);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 220;
   overflow: visible;
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -504,6 +513,11 @@ main {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --nav-shell-top: 4px;
+    --nav-shell-offset: 164.8px;
+  }
+
   .hero {
     padding-top: 32px;
   }

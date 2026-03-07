@@ -1,19 +1,19 @@
+import Link from "next/link";
 import { type Locale, withLocalePath } from "@/lib/i18n";
-import { basePath } from "@/lib/site";
+import { withBasePath } from "@/lib/site";
 import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
 
 const LINKS = {
   whatsapp: "https://wa.me/972542114929",
   linkedin: "https://www.linkedin.com/in/david-fraimovich-843207172",
-  cvHe: "/cv/David-Fraimovich-CV-HE.pdf",
-  cvEn: "/cv/David-Fraimovich-CV-EN.pdf"
+  cvHe: withBasePath("/cv/David-Fraimovich-CV-HE.pdf"),
+  cvEn: withBasePath("/cv/David-Fraimovich-CV-EN.pdf")
 } as const;
 
-const HERO_PROFILE_IMAGE = `${basePath}/images/hero/David-Fraimovich.png`;
+const HERO_PROFILE_IMAGE = withBasePath("/images/hero/David-Fraimovich.png");
 
 type HeroCopy = {
-  hello: string;
   titleIntro: string;
   titleName: string;
   titleRole: string;
@@ -27,11 +27,10 @@ type HeroCopy = {
 
 const heroCopy: Record<Locale, HeroCopy> = {
   en: {
-    hello: "Hello",
     titleIntro: "I'm",
     titleName: "David,",
     titleRole: "Product Manager",
-    subtitle: "From product direction to measurable delivery.",
+    subtitle: "I turn ambiguity into shipped impact — fast, measurable, and built to scale.",
     primaryCta: "Portfolio",
     secondaryCta: "Contact",
     linkedinCta: "LinkedIn",
@@ -39,11 +38,10 @@ const heroCopy: Record<Locale, HeroCopy> = {
     panelImageAlt: "Portrait image"
   },
   he: {
-    hello: "היי",
-    titleIntro: "אני",
+    titleIntro: "נעים מאוד, ",
     titleName: "דוד,",
     titleRole: "מנהל מוצר",
-    subtitle: "מכיוון מוצרי ברור ועד ביצוע עם תוצאות מדידות.",
+    subtitle: "אני הופך/ת צרכים עסקים לפתרונות בעלי השפעה מדידה, מדויקת וסקיילבילית",
     primaryCta: "לתיק עבודות",
     secondaryCta: "יצירת קשר",
     linkedinCta: "LinkedIn",
@@ -61,14 +59,13 @@ export function Hero({ locale = "en" }: HeroProps) {
   const ctaCvLink = locale === "he" ? LINKS.cvHe : LINKS.cvEn;
 
   return (
-    <section className={`${styles.hero} ${styles.heroAnimatedBg}`} aria-labelledby="hero-title">
+    <section className={`${styles.hero} ${styles.heroAnimatedBg} hero-root`} aria-labelledby="hero-title">
       <div className={styles.background}>
         <BubbleBackground className={styles.bubbleBackground} interactive />
       </div>
 
       <div className={styles.inner}>
         <div className={styles.content}>
-          <span className={styles.helloPill}>{copy.hello}</span>
           <h1 id="hero-title" className={styles.title}>
             <span>{copy.titleIntro} </span>
             <span className={styles.titleAccent}>{copy.titleName}</span>
@@ -78,9 +75,9 @@ export function Hero({ locale = "en" }: HeroProps) {
           <p className={styles.subtitle}>{copy.subtitle}</p>
 
           <div className={styles.ctaRow}>
-            <a href={withLocalePath(locale, "/case-studies")} className={`${styles.button} ${styles.primaryButton}`}>
+            <Link href={withLocalePath(locale, "/case-studies")} className={`${styles.button} ${styles.primaryButton}`}>
               {copy.primaryCta}
-            </a>
+            </Link>
             <a href={LINKS.whatsapp} className={`${styles.button} ${styles.secondaryButton}`} target="_blank" rel="noreferrer">
               {copy.secondaryCta}
             </a>
