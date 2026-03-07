@@ -1,4 +1,5 @@
 import { type Locale, withLocalePath } from "@/lib/i18n";
+import { basePath } from "@/lib/site";
 import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
 
@@ -9,7 +10,7 @@ const LINKS = {
   cvEn: "/cv/David-Fraimovich-CV-EN.pdf"
 } as const;
 
-const HERO_PROFILE_IMAGE = "/images/hero/David-Fraimovich.png";
+const HERO_PROFILE_IMAGE = `${basePath}/images/hero/David-Fraimovich.png`;
 
 type HeroCopy = {
   hello: string;
