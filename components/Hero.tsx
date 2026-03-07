@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { type Locale, withLocalePath } from "@/lib/i18n";
 import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
@@ -61,110 +58,11 @@ type HeroProps = {
 export function Hero({ locale = "en" }: HeroProps) {
   const copy = heroCopy[locale];
   const ctaCvLink = locale === "he" ? LINKS.cvHe : LINKS.cvEn;
-  const heroRef = useRef<HTMLElement | null>(null);
-  const rippleLayerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const heroEl = heroRef.current;
-    const rippleLayerEl = rippleLayerRef.current;
-    if (!heroEl || !rippleLayerEl) return;
-
-    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
-
-    let rafId: number | null = null;
-    let targetX = 50;
-    let targetY = 42;
-    let currentX = 50;
-    let currentY = 42;
-    const easing = 0.16;
-
-    const setPointerVars = (x: number, y: number) => {
-      heroEl.style.setProperty("--mx", `${x.toFixed(2)}%`);
-      heroEl.style.setProperty("--my", `${y.toFixed(2)}%`);
-    };
-
-    const animatePointer = () => {
-      rafId = null;
-      currentX += (targetX - currentX) * easing;
-      currentY += (targetY - currentY) * easing;
-      setPointerVars(currentX, currentY);
-
-      const distance = Math.abs(targetX - currentX) + Math.abs(targetY - currentY);
-      if (distance > 0.04) {
-        rafId = window.requestAnimationFrame(animatePointer);
-      }
-    };
-
-    const schedulePointer = () => {
-      if (rafId === null) {
-        rafId = window.requestAnimationFrame(animatePointer);
-      }
-    };
-
-    const updatePointerTarget = (clientX: number, clientY: number) => {
-      const rect = heroEl.getBoundingClientRect();
-      if (rect.width <= 0 || rect.height <= 0) return;
-
-      const px = ((clientX - rect.left) / rect.width) * 100;
-      const py = ((clientY - rect.top) / rect.height) * 100;
-      targetX = Math.max(0, Math.min(100, px));
-      targetY = Math.max(0, Math.min(100, py));
-      schedulePointer();
-    };
-
-    const createRipple = (clientX: number, clientY: number) => {
-      if (reduceMotionQuery.matches) return;
-
-      const rect = heroEl.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
-      if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
-
-      const ripple = document.createElement("span");
-      ripple.className = styles.clickRipple;
-      ripple.style.setProperty("--x", `${x.toFixed(2)}px`);
-      ripple.style.setProperty("--y", `${y.toFixed(2)}px`);
-      rippleLayerEl.appendChild(ripple);
-      ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
-    };
-
-    const handlePointerMove = (event: PointerEvent) => {
-      if (reduceMotionQuery.matches || coarsePointerQuery.matches) return;
-      updatePointerTarget(event.clientX, event.clientY);
-    };
-
-    const handlePointerLeave = () => {
-      targetX = 50;
-      targetY = 42;
-      schedulePointer();
-    };
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (event.pointerType === "mouse" && event.button !== 0) return;
-      createRipple(event.clientX, event.clientY);
-    };
-
-    setPointerVars(currentX, currentY);
-    heroEl.addEventListener("pointermove", handlePointerMove, { passive: true });
-    heroEl.addEventListener("pointerleave", handlePointerLeave, { passive: true });
-    heroEl.addEventListener("pointerdown", handlePointerDown, { passive: true });
-
-    return () => {
-      heroEl.removeEventListener("pointermove", handlePointerMove);
-      heroEl.removeEventListener("pointerleave", handlePointerLeave);
-      heroEl.removeEventListener("pointerdown", handlePointerDown);
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-    };
-  }, []);
 
   return (
-    <section ref={heroRef} className={`${styles.hero} ${styles.heroAnimatedBg}`} aria-labelledby="hero-title">
+    <section className={`${styles.hero} ${styles.heroAnimatedBg}`} aria-labelledby="hero-title">
       <div className={styles.background}>
         <BubbleBackground className={styles.bubbleBackground} interactive />
-        <div ref={rippleLayerRef} className={styles.rippleLayer} aria-hidden="true" />
       </div>
 
       <div className={styles.inner}>

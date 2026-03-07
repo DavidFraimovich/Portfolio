@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, type ReactNode } from "react";
-import { motion, type SpringOptions, useMotionValue, useSpring } from "framer-motion";
+import { motion, type SpringOptions, useMotionValue, useSpring, useTransform } from "framer-motion";
 import styles from "./BubbleBackground.module.css";
 
 export interface BubbleBackgroundProps {
@@ -15,7 +15,6 @@ export interface BubbleBackgroundProps {
     third: string;
     fourth: string;
     fifth: string;
-    sixth: string;
   };
 }
 
@@ -29,8 +28,7 @@ export function BubbleBackground({
     second: "221,74,255",
     third: "0,220,255",
     fourth: "200,50,50",
-    fifth: "180,180,50",
-    sixth: "140,100,255"
+    fifth: "180,180,50"
   }
 }: BubbleBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,9 +37,11 @@ export function BubbleBackground({
   const mouseY = useMotionValue(0);
   const springX = useSpring(mouseX, transition);
   const springY = useSpring(mouseY, transition);
+  const layerX = useTransform(springX, (value) => value * 0.035);
+  const layerY = useTransform(springY, (value) => value * 0.03);
 
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
+  const handlePointerMove = useCallback(
+    (e: PointerEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -52,14 +52,33 @@ export function BubbleBackground({
     [mouseX, mouseY]
   );
 
+  const resetPointer = useCallback(() => {
+    mouseX.set(0);
+    mouseY.set(0);
+  }, [mouseX, mouseY]);
+
   useEffect(() => {
     if (!interactive) return;
-    const container = containerRef.current;
-    if (!container) return;
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    if (reduceMotionQuery.matches || coarsePointerQuery.matches) return;
 
-    container.addEventListener("mousemove", handleMouseMove);
-    return () => container.removeEventListener("mousemove", handleMouseMove);
-  }, [interactive, handleMouseMove]);
+    const handleWindowOut = (event: MouseEvent) => {
+      if (!event.relatedTarget) {
+        resetPointer();
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("mouseout", handleWindowOut, { passive: true });
+    window.addEventListener("blur", resetPointer);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("mouseout", handleWindowOut);
+      window.removeEventListener("blur", resetPointer);
+    };
+  }, [interactive, handlePointerMove, resetPointer]);
 
   const makeGradient = (color: string) =>
     `radial-gradient(circle at center, rgba(${color}, 0.8) 0%, rgba(${color}, 0) 50%)`;
@@ -81,7 +100,10 @@ export function BubbleBackground({
         </defs>
       </svg>
 
-      <div className={styles.gooLayer}>
+      <motion.div
+        className={styles.gooLayer}
+        style={interactive ? { x: layerX, y: layerY } : undefined}
+      >
         <motion.div
           className={styles.bubble}
           style={{
@@ -160,19 +182,7 @@ export function BubbleBackground({
           />
         </motion.div>
 
-        {interactive && (
-          <motion.div
-            className={styles.interactiveBubble}
-            style={{
-              width: "100%",
-              height: "100%",
-              background: makeGradient(colors.sixth),
-              x: springX,
-              y: springY
-            }}
-          />
-        )}
-      </div>
+      </motion.div>
 
       {children && <div className={styles.content}>{children}</div>}
     </div>

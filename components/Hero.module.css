@@ -1,6 +1,6 @@
 .hero {
-  --mx: 50%;
-  --my: 42%;
+  --hero-min-height: clamp(620px, 86vh, 860px);
+  --hero-padding-top: 0px;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -9,8 +9,9 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   margin-bottom: 44.8px;
-  padding-block: clamp(41.6px, 7.5vw, 76.8px);
-  min-height: clamp(620px, 86vh, 860px);
+  padding-top: var(--hero-padding-top);
+  padding-bottom: 0;
+  min-height: var(--hero-min-height);
   background-color: #06060a;
   contain: paint;
 }
@@ -47,7 +48,6 @@
   pointer-events: none;
   z-index: 2;
   background:
-    radial-gradient(260px 260px at var(--mx) var(--my), rgba(121, 195, 255, 0.18) 0%, rgba(121, 195, 255, 0) 70%),
     radial-gradient(130% 84% at 50% 62%, rgba(5, 5, 9, 0) 42%, rgba(5, 5, 9, 0.52) 100%),
     linear-gradient(180deg, rgba(8, 6, 16, 0.04) 0%, rgba(5, 5, 9, 0.66) 100%);
 }
@@ -57,9 +57,11 @@
   z-index: 3;
   width: min(1200px, 92vw);
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: clamp(22.4px, 3vw, 38.4px);
   align-items: center;
+  min-height: calc(var(--hero-min-height) - var(--hero-padding-top));
 }
 
 .background,
@@ -80,36 +82,6 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-.rippleLayer {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.clickRipple {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(196, 231, 255, 0.78);
-  transform: translate(-50%, -50%) scale(0.25);
-  opacity: 0.9;
-  animation: lakeRipple 900ms cubic-bezier(0.14, 0.46, 0.15, 0.98) forwards;
-}
-
-.clickRipple::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(217, 241, 255, 0.62), rgba(217, 241, 255, 0) 70%);
-  animation: lakeDropCore 300ms ease-out forwards;
 }
 
 .bubble {
@@ -309,7 +281,7 @@
   z-index: 4;
   width: min(980px, 96vw);
   height: clamp(330px, 42vw, 520px);
-  margin: 0 auto;
+  margin: auto auto 0;
 }
 
 .visualBase {
@@ -320,13 +292,15 @@
   width: clamp(340px, 66vw, 840px);
   height: clamp(180px, 26vw, 320px);
   border-radius: 999px 999px 0 0;
-  background: linear-gradient(130deg, rgba(109, 85, 241, 0.82), rgba(99, 82, 229, 0.72));
+  background: linear-gradient(130deg, rgba(123, 92, 255, 0.62), rgba(111, 71, 255, 0.52));
+  border-top: 1px solid rgba(213, 196, 255, 0.3);
+  box-shadow: inset 0 18px 40px rgba(215, 189, 255, 0.12);
 }
 
 .profileOrb {
   position: absolute;
   left: 50%;
-  bottom: clamp(42px, 6vw, 88px);
+  bottom: 0;
   transform: translateX(-50%);
   width: clamp(220px, 32vw, 380px);
   aspect-ratio: 0.86;
@@ -405,42 +379,14 @@
   }
 }
 
-@keyframes lakeRipple {
-  0% {
-    transform: translate(-50%, -50%) scale(0.25);
-    opacity: 0.9;
-  }
-  26% {
-    opacity: 0.62;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(18);
-    opacity: 0;
-    border-color: rgba(196, 231, 255, 0);
-  }
-}
-
-@keyframes lakeDropCore {
-  0% {
-    transform: scale(0.7);
-    opacity: 0.95;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-
 @media (max-width: 980px) {
   .hero {
-    padding-block: clamp(36.8px, 8vw, 64px);
-    min-height: clamp(560px, 80vh, 760px);
+    --hero-min-height: clamp(560px, 80vh, 760px);
   }
 }
 
 @media (max-width: 640px) {
   .hero {
-    padding-block: 33.6px;
     margin-bottom: 32px;
   }
 
@@ -471,7 +417,7 @@
 
   .profileOrb {
     width: clamp(188px, 52vw, 290px);
-    bottom: clamp(38px, 8vw, 76px);
+    bottom: 0;
   }
 }
 
@@ -480,13 +426,7 @@
   .heroAnimatedBg::before,
   .bubble,
   .centerWave,
-  .particle,
-  .clickRipple,
-  .clickRipple::before {
+  .particle {
     animation: none !important;
-  }
-
-  .rippleLayer {
-    display: none;
   }
 }
