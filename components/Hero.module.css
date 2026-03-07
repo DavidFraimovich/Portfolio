@@ -373,6 +373,53 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .hero {
+    --hero-min-height: clamp(540px, 72vh, 680px);
+  }
+
+  .inner {
+    width: min(1320px, 94vw);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+    align-items: end;
+    gap: clamp(32px, 4vw, 76.8px);
+  }
+
+  .content {
+    width: min(700px, 100%);
+    margin: 0;
+    text-align: start;
+    padding-bottom: clamp(25.6px, 4vh, 51.2px);
+  }
+
+  .subtitle {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 36ch;
+  }
+
+  .ctaRow,
+  .quickRow {
+    justify-content: flex-start;
+  }
+
+  .visualStage {
+    width: min(640px, 46vw);
+    height: clamp(300px, 35vh, 440px);
+    margin: 0 0 0 auto;
+  }
+
+  .visualBase {
+    width: 100%;
+    height: clamp(170px, 24vh, 280px);
+  }
+
+  .profileOrb {
+    width: clamp(240px, 25vw, 380px);
+  }
+}
+
 @media (max-width: 640px) {
   .hero {
     margin-bottom: 32px;
