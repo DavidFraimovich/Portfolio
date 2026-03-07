@@ -1,0 +1,50 @@
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2b1159 0%, #132d69 100%);
+}
+
+.hiddenSvg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.gooLayer {
+  position: absolute;
+  inset: 0;
+  filter: url(#bubble-goo) blur(40px);
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 999px;
+  mix-blend-mode: hard-light;
+}
+
+.orbitContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soft {
+  opacity: 0.7;
+}
+
+.interactiveBubble {
+  position: absolute;
+  border-radius: 999px;
+  mix-blend-mode: hard-light;
+  opacity: 0.7;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}

@@ -1,9 +1,12 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useRef } from "react";
 import { type Locale, withLocalePath } from "@/lib/i18n";
+import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
 
 const LINKS = {
-  whatsapp: "https://wa.me/972452114929",
+  whatsapp: "https://wa.me/972542114929",
   linkedin: "https://www.linkedin.com/in/david-fraimovich-843207172",
   cvHe: "/cv/David-Fraimovich-CV-HE.pdf",
   cvEn: "/cv/David-Fraimovich-CV-EN.pdf"
@@ -51,24 +54,6 @@ const heroCopy: Record<Locale, HeroCopy> = {
   }
 };
 
-const bubbles: Array<{
-  size: number;
-  left: number;
-  top: number;
-  duration: number;
-  delay: number;
-  drift: number;
-  color: string;
-}> = [
-  { size: 190, left: 12, top: 20, duration: 40, delay: -3, drift: 8, color: "rgba(130, 106, 245, 0.14)" },
-  { size: 146, left: 80, top: 16, duration: 44, delay: -8, drift: 7, color: "rgba(97, 171, 242, 0.1)" }
-];
-
-const particles: Array<{ size: number; left: number; top: number; duration: number; delay: number }> = [
-  { size: 4, left: 26, top: 62, duration: 12, delay: 0.5 },
-  { size: 5, left: 74, top: 34, duration: 11, delay: 1.1 }
-];
-
 type HeroProps = {
   locale?: Locale;
 };
@@ -76,53 +61,110 @@ type HeroProps = {
 export function Hero({ locale = "en" }: HeroProps) {
   const copy = heroCopy[locale];
   const ctaCvLink = locale === "he" ? LINKS.cvHe : LINKS.cvEn;
+  const heroRef = useRef<HTMLElement | null>(null);
+  const rippleLayerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const heroEl = heroRef.current;
+    const rippleLayerEl = rippleLayerRef.current;
+    if (!heroEl || !rippleLayerEl) return;
+
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+
+    let rafId: number | null = null;
+    let targetX = 50;
+    let targetY = 42;
+    let currentX = 50;
+    let currentY = 42;
+    const easing = 0.16;
+
+    const setPointerVars = (x: number, y: number) => {
+      heroEl.style.setProperty("--mx", `${x.toFixed(2)}%`);
+      heroEl.style.setProperty("--my", `${y.toFixed(2)}%`);
+    };
+
+    const animatePointer = () => {
+      rafId = null;
+      currentX += (targetX - currentX) * easing;
+      currentY += (targetY - currentY) * easing;
+      setPointerVars(currentX, currentY);
+
+      const distance = Math.abs(targetX - currentX) + Math.abs(targetY - currentY);
+      if (distance > 0.04) {
+        rafId = window.requestAnimationFrame(animatePointer);
+      }
+    };
+
+    const schedulePointer = () => {
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(animatePointer);
+      }
+    };
+
+    const updatePointerTarget = (clientX: number, clientY: number) => {
+      const rect = heroEl.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+
+      const px = ((clientX - rect.left) / rect.width) * 100;
+      const py = ((clientY - rect.top) / rect.height) * 100;
+      targetX = Math.max(0, Math.min(100, px));
+      targetY = Math.max(0, Math.min(100, py));
+      schedulePointer();
+    };
+
+    const createRipple = (clientX: number, clientY: number) => {
+      if (reduceMotionQuery.matches) return;
+
+      const rect = heroEl.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+
+      const ripple = document.createElement("span");
+      ripple.className = styles.clickRipple;
+      ripple.style.setProperty("--x", `${x.toFixed(2)}px`);
+      ripple.style.setProperty("--y", `${y.toFixed(2)}px`);
+      rippleLayerEl.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (reduceMotionQuery.matches || coarsePointerQuery.matches) return;
+      updatePointerTarget(event.clientX, event.clientY);
+    };
+
+    const handlePointerLeave = () => {
+      targetX = 50;
+      targetY = 42;
+      schedulePointer();
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      createRipple(event.clientX, event.clientY);
+    };
+
+    setPointerVars(currentX, currentY);
+    heroEl.addEventListener("pointermove", handlePointerMove, { passive: true });
+    heroEl.addEventListener("pointerleave", handlePointerLeave, { passive: true });
+    heroEl.addEventListener("pointerdown", handlePointerDown, { passive: true });
+
+    return () => {
+      heroEl.removeEventListener("pointermove", handlePointerMove);
+      heroEl.removeEventListener("pointerleave", handlePointerLeave);
+      heroEl.removeEventListener("pointerdown", handlePointerDown);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
 
   return (
-    <section className={`${styles.hero} ${styles.heroAnimatedBg}`} aria-labelledby="hero-title">
-      <div className={styles.background} aria-hidden="true">
-        <div className={styles.bubbleLayer}>
-          {bubbles.map((bubble, index) => (
-            <span
-              key={`bubble-${index}`}
-              className={styles.bubble}
-              style={
-                {
-                  "--size": `${bubble.size}px`,
-                  "--left": `${bubble.left}%`,
-                  "--top": `${bubble.top}%`,
-                  "--duration": `${bubble.duration}s`,
-                  "--delay": `${bubble.delay}s`,
-                  "--drift": `${bubble.drift}px`,
-                  "--bubble-color": bubble.color
-                } as CSSProperties
-              }
-            />
-          ))}
-        </div>
-
-        <div className={styles.centerWaveLayer}>
-          <span className={styles.centerWave} />
-        </div>
-
-        <div className={styles.layerNear}>
-          <div className={styles.particles}>
-            {particles.map((particle, index) => (
-              <span
-                key={`particle-${index}`}
-                className={styles.particle}
-                style={
-                  {
-                    "--size": `${particle.size}px`,
-                    "--left": `${particle.left}%`,
-                    "--top": `${particle.top}%`,
-                    "--duration": `${particle.duration}s`,
-                    "--delay": `${particle.delay}s`
-                  } as CSSProperties
-                }
-              />
-            ))}
-          </div>
-        </div>
+    <section ref={heroRef} className={`${styles.hero} ${styles.heroAnimatedBg}`} aria-labelledby="hero-title">
+      <div className={styles.background}>
+        <BubbleBackground className={styles.bubbleBackground} interactive />
+        <div ref={rippleLayerRef} className={styles.rippleLayer} aria-hidden="true" />
       </div>
 
       <div className={styles.inner}>

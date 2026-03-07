@@ -10,6 +10,7 @@
     "cms": "npx decap-server"
   },
   "dependencies": {
+    "framer-motion": "^12.35.1",
     "gray-matter": "^4.0.3",
     "next": "^15.2.0",
     "next-mdx-remote": "^5.0.0",
