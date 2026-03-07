@@ -129,13 +129,13 @@ a {
   text-decoration: none;
 }
 
-.locale-root > main {
+.locale-root>main {
   width: min(1100px, 92vw);
   margin: 0 auto;
   padding: var(--nav-shell-offset) 0 128px;
 }
 
-.locale-root > main > .hero-root:first-child {
+.locale-root>main>.hero-root:first-child {
   margin-top: calc(var(--nav-shell-offset) * -1);
 }
 
@@ -204,7 +204,7 @@ a {
 }
 
 .hero {
-  padding: 57.6px 0 38.4px;
+  padding: 100.6px 0 38.4px;
   display: grid;
   gap: 25.6px;
 }
@@ -319,7 +319,7 @@ a {
   margin-bottom: 16px;
 }
 
-.brief-hero > p {
+.brief-hero>p {
   color: var(--muted);
   margin-top: 0;
   margin-bottom: 25.6px;
