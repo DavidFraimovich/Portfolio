@@ -88,6 +88,9 @@ It is intended for both human contributors and AI coding agents.
 - Before finishing, run `npm run build`.
 - If lint is interactive/broken in current setup, report that clearly.
 - For visual-heavy changes, validate both desktop and mobile layouts.
+- For any major UI/layout change, run a fast behavior QA pass with Playwright on Chromium.
+- Capture at least desktop + mobile screenshots using different viewport sizes.
+- If a regression is found in that pass, fix it immediately and re-run the same Playwright check before handoff.
 
 ## 12) Git and Change Safety Rules
 
