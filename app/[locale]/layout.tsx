@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
+import { LocaleOverrideHandler } from "@/components/LocaleOverrideHandler";
 import { Nav } from "@/components/Nav";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
@@ -66,6 +67,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <div lang={locale} dir={localeDirection(locale)} className={`locale-root locale-${locale}`}>
+      <LocaleOverrideHandler locale={locale} />
       <Nav locale={locale} site={site} />
       <main>{children}</main>
       <Footer site={site} />

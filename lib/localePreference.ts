@@ -78,7 +78,9 @@ function resolveFromBrowserSignals(): Locale {
     .filter(Boolean)
     .map((value) => value.toLowerCase());
 
-  const hasHebrewLanguageSignal = languages.some((value) => value === "he" || value.startsWith("he-"));
+  const hasHebrewLanguageSignal = languages.some(
+    (value) => value === "he" || value.startsWith("he-") || value === "iw" || value.startsWith("iw-")
+  );
   if (hasHebrewLanguageSignal) return "he";
 
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;

@@ -16,3 +16,18 @@ export function withLocalePath(locale: Locale, path = ""): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `/${locale}${normalized === "/" ? "" : normalized}`;
 }
+
+export function switchLocalePath(pathname: string, locale: Locale): string {
+  const parts = pathname.split("/").filter(Boolean);
+
+  if (parts.length === 0) return `/${locale}`;
+
+  const localeIndex = parts.findIndex((part) => locales.includes(part as Locale));
+  if (localeIndex >= 0) {
+    parts[localeIndex] = locale;
+    return `/${parts.join("/")}`;
+  }
+
+  parts.unshift(locale);
+  return `/${parts.join("/")}`;
+}

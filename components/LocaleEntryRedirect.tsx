@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { withLocalePath } from "@/lib/i18n";
 import { resolveInitialLocale } from "@/lib/localePreference";
 
 export function LocaleEntryRedirect() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const search = useMemo(() => searchParams.toString(), [searchParams]);
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ export function LocaleEntryRedirect() {
     let cancelled = false;
 
     const redirectToResolvedLocale = async () => {
-      const locale = await resolveInitialLocale(search);
+      const locale = await resolveInitialLocale(window.location.search);
       if (cancelled) return;
       router.replace(withLocalePath(locale));
     };
@@ -28,17 +26,14 @@ export function LocaleEntryRedirect() {
     return () => {
       cancelled = true;
     };
-  }, [router, search]);
+  }, [router]);
 
   return (
-    <main className="locale-chooser-wrap" aria-live="polite">
-      <section className="locale-chooser card">
-        <p>Redirecting to your preferred language...</p>
-        <noscript>
-          JavaScript is required for automatic language detection. Open <a href="/en">English</a> or{" "}
-          <a href="/he">עברית</a>.
-        </noscript>
-      </section>
+    <main aria-live="polite">
+      <noscript>
+        JavaScript is required for automatic language detection. Open <a href="en">English</a> or{" "}
+        <a href="he">עברית</a>.
+      </noscript>
     </main>
   );
 }

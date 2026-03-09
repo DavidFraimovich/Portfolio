@@ -8,21 +8,18 @@
   padding: 0 0 56px;
 }
 
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  clip: rect(0, 0, 0, 0);
+.title {
+  width: min(1100px, 92vw);
+  margin: 0 auto 16px;
+  color: var(--text-strong);
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .bar {
   position: relative;
-  min-height: 176px;
+  min-height: 100px;
   overflow: hidden;
   border-top-left-radius: 24px;
   border-bottom-right-radius: 24px;
@@ -32,8 +29,9 @@
 
 .strip {
   position: absolute;
-  top: 54%;
+  top: 53%;
   left: -120px;
+  direction: ltr;
   width: calc(100% + 240px);
   transform: translateY(-50%) rotate(-2.5deg);
   background: #ffffff;
@@ -46,48 +44,68 @@
 
 .track {
   display: flex;
+  direction: ltr;
   width: max-content;
-  animation: marqueeLtr 80s linear infinite;
+  animation: marqueeLinear 80s linear infinite;
   will-change: transform;
+}
+
+.bar:hover .track {
+  animation-play-state: paused;
 }
 
 .group {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  direction: ltr;
   gap: 24px;
-  padding: 16px 24px;
+  padding: 12px 24px;
 }
 
 .item {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  font-size: clamp(22px, 2.8vw, 42px);
+  font-size: clamp(18px, 2.2vw, 34px);
   line-height: 1.06;
-  letter-spacing: -0.72px;
+  letter-spacing: -0.48px;
   color: #09080f;
 }
 
 .item::after {
-  content: "";
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  margin-inline-start: 24px;
-  background:
-    linear-gradient(90deg, #12101f 0%, #12101f 100%) center / 2px 100% no-repeat,
-    linear-gradient(90deg, #12101f 0%, #12101f 100%) center / 100% 2px no-repeat;
-  transform: rotate(45deg);
+  content: "#";
+  margin-left: 24px;
+  color: #313248;
+  line-height: 1;
+  font-size: 0.82em;
 }
 
-@keyframes marqueeLtr {
+.rtl .item {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+.rtl .item::after {
+  content: none;
+  margin-left: 0;
+}
+
+.rtl .item::before {
+  content: "#";
+  margin-right: 24px;
+  color: #313248;
+  line-height: 1;
+  font-size: 0.82em;
+}
+
+@keyframes marqueeLinear {
   from {
     transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
   }
 }
 
@@ -96,27 +114,35 @@
     padding-bottom: 28px;
   }
 
+  .title {
+    margin-bottom: 12px;
+    font-size: clamp(26px, 5.4vw, 38px);
+  }
+
   .bar {
-    min-height: 148px;
+    min-height: 136px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
 
   .strip {
+    top: 56%;
     left: -130px;
     width: calc(100% + 260px);
   }
 
   .group {
     gap: 20px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .item::after {
-    width: 18px;
-    height: 18px;
-    margin-inline-start: 20px;
+    margin-left: 20px;
+  }
+
+  .rtl .item::before {
+    margin-right: 20px;
   }
 }
 
@@ -125,32 +151,40 @@
     padding-bottom: 16px;
   }
 
+  .title {
+    margin-bottom: 10px;
+    font-size: clamp(24px, 8vw, 32px);
+  }
+
   .bar {
-    min-height: 120px;
+    min-height: 106px;
     border-top-left-radius: 18px;
     border-bottom-right-radius: 18px;
   }
 
   .strip {
+    top: 57%;
     left: -140px;
     width: calc(100% + 280px);
   }
 
   .group {
     gap: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
 
   .item {
-    font-size: clamp(18px, 6.2vw, 32px);
-    letter-spacing: -0.32px;
+    font-size: clamp(14px, 4.2vw, 22px);
+    letter-spacing: -0.2px;
   }
 
   .item::after {
-    width: 14px;
-    height: 14px;
-    margin-inline-start: 16px;
+    margin-left: 16px;
+  }
+
+  .rtl .item::before {
+    margin-right: 16px;
   }
 }
 
@@ -175,7 +209,7 @@
   .group {
     flex-wrap: wrap;
     gap: 14px 18px;
-    padding: 12px 16px;
+    padding: 8px 16px;
   }
 
   .group[aria-hidden="true"] {
@@ -183,12 +217,14 @@
   }
 
   .item {
-    font-size: clamp(16px, 4.8vw, 24px);
+    font-size: clamp(14px, 4.2vw, 20px);
   }
 
   .item::after {
-    width: 12px;
-    height: 12px;
-    margin-inline-start: 12px;
+    margin-left: 12px;
+  }
+
+  .rtl .item::before {
+    margin-right: 12px;
   }
 }

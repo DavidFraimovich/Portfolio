@@ -29,21 +29,54 @@ const skills: SkillText[] = [
   { en: "Backlog Prioritization", he: "תיעדוף בקלוג" },
   { en: "Stakeholder Management", he: "ניהול בעלי עניין" },
   { en: "Cross-Team Leadership", he: "הובלה בין-צוותית" },
-  { en: "0->1 MVP Delivery", he: "הובלת MVP מ-0 ל-1" },
+  { en: "MVP Delivery", he: "הובלת MVP" },
   { en: "Go-To-Market", he: "אסטרטגיית השקה לשוק" },
   { en: "A/B Testing", he: "בדיקות A/B" },
-  { en: "KPI-Driven Execution", he: "ביצוע ממוקד KPI" }
+  { en: "KPI-Driven Execution", he: "ביצוע ממוקד KPI" },
+  { en: "Go-To-Market Strategy", he: "אסטרטגיית Go-To-Market" },
+  { en: "Product Strategy", he: "אסטרטגיית מוצר" },
+  { en: "Product Discovery", he: "דיסקברי מוצר" },
+  { en: "Problem Framing", he: "הגדרת בעיה מוצרית" },
+  { en: "Opportunity Assessment", he: "הערכת הזדמנויות" },
+  { en: "Prioritization Frameworks", he: "מסגרות תיעדוף" },
+  { en: "Outcome-Driven Product Thinking", he: "חשיבה מוצרית מוכוונת תוצאות" },
+  { en: "Customer Journey Mapping", he: "מיפוי מסע לקוח" },
+  { en: "User Story Mapping", he: "מיפוי סיפורי משתמש" },
+  { en: "Jobs To Be Done (JTBD)", he: "גישת Jobs To Be Done" },
+  { en: "Experiment Design", he: "תכנון ניסויים" },
+  { en: "Hypothesis-Driven Development", he: "פיתוח מבוסס היפותזות" },
+  { en: "Feature Prioritization", he: "תיעדוף פיצ'רים" },
+  { en: "Product Positioning", he: "מיצוב מוצר" },
+  { en: "Value Proposition Design", he: "בניית הצעת ערך" },
+  { en: "Competitive Analysis", he: "ניתוח מתחרים" },
+  { en: "Business Model Thinking", he: "חשיבה על מודל עסקי" },
+  { en: "Monetization Strategy", he: "אסטרטגיית מוניטיזציה" },
+  { en: "Retention & Engagement", he: "שימור ומעורבות משתמשים" },
+  { en: "Funnel Optimization", he: "אופטימיזציית משפך" },
+  { en: "Adoption Strategy", he: "אסטרטגיית אימוץ מוצר" },
+  { en: "Change Management", he: "ניהול שינוי" },
+  { en: "Risk Management", he: "ניהול סיכונים" },
+  { en: "Decision Making Under Uncertainty", he: "קבלת החלטות בתנאי אי-ודאות" },
+  { en: "Technical Product Understanding", he: "הבנה טכנולוגית-מוצרית" },
+  { en: "Systems Thinking", he: "חשיבה מערכתית" },
+  { en: "Platform Thinking", he: "חשיבה פלטפורמית" },
+  { en: "Operational Excellence", he: "מצוינות תפעולית" },
+  { en: "Release Planning", he: "תכנון גרסאות" },
+  { en: "Success Metrics Definition", he: "הגדרת מדדי הצלחה" },
+  { en: "Voice of Customer", he: "קול הלקוח" }
 ];
 
 const ariaLabelByLocale: Record<Locale, string> = {
-  en: "Skill set",
-  he: "סט מיומנויות"
+  en: "Skills",
+  he: "מיומנויות"
 };
 
-const headingByLocale: Record<Locale, string> = {
-  en: "Skill Set",
-  he: "סט מיומנויות"
+const titleByLocale: Record<Locale, string> = {
+  en: "Skills",
+  he: "מיומנויות"
 };
+
+const LOOP_GROUPS = 4;
 
 export function SkillsRibbon({ locale }: SkillsRibbonProps) {
   const localizedSkills = skills.map((skill) => skill[locale]);
@@ -51,12 +84,12 @@ export function SkillsRibbon({ locale }: SkillsRibbonProps) {
 
   return (
     <section className={`${styles.section} ${rtlClassName}`} aria-label={ariaLabelByLocale[locale]}>
-      <h2 className={styles.srOnly}>{headingByLocale[locale]}</h2>
+      <h1 className={styles.title}>{titleByLocale[locale]}</h1>
       <div className={styles.bar}>
         <div className={styles.strip}>
           <div className={styles.track}>
-            {[0, 1].map((copyIndex) => (
-              <div className={styles.group} aria-hidden={copyIndex === 1} key={`skill-group-${copyIndex}`}>
+            {Array.from({ length: LOOP_GROUPS }, (_, copyIndex) => (
+              <div className={styles.group} aria-hidden={copyIndex > 0} key={`skill-group-${copyIndex}`}>
                 {localizedSkills.map((skill, skillIndex) => (
                   <span className={styles.item} key={`${copyIndex}-${skill}-${skillIndex}`}>
                     {skill}
