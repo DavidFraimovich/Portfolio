@@ -38,8 +38,8 @@ const heroCopy: Record<Locale, HeroCopy> = {
     panelImageAlt: "Portrait image"
   },
   he: {
-    titleIntro: "נעים מאוד, ",
-    titleName: "דוד,",
+    titleIntro: "נעים מאוד, אני ",
+    titleName: "דוד",
     titleRole: "מנהל מוצר",
     subtitle: "אני הופך צרכים עסקים לפתרונות בעלי השפעה מדידה, מדויקת וסקיילבילית",
     primaryCta: "לתיק עבודות",
