@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
 import { SkillsRibbon } from "@/components/SkillsRibbon";
+import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
@@ -360,6 +361,8 @@ export default async function LocalizedHomePage({ params }: Props) {
           </a>
         </div>
       </section>
+
+      <WindmillsCtaSection locale={locale} />
     </>
   );
 }
