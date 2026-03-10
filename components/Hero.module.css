@@ -176,46 +176,52 @@
   display: inline-flex;
   align-items: center;
   gap: 6.72px;
-  padding: 7.04px 12.48px;
+  min-height: 34.4px;
+  padding: 0 13.44px;
   border-radius: 999px;
-  border: 1px solid rgba(156, 186, 252, 0.26);
-  color: rgba(225, 236, 255, 0.92);
-  font-size: 13.76px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  font-size: 13.12px;
+  font-weight: 500;
   line-height: 1;
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
     color 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
 .quickButton:hover {
-  color: #f3f8ff;
-  border-color: rgba(195, 216, 255, 0.56);
-  background: rgba(28, 42, 73, 0.56);
+  color: var(--text-strong);
+  border-color: var(--btn-secondary-hover-border);
+  background: var(--btn-secondary-hover-bg);
   transform: translateY(-1px);
 }
 
 .quickIcon {
-  width: 18.24px;
-  height: 18.24px;
+  width: 19.2px;
+  height: 19.2px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgba(187, 213, 255, 0.96);
-  background: rgba(147, 180, 255, 0.13);
+  color: var(--btn-outline-text);
+  background: var(--btn-outline-bg);
+  border: 1px solid var(--btn-outline-border);
 }
 
 .quickIcon svg {
-  width: 12.48px;
-  height: 12.48px;
+  width: 12px;
+  height: 12px;
 }
 
 .quickLinkedin .quickIcon {
-  background: linear-gradient(160deg, rgba(43, 129, 255, 0.34), rgba(26, 93, 214, 0.18));
-  color: rgba(224, 238, 255, 0.98);
-  box-shadow: inset 0 0 0 1px rgba(130, 191, 255, 0.28);
+  border-color: var(--btn-primary-border);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .quickLinkedin .quickIcon svg {
@@ -236,32 +242,58 @@
   justify-content: center;
   min-height: 46px;
   border-radius: 999px;
-  padding: 11.52px 20.8px;
+  padding: 0 22.4px;
   font-weight: 600;
-  border: 1px solid transparent;
+  border: 1px solid var(--btn-secondary-border);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  box-shadow: none;
+  line-height: 1;
+  letter-spacing: -0.01em;
   transition:
     border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
     box-shadow 180ms ease,
     transform 180ms ease,
     filter 180ms ease;
 }
 
 .primaryButton {
-  color: #f3f8ff;
-  border-color: rgba(180, 188, 255, 0.4);
-  background: linear-gradient(135deg, rgba(98, 63, 210, 0.92), rgba(79, 130, 233, 0.86));
-  box-shadow: 0 10px 24px rgba(44, 94, 180, 0.3);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-border);
+  background: var(--btn-primary-bg);
+  box-shadow: 0 10px 24px var(--btn-primary-shadow);
 }
 
 .secondaryButton {
-  color: #eef4ff;
-  border-color: rgba(166, 181, 232, 0.38);
-  background: linear-gradient(140deg, rgba(40, 34, 72, 0.72), rgba(24, 28, 58, 0.76));
+  color: var(--btn-outline-text);
+  border-color: var(--btn-outline-border);
+  background: var(--btn-outline-bg);
 }
 
 .button:hover {
   transform: translateY(-1px);
+}
+
+.primaryButton:hover {
   filter: saturate(108%) brightness(1.03);
+}
+
+.secondaryButton:hover {
+  border-color: var(--btn-secondary-hover-border);
+  background: var(--btn-secondary-hover-bg);
+  color: var(--text-strong);
+}
+
+.button:focus-visible,
+.quickButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--btn-focus-ring);
+}
+
+.primaryButton:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--btn-focus-ring), 0 10px 24px var(--btn-primary-shadow);
 }
 
 .visualStage {
@@ -447,7 +479,7 @@
 
   .button {
     min-height: 44px;
-    padding: 10.56px 17.28px;
+    padding: 0 18.56px;
   }
 
   .visualStage {

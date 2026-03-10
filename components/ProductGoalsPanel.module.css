@@ -21,11 +21,11 @@
   --pg-title: #fcf9ff;
   --pg-subtitle: rgba(229, 223, 248, 0.9);
   --pg-helper: rgba(170, 155, 255, 0.95);
-  --pg-button-border: rgba(180, 188, 255, 0.4);
-  --pg-button-bg: linear-gradient(135deg, rgba(98, 63, 210, 0.92), rgba(79, 130, 233, 0.86));
-  --pg-button-shadow: rgba(44, 94, 180, 0.3);
-  --pg-button-text: #f3f8ff;
-  --pg-button-hover-border: rgba(180, 188, 255, 0.58);
+  --pg-button-border: var(--btn-primary-border);
+  --pg-button-bg: var(--btn-primary-bg);
+  --pg-button-shadow: var(--btn-primary-shadow);
+  --pg-button-text: var(--btn-primary-text);
+  --pg-button-hover-border: var(--btn-primary-border);
   --pg-chip-border: rgba(240, 214, 156, 0.28);
   --pg-chip-bg: linear-gradient(145deg, rgba(17, 15, 38, 0.88), rgba(26, 22, 56, 0.74));
   --pg-chip-text: rgba(255, 255, 255, 0.98);
@@ -120,7 +120,7 @@
   align-items: center;
   justify-content: center;
   min-height: 46px;
-  padding: 11.52px 20.8px;
+  padding: 0 22.4px;
   border-radius: 999px;
   border: 1px solid var(--pg-button-border);
   background: var(--pg-button-bg);
@@ -129,6 +129,7 @@
   font-size: 15px;
   font-weight: 600;
   line-height: 1;
+  letter-spacing: -0.01em;
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
@@ -190,11 +191,11 @@
   --pg-title: #1e2540;
   --pg-subtitle: #495a7b;
   --pg-helper: #5e53c1;
-  --pg-button-border: rgba(108, 88, 214, 0.48);
-  --pg-button-bg: linear-gradient(135deg, rgba(102, 76, 220, 0.94), rgba(121, 149, 247, 0.9));
-  --pg-button-shadow: rgba(73, 96, 187, 0.24);
-  --pg-button-text: #f8fbff;
-  --pg-button-hover-border: rgba(94, 76, 199, 0.64);
+  --pg-button-border: var(--btn-primary-border);
+  --pg-button-bg: var(--btn-primary-bg);
+  --pg-button-shadow: var(--btn-primary-shadow);
+  --pg-button-text: var(--btn-primary-text);
+  --pg-button-hover-border: var(--btn-primary-border);
   --pg-chip-border: rgba(112, 93, 217, 0.36);
   --pg-chip-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(241, 246, 255, 0.9));
   --pg-chip-text: #2a3558;
@@ -219,15 +220,20 @@
     --pg-title: #1e2540;
     --pg-subtitle: #495a7b;
     --pg-helper: #5e53c1;
-    --pg-button-border: rgba(108, 88, 214, 0.48);
-    --pg-button-bg: linear-gradient(135deg, rgba(102, 76, 220, 0.94), rgba(121, 149, 247, 0.9));
-    --pg-button-shadow: rgba(73, 96, 187, 0.24);
-    --pg-button-text: #f8fbff;
-    --pg-button-hover-border: rgba(94, 76, 199, 0.64);
+    --pg-button-border: var(--btn-primary-border);
+    --pg-button-bg: var(--btn-primary-bg);
+    --pg-button-shadow: var(--btn-primary-shadow);
+    --pg-button-text: var(--btn-primary-text);
+    --pg-button-hover-border: var(--btn-primary-border);
     --pg-chip-border: rgba(112, 93, 217, 0.36);
     --pg-chip-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(241, 246, 255, 0.9));
     --pg-chip-text: #2a3558;
   }
+}
+
+.contactButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--btn-focus-ring), 0 10px 24px var(--pg-button-shadow);
 }
 
 @keyframes helperPulse {
