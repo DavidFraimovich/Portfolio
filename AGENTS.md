@@ -47,6 +47,7 @@ It is intended for both human contributors and AI coding agents.
 
 - Use CSS Modules for component-specific styling.
 - Use global CSS only for truly global styles/tokens/layout.
+- Keep global font families locale-aware: English (`/en`) uses `Lufga`, Hebrew (`/he`) uses `ALMONI`.
 - Use `px` units (not `rem`) for spacing/sizing/typography unless explicitly requested otherwise.
 - Prefer `clamp()` for responsive typography and major dimensions.
 - Keep selectors simple and avoid deep specificity chains.

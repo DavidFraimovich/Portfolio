@@ -1,4 +1,11 @@
 .section {
+  --skills-title-color: var(--text-strong);
+  --skills-bar-grad-start: #9a76ff;
+  --skills-bar-grad-end: #422397;
+  --skills-bar-shadow: rgba(36, 18, 94, 0.42);
+  --skills-strip-bg: #ffffff;
+  --skills-item-color: #09080f;
+  --skills-separator-color: #313248;
   position: relative;
   z-index: 8;
   width: 100vw;
@@ -11,10 +18,32 @@
 .title {
   width: min(1100px, 92vw);
   margin: 0 auto 16px;
-  color: var(--text-strong);
+  color: var(--skills-title-color);
   font-size: clamp(30px, 3.6vw, 48px);
   line-height: 1.08;
   letter-spacing: -0.02em;
+}
+
+:global(html[data-theme="light"]) .section {
+  --skills-title-color: #222845;
+  --skills-bar-grad-start: #dacbff;
+  --skills-bar-grad-end: #8264e4;
+  --skills-bar-shadow: rgba(57, 44, 117, 0.16);
+  --skills-strip-bg: #fcfbff;
+  --skills-item-color: #20233a;
+  --skills-separator-color: #4d5172;
+}
+
+@media (prefers-color-scheme: light) {
+  :global(html:not([data-theme="dark"])) .section {
+    --skills-title-color: #222845;
+    --skills-bar-grad-start: #dacbff;
+    --skills-bar-grad-end: #8264e4;
+    --skills-bar-shadow: rgba(57, 44, 117, 0.16);
+    --skills-strip-bg: #fcfbff;
+    --skills-item-color: #20233a;
+    --skills-separator-color: #4d5172;
+  }
 }
 
 .bar {
@@ -23,8 +52,8 @@
   overflow: hidden;
   border-top-left-radius: 24px;
   border-bottom-right-radius: 24px;
-  background: linear-gradient(90deg, #9a76ff 0%, #422397 100%);
-  box-shadow: 0 14px 34px rgba(36, 18, 94, 0.42);
+  background: linear-gradient(90deg, var(--skills-bar-grad-start) 0%, var(--skills-bar-grad-end) 100%);
+  box-shadow: 0 14px 34px var(--skills-bar-shadow);
 }
 
 .strip {
@@ -34,7 +63,7 @@
   direction: ltr;
   width: calc(100% + 240px);
   transform: translateY(-50%) rotate(-2.5deg);
-  background: #ffffff;
+  background: var(--skills-strip-bg);
   overflow: hidden;
 }
 
@@ -70,13 +99,13 @@
   font-size: clamp(18px, 2.2vw, 34px);
   line-height: 1.06;
   letter-spacing: -0.48px;
-  color: #09080f;
+  color: var(--skills-item-color);
 }
 
 .item::after {
   content: "#";
   margin-left: 24px;
-  color: #313248;
+  color: var(--skills-separator-color);
   line-height: 1;
   font-size: 0.82em;
 }
@@ -94,7 +123,7 @@
 .rtl .item::before {
   content: "#";
   margin-right: 24px;
-  color: #313248;
+  color: var(--skills-separator-color);
   line-height: 1;
   font-size: 0.82em;
 }

@@ -1,4 +1,6 @@
 :root {
+  --font-en: "Lufga", "SF Pro Display", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-he: "ALMONI", "Assistant", "Rubik", "Noto Sans Hebrew", "Arial Hebrew", sans-serif;
   --bg: #050507;
   --bg-soft: #111216;
   --panel: rgba(255, 255, 255, 0.08);
@@ -120,8 +122,23 @@ body {
     radial-gradient(circle at 80% 0%, var(--bg-orb-2), transparent 40%),
     linear-gradient(170deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 60%, var(--bg-grad-3) 100%);
   color: var(--text);
-  font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: var(--font-en);
   transition: background 220ms ease, color 220ms ease;
+}
+
+.locale-root.locale-en {
+  font-family: var(--font-en);
+}
+
+.locale-root.locale-he {
+  font-family: var(--font-he);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 a {
@@ -313,14 +330,76 @@ a {
   line-height: 1.75;
 }
 
+.brief-hero {
+  --product-goal-panel-bg:
+    radial-gradient(120% 180% at 80% -40%, rgba(150, 120, 255, 0.2), rgba(150, 120, 255, 0)),
+    linear-gradient(135deg, rgba(33, 26, 64, 0.72), rgba(15, 16, 32, 0.68));
+  --product-goal-panel-border: rgba(171, 154, 255, 0.34);
+  --product-goal-panel-shadow: rgba(12, 8, 35, 0.28);
+  --product-goal-title: #f4f2ff;
+  --product-goal-body: #c8cee3;
+  --product-goal-subcard-bg: rgba(35, 32, 64, 0.48);
+  --product-goal-subcard-border: rgba(171, 154, 255, 0.22);
+  --product-goal-subcard-title: #eeebff;
+  --product-goal-subcard-text: #c9d0e5;
+  background: var(--product-goal-panel-bg);
+  border-color: var(--product-goal-panel-border);
+  box-shadow: 0 14px 34px var(--product-goal-panel-shadow);
+}
+
+.brief-hero .card {
+  background: var(--product-goal-subcard-bg);
+  border-color: var(--product-goal-subcard-border);
+}
+
+.brief-hero .card h2 {
+  color: var(--product-goal-subcard-title);
+}
+
+.brief-hero .card p,
+.brief-hero .card li {
+  color: var(--product-goal-subcard-text);
+}
+
+html[data-theme="light"] .brief-hero {
+  --product-goal-panel-bg:
+    radial-gradient(110% 170% at 80% -45%, rgba(123, 92, 255, 0.22), rgba(123, 92, 255, 0)),
+    linear-gradient(135deg, #f7f4ff 0%, #eef2ff 100%);
+  --product-goal-panel-border: rgba(99, 74, 215, 0.3);
+  --product-goal-panel-shadow: rgba(54, 47, 104, 0.16);
+  --product-goal-title: #1f2540;
+  --product-goal-body: #495777;
+  --product-goal-subcard-bg: rgba(255, 255, 255, 0.96);
+  --product-goal-subcard-border: rgba(117, 95, 219, 0.26);
+  --product-goal-subcard-title: #232c49;
+  --product-goal-subcard-text: #4b5a7b;
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .brief-hero {
+    --product-goal-panel-bg:
+      radial-gradient(110% 170% at 80% -45%, rgba(123, 92, 255, 0.22), rgba(123, 92, 255, 0)),
+      linear-gradient(135deg, #f7f4ff 0%, #eef2ff 100%);
+    --product-goal-panel-border: rgba(99, 74, 215, 0.3);
+    --product-goal-panel-shadow: rgba(54, 47, 104, 0.16);
+    --product-goal-title: #1f2540;
+    --product-goal-body: #495777;
+    --product-goal-subcard-bg: rgba(255, 255, 255, 0.96);
+    --product-goal-subcard-border: rgba(117, 95, 219, 0.26);
+    --product-goal-subcard-title: #232c49;
+    --product-goal-subcard-text: #4b5a7b;
+  }
+}
+
 .brief-hero h1,
 .brief-hero h2 {
   margin-top: 0;
   margin-bottom: 16px;
+  color: var(--product-goal-title);
 }
 
 .brief-hero>p {
-  color: var(--muted);
+  color: var(--product-goal-body);
   margin-top: 0;
   margin-bottom: 25.6px;
   line-height: 1.8;
