@@ -1,5 +1,6 @@
 import { type Locale } from "@/lib/i18n";
 import { ProductGoalsPanel } from "./ProductGoalsPanel";
+import { TechnicalSkillsPanel } from "./TechnicalSkillsPanel";
 import styles from "./SkillsRibbon.module.css";
 
 type SkillsRibbonProps = {
@@ -102,6 +103,7 @@ export function SkillsRibbon({ locale }: SkillsRibbonProps) {
         </div>
       </div>
       <ProductGoalsPanel locale={locale} />
+      <TechnicalSkillsPanel locale={locale} />
     </section>
   );
 }

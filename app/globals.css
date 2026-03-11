@@ -1060,11 +1060,6 @@ html[data-theme="light"] .theme-trigger {
     bottom: 8px;
     width: min(358px, calc(100vw - 16px));
   }
-
-  .mobile-nav-controls .theme-menu {
-    top: auto;
-    bottom: calc(100% + 8px);
-  }
 }
 
 @media (max-width: 640px) {

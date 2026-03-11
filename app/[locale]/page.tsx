@@ -341,7 +341,7 @@ export default async function LocalizedHomePage({ params }: Props) {
         <p>
           {isHebrew
             ? "PM מוצרי וטכני עם ניסיון 0→1, אינטגרציות API מורכבות, ניהול תלויות בין-צוותיות ויצירת יתרון עסקי דרך AI + Data."
-            : "Product + technical PM with 0→1 delivery, complex API integrations, cross-team dependency management, and business differentiation through AI + Data."}
+            : "Product + technical PM with delivery, complex API integrations, cross-team dependency management, and business differentiation through AI + Data."}
         </p>
         <div className="cta-row">
           <a className="cta cta-secondary" href="https://wa.me/972542114929" target="_blank" rel="noreferrer">
