@@ -1,4 +1,5 @@
 import { type Locale } from "@/lib/i18n";
+import { withBasePath } from "@/lib/site";
 import styles from "./TechnicalSkillsPanel.module.css";
 
 type TechnicalSkillsPanelProps = {
@@ -15,6 +16,7 @@ type BadgeTone =
   | "node"
   | "nginx"
   | "mysql"
+  | "umbraco"
   | "aws"
   | "postgres"
   | "github"
@@ -25,13 +27,13 @@ type BadgeTone =
   | "ts"
   | "nuxt"
   | "vue"
-  | "react"
-  | "umbraco";
+  | "react";
 
 type TechBadge = {
   id: string;
   label: string;
   tone: BadgeTone;
+  icon: string;
 };
 
 type SkillGroup = {
@@ -67,31 +69,31 @@ const PANEL_COPY: Record<Locale, PanelCopy> = {
       backend: {
         title: "Backend & Data",
         badges: [
-          { id: "node", label: "Node", tone: "node" },
-          { id: "nginx", label: "NGINX", tone: "nginx" },
-          { id: "mysql", label: "MySQL", tone: "mysql" }
+          { id: "node", label: "Node", tone: "node", icon: "/images/tech-skills/node.svg" },
+          { id: "nginx", label: "NGINX", tone: "nginx", icon: "/images/tech-skills/nginx.svg" },
+          { id: "mysql", label: "MySQL", tone: "mysql", icon: "/images/tech-skills/mysql.svg" },
+          { id: "umbraco", label: "Umbraco", tone: "umbraco", icon: "/images/tech-skills/umbraco.svg" }
         ]
       },
       infra: {
         title: "Infra & Collaboration",
         badges: [
-          { id: "aws", label: "AWS", tone: "aws" },
-          { id: "postgres", label: "PostgreSQL", tone: "postgres" },
-          { id: "github", label: "GitHub", tone: "github" },
-          { id: "bitbucket", label: "Bitbucket", tone: "bitbucket" }
+          { id: "aws", label: "AWS", tone: "aws", icon: "/images/tech-skills/aws.svg" },
+          { id: "postgres", label: "PostgreSQL", tone: "postgres", icon: "/images/tech-skills/postgresql.svg" },
+          { id: "github", label: "GitHub", tone: "github", icon: "/images/tech-skills/github.svg" },
+          { id: "bitbucket", label: "Bitbucket", tone: "bitbucket", icon: "/images/tech-skills/bitbucket.svg" }
         ]
       },
       frontend: {
         title: "Frontend",
         badges: [
-          { id: "html", label: "HTML5", tone: "html" },
-          { id: "css", label: "CSS3", tone: "css" },
-          { id: "js", label: "JS", tone: "js" },
-          { id: "ts", label: "TS", tone: "ts" },
-          { id: "nuxt", label: "Nuxt", tone: "nuxt" },
-          { id: "vue", label: "Vue", tone: "vue" },
-          { id: "react", label: "React", tone: "react" },
-          { id: "umbraco", label: "Umbraco", tone: "umbraco" }
+          { id: "html", label: "HTML5", tone: "html", icon: "/images/tech-skills/html5.svg" },
+          { id: "css", label: "CSS3", tone: "css", icon: "/images/tech-skills/css3.svg" },
+          { id: "js", label: "JS", tone: "js", icon: "/images/tech-skills/javascript.svg" },
+          { id: "ts", label: "TypeScript", tone: "ts", icon: "/images/tech-skills/typescript.svg" },
+          { id: "nuxt", label: "Nuxt", tone: "nuxt", icon: "/images/tech-skills/nuxt.svg" },
+          { id: "vue", label: "Vue", tone: "vue", icon: "/images/tech-skills/vue.svg" },
+          { id: "react", label: "React", tone: "react", icon: "/images/tech-skills/react.svg" }
         ]
       }
     }
@@ -112,31 +114,31 @@ const PANEL_COPY: Record<Locale, PanelCopy> = {
       backend: {
         title: "Backend & Data",
         badges: [
-          { id: "node", label: "Node", tone: "node" },
-          { id: "nginx", label: "NGINX", tone: "nginx" },
-          { id: "mysql", label: "MySQL", tone: "mysql" }
+          { id: "node", label: "Node", tone: "node", icon: "/images/tech-skills/node.svg" },
+          { id: "nginx", label: "NGINX", tone: "nginx", icon: "/images/tech-skills/nginx.svg" },
+          { id: "mysql", label: "MySQL", tone: "mysql", icon: "/images/tech-skills/mysql.svg" },
+          { id: "umbraco", label: "Umbraco", tone: "umbraco", icon: "/images/tech-skills/umbraco.svg" }
         ]
       },
       infra: {
         title: "Infra & Collaboration",
         badges: [
-          { id: "aws", label: "AWS", tone: "aws" },
-          { id: "postgres", label: "PostgreSQL", tone: "postgres" },
-          { id: "github", label: "GitHub", tone: "github" },
-          { id: "bitbucket", label: "Bitbucket", tone: "bitbucket" }
+          { id: "aws", label: "AWS", tone: "aws", icon: "/images/tech-skills/aws.svg" },
+          { id: "postgres", label: "PostgreSQL", tone: "postgres", icon: "/images/tech-skills/postgresql.svg" },
+          { id: "github", label: "GitHub", tone: "github", icon: "/images/tech-skills/github.svg" },
+          { id: "bitbucket", label: "Bitbucket", tone: "bitbucket", icon: "/images/tech-skills/bitbucket.svg" }
         ]
       },
       frontend: {
         title: "Frontend",
         badges: [
-          { id: "html", label: "HTML5", tone: "html" },
-          { id: "css", label: "CSS3", tone: "css" },
-          { id: "js", label: "JS", tone: "js" },
-          { id: "ts", label: "TS", tone: "ts" },
-          { id: "nuxt", label: "Nuxt", tone: "nuxt" },
-          { id: "vue", label: "Vue", tone: "vue" },
-          { id: "react", label: "React", tone: "react" },
-          { id: "umbraco", label: "Umbraco", tone: "umbraco" }
+          { id: "html", label: "HTML5", tone: "html", icon: "/images/tech-skills/html5.svg" },
+          { id: "css", label: "CSS3", tone: "css", icon: "/images/tech-skills/css3.svg" },
+          { id: "js", label: "JS", tone: "js", icon: "/images/tech-skills/javascript.svg" },
+          { id: "ts", label: "TypeScript", tone: "ts", icon: "/images/tech-skills/typescript.svg" },
+          { id: "nuxt", label: "Nuxt", tone: "nuxt", icon: "/images/tech-skills/nuxt.svg" },
+          { id: "vue", label: "Vue", tone: "vue", icon: "/images/tech-skills/vue.svg" },
+          { id: "react", label: "React", tone: "react", icon: "/images/tech-skills/react.svg" },
         ]
       }
     }
@@ -175,7 +177,13 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
             <ul className={styles.badges}>
               {copy.groups.backend.badges.map((badge) => (
                 <li key={badge.id}>
-                  <span className={`${styles.badge} ${styles[badge.tone]}`}>{badge.label}</span>
+                  <span className={styles.badge}>
+                    <img
+                      src={withBasePath(badge.icon)}
+                      alt={`${badge.label} logo`}
+                      className={`${styles.badgeIcon} ${styles[badge.tone]}`}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -186,7 +194,13 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
             <ul className={styles.badges}>
               {copy.groups.infra.badges.map((badge) => (
                 <li key={badge.id}>
-                  <span className={`${styles.badge} ${styles[badge.tone]}`}>{badge.label}</span>
+                  <span className={styles.badge}>
+                    <img
+                      src={withBasePath(badge.icon)}
+                      alt={`${badge.label} logo`}
+                      className={`${styles.badgeIcon} ${styles[badge.tone]}`}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -197,7 +211,13 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
             <ul className={`${styles.badges} ${styles.frontendBadges}`}>
               {copy.groups.frontend.badges.map((badge) => (
                 <li key={badge.id}>
-                  <span className={`${styles.badge} ${styles[badge.tone]}`}>{badge.label}</span>
+                  <span className={styles.badge}>
+                    <img
+                      src={withBasePath(badge.icon)}
+                      alt={`${badge.label} logo`}
+                      className={`${styles.badgeIcon} ${styles[badge.tone]}`}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
