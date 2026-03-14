@@ -1,5 +1,37 @@
 .section {
+  --ts-bg-base: #140c38;
+  --ts-bg-mid: #1a0f4a;
+  --ts-bg-end: #130b2f;
+  --ts-orb-a: rgba(123, 92, 255, 0.26);
+  --ts-orb-b: rgba(90, 49, 244, 0.22);
+  --ts-orb-c: rgba(73, 112, 216, 0.18);
+  --ts-overlay-a: rgba(110, 83, 238, 0.2);
+  --ts-overlay-b: rgba(255, 255, 255, 0.05);
+  --ts-title: var(--text-strong);
+  --ts-copy: rgba(237, 240, 248, 0.84);
+  --ts-accent: var(--purple-soft);
+  --ts-badge-border: rgba(255, 255, 255, 0.08);
+  --ts-badge-bg: linear-gradient(148deg, rgba(89, 79, 126, 0.92), rgba(64, 58, 98, 0.9));
+  --ts-badge-hover-bg: linear-gradient(148deg, rgba(103, 92, 145, 0.96), rgba(78, 70, 116, 0.94));
+  --ts-badge-shadow: rgba(4, 7, 18, 0.34);
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-top: 18px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 64px 0 78px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 52%, var(--ts-orb-a), rgba(126, 98, 238, 0) 50%),
+    radial-gradient(circle at 55% 90%, var(--ts-orb-b), rgba(111, 88, 228, 0) 46%),
+    radial-gradient(circle at 88% 26%, var(--ts-orb-c), rgba(118, 162, 255, 0) 42%),
+    linear-gradient(112deg, var(--ts-bg-base) 0%, var(--ts-bg-mid) 36%, var(--ts-bg-end) 100%);
+}
+
+:global(html[data-theme="light"]) .section {
   --ts-bg-base: #f7f4ff;
+  --ts-bg-mid: #f6f2ff;
   --ts-bg-end: #edf3ff;
   --ts-orb-a: rgba(126, 98, 238, 0.24);
   --ts-orb-b: rgba(111, 88, 228, 0.16);
@@ -13,19 +45,26 @@
   --ts-badge-bg: linear-gradient(148deg, rgba(91, 98, 134, 0.92), rgba(73, 79, 114, 0.88));
   --ts-badge-hover-bg: linear-gradient(148deg, rgba(103, 111, 149, 0.96), rgba(82, 88, 126, 0.92));
   --ts-badge-shadow: rgba(58, 73, 120, 0.18);
-  position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  margin-top: 18px;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding: 64px 0 78px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 52%, var(--ts-orb-a), rgba(126, 98, 238, 0) 50%),
-    radial-gradient(circle at 55% 90%, var(--ts-orb-b), rgba(111, 88, 228, 0) 46%),
-    radial-gradient(circle at 88% 26%, var(--ts-orb-c), rgba(118, 162, 255, 0) 42%),
-    linear-gradient(112deg, var(--ts-bg-base) 0%, #f6f2ff 36%, var(--ts-bg-end) 100%);
+}
+
+@media (prefers-color-scheme: light) {
+  :global(html:not([data-theme="dark"])) .section {
+    --ts-bg-base: #f7f4ff;
+    --ts-bg-mid: #f6f2ff;
+    --ts-bg-end: #edf3ff;
+    --ts-orb-a: rgba(126, 98, 238, 0.24);
+    --ts-orb-b: rgba(111, 88, 228, 0.16);
+    --ts-orb-c: rgba(118, 162, 255, 0.18);
+    --ts-overlay-a: rgba(255, 255, 255, 0.58);
+    --ts-overlay-b: rgba(123, 92, 255, 0.08);
+    --ts-title: #202842;
+    --ts-copy: #495673;
+    --ts-accent: #6a4fe8;
+    --ts-badge-border: rgba(108, 119, 171, 0.28);
+    --ts-badge-bg: linear-gradient(148deg, rgba(91, 98, 134, 0.92), rgba(73, 79, 114, 0.88));
+    --ts-badge-hover-bg: linear-gradient(148deg, rgba(103, 111, 149, 0.96), rgba(82, 88, 126, 0.92));
+    --ts-badge-shadow: rgba(58, 73, 120, 0.18);
+  }
 }
 
 .section::after {
