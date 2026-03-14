@@ -35,5 +35,5 @@ export const siteDefaults = {
   title: "Portfolio",
   description:
     "A clean, conversion-focused portfolio with case studies, resume, and contact details.",
-  author: "Your Name"
+  author: "David Framovich"
 };

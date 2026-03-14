@@ -231,9 +231,57 @@ a {
 }
 
 .brand {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 11.2px;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--text-strong);
+}
+
+.brand-avatar {
+  width: 46px;
+  height: 46px;
+  padding: 2px;
+  border-radius: 16px;
+  flex: 0 0 auto;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.16)),
+    linear-gradient(135deg, rgba(123, 92, 255, 0.52), rgba(90, 49, 244, 0.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 10px 22px rgba(7, 10, 18, 0.28);
+}
+
+.brand-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center 18%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
+.brand-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html[data-theme="light"] .brand-avatar {
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.58)),
+    linear-gradient(135deg, rgba(96, 65, 232, 0.28), rgba(96, 65, 232, 0.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    0 12px 24px rgba(59, 76, 112, 0.14);
 }
 
 .nav-links {
@@ -999,6 +1047,15 @@ html[data-theme="light"] .theme-trigger {
     color: #344467;
   }
 
+  html:not([data-theme="dark"]) .brand-avatar {
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.58)),
+      linear-gradient(135deg, rgba(96, 65, 232, 0.28), rgba(96, 65, 232, 0.12));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.86),
+      0 12px 24px rgba(59, 76, 112, 0.14);
+  }
+
   html:not([data-theme="dark"]) .lang-switch {
     background: rgba(255, 255, 255, 0.58);
     border-color: rgba(90, 102, 138, 0.24);
@@ -1034,10 +1091,21 @@ html[data-theme="light"] .theme-trigger {
   }
 
   .brand {
-    max-width: calc(100vw - 98px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: calc(100vw - 112px);
+    gap: 9.6px;
+  }
+
+  .brand-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 15px;
+  }
+
+  .brand-avatar-image {
+    border-radius: 13px;
+  }
+
+  .brand-name {
     font-size: clamp(22px, 5.3vw, 29px);
     line-height: 1.1;
   }

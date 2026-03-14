@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import type { Locale } from "@/lib/i18n";
 import { withLocalePath } from "@/lib/i18n";
+import { withBasePath } from "@/lib/site";
 import type { SiteContent } from "@/lib/siteContent";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileNavDrawer, type NavItem } from "@/components/MobileNavDrawer";
@@ -11,6 +12,8 @@ type Props = {
   locale: Locale;
   site: SiteContent;
 };
+
+const HEADER_PROFILE_IMAGE = withBasePath("/images/header/David-Fraimovich-header.png");
 
 export function Nav({ locale, site }: Props): ReactElement {
   const navItems: NavItem[] = [
@@ -25,7 +28,18 @@ export function Nav({ locale, site }: Props): ReactElement {
     <header className="site-shell">
       <nav className="nav" aria-label="Main navigation">
         <Link href={withLocalePath(locale)} className="brand">
-          {site.brand_name}
+          <span className="brand-avatar" aria-hidden="true">
+            <img
+              src={HEADER_PROFILE_IMAGE}
+              alt=""
+              width="44"
+              height="44"
+              className="brand-avatar-image"
+            />
+          </span>
+          <span className="brand-copy">
+            <span className="brand-name">{site.brand_name}</span>
+          </span>
         </Link>
         <div className="nav-actions">
           <div className="nav-links">
