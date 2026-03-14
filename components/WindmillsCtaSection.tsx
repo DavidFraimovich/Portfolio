@@ -35,7 +35,11 @@ export function WindmillsCtaSection({ locale }: Props) {
   const copy = sectionCopy[locale];
 
   return (
-    <section className={styles.section} aria-labelledby="windmills-cta-title">
+    <section
+      className={styles.section}
+      aria-labelledby="windmills-cta-title"
+      data-footer-overlap-anchor="windmills"
+    >
       <div className={styles.scene}>
         <motion.img
           src={WINDMILLS_IMAGE}
