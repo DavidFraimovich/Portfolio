@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
+import { ProductPlaybookSection } from "@/components/ProductPlaybookSection";
 import { SkillsRibbon } from "@/components/SkillsRibbon";
 import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies } from "@/lib/content";
@@ -46,26 +47,13 @@ export default async function LocalizedHomePage({ params }: Props) {
 
   const site = getSiteContent(locale);
   const caseStudies = getAllCaseStudies(locale).slice(0, 3);
-  const isHebrew = locale === "he";
 
   return (
     <>
       <Hero locale={locale} />
       <SkillsRibbon locale={locale} />
 
-      <section className="card">
-        <h2 className="section-title topless-title">{isHebrew ? "איך אני עובד" : "How I work"}</h2>
-        <p className="workflow-line">
-          {isHebrew
-            ? "Problem framing → Discovery → KPI/Guardrails → Options & tradeoffs → MVP → Launch → Measure → Iterate"
-            : "Problem framing → Discovery → KPI/Guardrails → Options & tradeoffs → MVP → Launch → Measure → Iterate"}
-        </p>
-        <div className="cta-row compact">
-          <Link className="cta cta-secondary" href={withLocalePath(locale, "/about")}>
-            {isHebrew ? "פירוט מלא על דרך העבודה" : "Read full How I work"}
-          </Link>
-        </div>
-      </section>
+      <ProductPlaybookSection locale={locale} />
 
       <h2 className="section-title">{site.home_selected_case_studies}</h2>
       <section className="grid" aria-label={site.home_selected_case_studies}>
