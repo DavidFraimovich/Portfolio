@@ -39,7 +39,7 @@
 
 .scene {
   position: relative;
-  min-height: clamp(300px, 44vw, 560px);
+  min-height: clamp(320px, 60vw, 800px);
   isolation: isolate;
   background: #c6d4ea;
 }
@@ -69,14 +69,14 @@
 
 .image {
   position: absolute;
-  inset: -12% 0 -12% 0;
+  inset: -10% 0 -14% 0;
   z-index: 0;
   width: 100%;
-  height: 124%;
+  height: 128%;
   object-fit: cover;
-  object-position: center 58%;
+  object-position: 48% 55%;
   will-change: transform;
-  filter: saturate(0.95) contrast(1.04);
+  filter: saturate(0.97) contrast(1.03);
 }
 
 .copyWrap {
@@ -156,7 +156,11 @@
 
 @media (max-width: 860px) {
   .scene {
-    min-height: clamp(300px, 55vw, 460px);
+    min-height: clamp(320px, 60vw, 500px);
+  }
+
+  .image {
+    object-position: 42% 56%;
   }
 
   .copyWrap {
@@ -181,7 +185,11 @@
 
 @media (max-width: 540px) {
   .scene {
-    min-height: clamp(280px, 76vw, 380px);
+    min-height: clamp(300px, 84vw, 430px);
+  }
+
+  .image {
+    object-position: 36% 58%;
   }
 
   .copyWrap {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MdxContent } from "@/components/MdxContent";
+import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, locales, type Locale, withLocalePath } from "@/lib/i18n";
@@ -59,6 +60,7 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   const site = getSiteContent(locale);
   const entry = getCaseStudyBySlug(locale, slug);
   if (!entry) notFound();
+  const isWebsiteAsProduct = entry.slug === "website-as-product";
 
   return (
     <>
@@ -105,6 +107,8 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
           <p>{entry.frontmatter.learnings}</p>
         </article>
       </section>
+
+      {isWebsiteAsProduct && <WebsiteAsProductCaseStudy locale={locale} />}
 
       <MdxContent source={entry.body} />
     </>
