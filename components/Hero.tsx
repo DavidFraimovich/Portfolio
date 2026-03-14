@@ -1,14 +1,13 @@
 import Link from "next/link";
+import { contactLinks, getLinkedInUrl, getResumeLink } from "@/lib/contactLinks";
 import { type Locale, withLocalePath } from "@/lib/i18n";
 import { withBasePath } from "@/lib/site";
 import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
 
 const LINKS = {
-  whatsapp: "https://wa.me/972542114929",
-  linkedin: "https://www.linkedin.com/in/david-fraimovich-843207172",
-  cvHe: withBasePath("/cv/David-Fraimovich-CV-HE.pdf"),
-  cvEn: withBasePath("/cv/David-Fraimovich-CV-EN.pdf")
+  whatsapp: contactLinks.whatsapp,
+  linkedin: getLinkedInUrl()
 } as const;
 
 const HERO_PROFILE_IMAGE = withBasePath("/images/hero/David-Fraimovich.png");
@@ -43,7 +42,7 @@ const heroCopy: Record<Locale, HeroCopy> = {
     titleRole: "מנהל מוצר",
     subtitle: "אני הופך צרכים עסקים לפתרונות בעלי השפעה מדידה, מדויקת וסקיילבילית",
     primaryCta: "לתיק עבודות",
-    secondaryCta: "יצירת קשר",
+    secondaryCta: "צור איתי קשר",
     linkedinCta: "LinkedIn",
     cvCta: "הורדת קו\"ח",
     panelImageAlt: "תמונת פרופיל"
@@ -56,7 +55,7 @@ type HeroProps = {
 
 export function Hero({ locale = "en" }: HeroProps) {
   const copy = heroCopy[locale];
-  const ctaCvLink = locale === "he" ? LINKS.cvHe : LINKS.cvEn;
+  const ctaCvLink = getResumeLink(locale);
 
   return (
     <section className={`${styles.hero} ${styles.heroAnimatedBg} hero-root`} aria-labelledby="hero-title">

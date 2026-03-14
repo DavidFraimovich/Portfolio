@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
 import { SkillsRibbon } from "@/components/SkillsRibbon";
 import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
+import { contactLinks, getLinkedInUrl, getMailtoHref, getResumeLink, resumeLinks } from "@/lib/contactLinks";
 import { getAllCaseStudies, getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, withLocalePath } from "@/lib/i18n";
@@ -48,6 +49,9 @@ export default async function LocalizedHomePage({ params }: Props) {
   const caseStudies = getAllCaseStudies(locale).slice(0, 3);
   const posts = getAllPosts(locale).slice(0, 2);
   const isHebrew = locale === "he";
+  const linkedinUrl = getLinkedInUrl(site.linkedin_url);
+  const mailtoHref = getMailtoHref(site.email);
+  const localeResumeLink = getResumeLink(locale);
   const trackShareSummaryId = "shareable-summary";
   const featuredSectionId = "featured-case-studies";
   const featuredCards = [
@@ -114,11 +118,11 @@ export default async function LocalizedHomePage({ params }: Props) {
           <Link className="cta" href={withLocalePath(locale, "/case-studies")}>
             {isHebrew ? "למחקרי מקרה" : "View Case Studies"}
           </Link>
-          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-EN.pdf")} target="_blank" rel="noreferrer">
+          <a className="cta cta-secondary" href={localeResumeLink} target="_blank" rel="noreferrer">
             {isHebrew ? "הורדת קורות חיים" : "Download CV"}
           </a>
           <Link className="cta cta-secondary" href={withLocalePath(locale, "/contact")}>
-            {isHebrew ? "יצירת קשר" : "Contact"}
+            {isHebrew ? "צור איתי קשר" : "Contact"}
           </Link>
         </div>
       </section>
@@ -154,7 +158,7 @@ export default async function LocalizedHomePage({ params }: Props) {
         <section className="grid" aria-label={isHebrew ? "מסלולי שימוש באתר" : "How to use this site"}>
           <article className="card">
             <h3>{isHebrew ? "A: מגייסים (30 שניות)" : "A: Recruiter (30s)"}</h3>
-            <p>{isHebrew ? "לצפייה מהירה בתקציר ויצירת קשר." : "Quick path for screening and contact."}</p>
+            <p>{isHebrew ? "לצפייה מהירה בתקציר וצור איתי קשר." : "Quick path for screening and contact."}</p>
             <div className="cta-row compact">
               <Link className="cta cta-secondary" href={withLocalePath(locale, "/resume")}>
                 {isHebrew ? "קורות חיים" : "Resume"}
@@ -189,7 +193,7 @@ export default async function LocalizedHomePage({ params }: Props) {
               </a>
               <a
                 className="cta cta-secondary"
-                href="https://www.linkedin.com/in/david-fraimovich-843207172"
+                href={linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -344,19 +348,19 @@ export default async function LocalizedHomePage({ params }: Props) {
             : "Product + technical PM with delivery, complex API integrations, cross-team dependency management, and business differentiation through AI + Data."}
         </p>
         <div className="cta-row">
-          <a className="cta cta-secondary" href="https://wa.me/972542114929" target="_blank" rel="noreferrer">
+          <a className="cta cta-secondary" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
             Contact (WhatsApp)
           </a>
-          <a className="cta cta-secondary" href="mailto:davidfr97@gmail.com">
+          <a className="cta cta-secondary" href={mailtoHref}>
             Mail me
           </a>
-          <a className="cta cta-secondary" href="https://www.linkedin.com/in/david-fraimovich-843207172" target="_blank" rel="noreferrer">
+          <a className="cta cta-secondary" href={linkedinUrl} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-HE.pdf")} target="_blank" rel="noreferrer">
+          <a className="cta cta-secondary" href={resumeLinks.he} target="_blank" rel="noreferrer">
             Download CV (HE)
           </a>
-          <a className="cta cta-secondary" href={withBasePath("/cv/David-Fraimovich-CV-EN.pdf")} target="_blank" rel="noreferrer">
+          <a className="cta cta-secondary" href={resumeLinks.en} target="_blank" rel="noreferrer">
             Download CV (EN)
           </a>
         </div>

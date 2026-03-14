@@ -26,6 +26,14 @@ npm run dev
   - `content/site/en.json`
   - `content/site/he.json`
 
+## Footer architecture
+
+- The global footer is mounted from `app/[locale]/layout.tsx`, so one component update applies site-wide.
+- `components/Footer.tsx` owns the server-rendered layout and locale-aware links.
+- `components/FooterContactPanel.tsx` owns the tooltip + modal behavior for the message area.
+- Footer styling lives in `components/Footer.module.css` and is built on the existing global theme variables rather than a separate palette.
+- Shared external links and CV paths live in `lib/contactLinks.ts`.
+
 ## Decap CMS (2 languages)
 
 Admin UI: `public/admin/index.html`

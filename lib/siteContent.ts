@@ -54,8 +54,8 @@ const defaults: Record<Locale, SiteContent> = {
     subheadline:
       "I build business-grade digital products with measurable outcomes, from discovery to launch.",
     primary_cta_text: "View Case Studies",
-    linkedin_url: "https://linkedin.com/in/yourname",
-    email: "hello@example.com",
+    linkedin_url: "https://www.linkedin.com/in/david-fraimovich-843207172",
+    email: "davidfr97@gmail.com",
     nav_home: "Home",
     nav_case_studies: "Case Studies",
     nav_resume: "Resume",
@@ -97,21 +97,21 @@ const defaults: Record<Locale, SiteContent> = {
     detail_execution_label: "Execution",
     detail_results_label: "Results",
     detail_learnings_label: "Learnings",
-    footer_note: "Built with Next.js static export, MDX content, and Decap CMS."
+    footer_note: "Built with AI-assisted design, UX thinking, and technical craft."
   },
   he: {
-    site_title: "תיק עבודות",
-    brand_name: "דוד ",
+    site_title: "אתר אישי",
+    brand_name: "דוד פריימוביץ",
     headline: "מעצב מוצר ומפתח שהופך מערכות מורכבות לחוויות ברורות.",
     subheadline: "אני בונה מוצרים עסקיים עם תוצאות מדידות, משלב המחקר ועד ההשקה.",
     primary_cta_text: "לצפייה במחקרי מקרה",
-    linkedin_url: "https://linkedin.com/in/yourname",
-    email: "hello@example.com",
+    linkedin_url: "https://www.linkedin.com/in/david-fraimovich-843207172",
+    email: "davidfr97@gmail.com",
     nav_home: "בית",
     nav_case_studies: "מחקרי מקרה",
     nav_resume: "קורות חיים",
     nav_about: "אודות",
-    nav_contact: "יצירת קשר",
+    nav_contact: "צור איתי קשר",
     home_selected_case_studies: "מחקרי מקרה נבחרים",
     home_latest_posts: "פוסטים אחרונים",
     case_studies_title: "מחקרי מקרה",
@@ -129,7 +129,7 @@ const defaults: Record<Locale, SiteContent> = {
     resume_technology_title: "טכנולוגיות",
     resume_technology_text:
       "Next.js, TypeScript, React, Node.js, PostgreSQL, אנליטיקה, ניסויים ותהליכי CI/CD.",
-    contact_title: "יצירת קשר",
+    contact_title: "צור איתי קשר",
     contact_intro: "אם אתם בונים מוצר וצריכים תמיכה באסטרטגיה, עיצוב או פיתוח, דברו איתי.",
     contact_email_label: "אימייל",
     contact_linkedin_label: "לינקדאין",
@@ -141,7 +141,7 @@ const defaults: Record<Locale, SiteContent> = {
     detail_execution_label: "ביצוע",
     detail_results_label: "תוצאות",
     detail_learnings_label: "תובנות",
-    footer_note: "נבנה עם Next.js, תוכן MDX ו-Decap CMS."
+    footer_note: "נבנה בשילוב עיצוב בסיוע AI, חשיבת UX ודיוק טכני."
   }
 };
 

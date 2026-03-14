@@ -70,7 +70,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <LocaleOverrideHandler locale={locale} />
       <Nav locale={locale} site={site} />
       <main>{children}</main>
-      <Footer site={site} />
+      <Footer locale={locale} site={site} />
     </div>
   );
 }
