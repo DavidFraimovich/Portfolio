@@ -1,4 +1,18 @@
 .section {
+  --ts-bg-base: #f7f4ff;
+  --ts-bg-end: #edf3ff;
+  --ts-orb-a: rgba(126, 98, 238, 0.24);
+  --ts-orb-b: rgba(111, 88, 228, 0.16);
+  --ts-orb-c: rgba(118, 162, 255, 0.18);
+  --ts-overlay-a: rgba(255, 255, 255, 0.58);
+  --ts-overlay-b: rgba(123, 92, 255, 0.08);
+  --ts-title: #202842;
+  --ts-copy: #495673;
+  --ts-accent: #6a4fe8;
+  --ts-badge-border: rgba(108, 119, 171, 0.28);
+  --ts-badge-bg: linear-gradient(148deg, rgba(91, 98, 134, 0.92), rgba(73, 79, 114, 0.88));
+  --ts-badge-hover-bg: linear-gradient(148deg, rgba(103, 111, 149, 0.96), rgba(82, 88, 126, 0.92));
+  --ts-badge-shadow: rgba(58, 73, 120, 0.18);
   position: relative;
   width: 100vw;
   max-width: 100vw;
@@ -8,10 +22,10 @@
   padding: 64px 0 78px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 22% 52%, rgba(88, 58, 220, 0.36), rgba(88, 58, 220, 0) 52%),
-    radial-gradient(circle at 56% 94%, rgba(103, 76, 235, 0.22), rgba(103, 76, 235, 0) 48%),
-    radial-gradient(circle at 90% 30%, rgba(58, 43, 142, 0.22), rgba(58, 43, 142, 0) 44%),
-    linear-gradient(108deg, #0f0436 0%, #12073e 43%, #0a032a 100%);
+    radial-gradient(circle at 18% 52%, var(--ts-orb-a), rgba(126, 98, 238, 0) 50%),
+    radial-gradient(circle at 55% 90%, var(--ts-orb-b), rgba(111, 88, 228, 0) 46%),
+    radial-gradient(circle at 88% 26%, var(--ts-orb-c), rgba(118, 162, 255, 0) 42%),
+    linear-gradient(112deg, var(--ts-bg-base) 0%, #f6f2ff 36%, var(--ts-bg-end) 100%);
 }
 
 .section::after {
@@ -20,8 +34,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 34% 40%, rgba(131, 98, 255, 0.1), rgba(131, 98, 255, 0) 34%),
-    radial-gradient(circle at 74% 76%, rgba(112, 82, 255, 0.08), rgba(112, 82, 255, 0) 26%);
+    radial-gradient(circle at 32% 38%, var(--ts-overlay-a), rgba(255, 255, 255, 0) 30%),
+    radial-gradient(circle at 74% 78%, var(--ts-overlay-b), rgba(123, 92, 255, 0) 24%);
 }
 
 .inner {
@@ -40,7 +54,7 @@
 
 .title {
   margin: 0;
-  color: #f5f4ff;
+  color: var(--ts-title);
   font-size: clamp(52px, 5.8vw, 46px);
   line-height: 1.03;
   /* letter-spacing: -0.02em; */
@@ -50,7 +64,7 @@
 .topParagraph {
   max-width: 640px;
   margin: 24px 0 0;
-  color: rgba(235, 231, 255, 0.96);
+  color: var(--ts-copy);
   font-size: clamp(24px, 1.5vw, 28px);
   line-height: 1.42;
 }
@@ -58,13 +72,13 @@
 .bottomParagraph {
   max-width: 710px;
   margin: 138px 0 0;
-  color: rgba(235, 231, 255, 0.96);
+  color: var(--ts-copy);
   font-size: clamp(24px, 1.5vw, 28px);
   line-height: 1.42;
 }
 
 .highlight {
-  color: #6f57ff;
+  color: var(--ts-accent);
 }
 
 .skillsColumn {
@@ -107,7 +121,7 @@
 
 .groupTitle {
   margin: 0;
-  color: #6f57ff;
+  color: var(--ts-accent);
   font-size: clamp(30px, 2.45vw, 56px);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -135,22 +149,22 @@
   width: 70px;
   height: 70px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(148deg, rgba(77, 80, 112, 0.72), rgba(61, 62, 92, 0.66));
+  border: 1px solid var(--ts-badge-border);
+  background: var(--ts-badge-bg);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.06),
-    0 10px 24px rgba(6, 2, 22, 0.22);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 26px var(--ts-badge-shadow);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .badge:hover {
   transform: translateY(-2px);
-  border-color: rgba(150, 126, 255, 0.34);
-  background: linear-gradient(148deg, rgba(89, 92, 126, 0.78), rgba(71, 72, 106, 0.74));
+  border-color: rgba(106, 79, 232, 0.34);
+  background: var(--ts-badge-hover-bg);
 }
 
 .badgeIcon {

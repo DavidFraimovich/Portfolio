@@ -137,7 +137,7 @@
 .title {
   margin: 0;
   color: #f8fbff;
-  font-size: clamp(36.8px, 8vw, 96px);
+  font-size: clamp(36.8px, 8vw, 86px);
   line-height: 1.02;
   letter-spacing: -0.03em;
   text-wrap: balance;
@@ -150,7 +150,7 @@
 .subtitle {
   margin: 16px auto 0;
   color: rgba(211, 224, 248, 0.88);
-  font-size: clamp(16px, 1.8vw, 19.2px);
+  font-size: clamp(20px, 1.8vw, 24px);
   line-height: 1.6;
   max-width: 44ch;
 }
@@ -466,7 +466,7 @@
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: 24px;
   }
 
   .ctaRow {
