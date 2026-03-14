@@ -118,8 +118,8 @@ const footerCopy: Record<Locale, FooterCopy> = {
     successSubtitle: "Usually replies within 1–2 business days",
     successTitle: "תודה שפניתם, ההודעה נשלחה.",
     tooltipLines: [
-      "Open to product roles and collaborations",
-      "Usually replies within 1–2 business days"
+      "פתוח לתפקידי מוצר ושיתופי פעולה",
+      "בדרך כלל חוזר תוך 1–2 ימי עסקים"
     ]
   }
 };

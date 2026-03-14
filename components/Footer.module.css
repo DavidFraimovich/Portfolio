@@ -663,7 +663,7 @@
 
   .profileColumn {
     order: 2;
-    --profile-copy-width: min(100%, 360px);
+    --profile-copy-width: min(100%, 460px);
   }
 
   .profileHeader {
