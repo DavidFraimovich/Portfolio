@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 
 const FALLBACK_EMAIL = "davidfr97@gmail.com";
 const FALLBACK_LINKEDIN_URL = "https://www.linkedin.com/in/david-fraimovich-843207172";
@@ -15,12 +15,12 @@ export const contactLinks = {
 } as const;
 
 export const portraitImages = {
-  footer: withBasePath("/images/header/David-Fraimovich-header.png")
+  footer: withVersionedAssetPath("/images/header/David-Fraimovich-header.png")
 } as const;
 
 export const resumeLinks = {
-  en: withBasePath("/cv/David-Fraimovich-CV-EN.pdf"),
-  he: withBasePath("/cv/David-Fraimovich-CV-HE.pdf")
+  en: withVersionedAssetPath("/cv/David-Fraimovich-CV-EN.pdf"),
+  he: withVersionedAssetPath("/cv/David-Fraimovich-CV-HE.pdf")
 } as const;
 
 export function getResumeLink(locale: Locale): string {

@@ -1,6 +1,8 @@
 export const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
 export const isUserPagesRepo = repoName.endsWith(".github.io");
 export const basePath = repoName && !isUserPagesRepo ? `/${repoName}` : "";
+const assetVersion =
+  process.env.NEXT_PUBLIC_ASSET_VERSION?.trim() || "";
 
 export function withBasePath(path: string): string {
   if (!path) return basePath || "/";
@@ -8,6 +10,17 @@ export function withBasePath(path: string): string {
 
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   return `${basePath}${normalizedPath}`;
+}
+
+export function withVersionedAssetPath(path: string): string {
+  const resolvedPath = withBasePath(path);
+
+  // Assets in /public keep stable filenames on GitHub Pages, so append a build
+  // token to force browsers to fetch the latest file after each deploy.
+  if (!path || !assetVersion || /^(?:[a-z]+:)?\/\//i.test(path)) return resolvedPath;
+
+  const separator = resolvedPath.includes("?") ? "&" : "?";
+  return `${resolvedPath}${separator}v=${encodeURIComponent(assetVersion)}`;
 }
 
 function parseSiteUrl(raw: string | undefined): URL {

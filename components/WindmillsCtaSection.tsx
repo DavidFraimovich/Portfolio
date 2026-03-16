@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 import styles from "./WindmillsCtaSection.module.css";
 
 type Props = {
@@ -28,7 +28,7 @@ const sectionCopy: Record<Locale, MarketingCopy> = {
   }
 };
 
-const WINDMILLS_IMAGE = withBasePath("/images/home/windmills-panorama.jpg");
+const WINDMILLS_IMAGE = withVersionedAssetPath("/images/home/windmills-panorama.jpg");
 
 export function WindmillsCtaSection({ locale }: Props) {
   const reducedMotion = useReducedMotion();

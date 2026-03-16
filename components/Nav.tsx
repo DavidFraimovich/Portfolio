@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import type { Locale } from "@/lib/i18n";
 import { withLocalePath } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 import type { SiteContent } from "@/lib/siteContent";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileNavDrawer, type NavItem } from "@/components/MobileNavDrawer";
@@ -13,7 +13,7 @@ type Props = {
   site: SiteContent;
 };
 
-const HEADER_PROFILE_IMAGE = withBasePath("/images/header/David-Fraimovich-header.png");
+const HEADER_PROFILE_IMAGE = withVersionedAssetPath("/images/header/David-Fraimovich-header.png");
 
 export function Nav({ locale, site }: Props): ReactElement {
   const navItems: NavItem[] = [

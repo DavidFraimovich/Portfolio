@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { contactLinks, getLinkedInUrl, getResumeLink } from "@/lib/contactLinks";
 import { type Locale, withLocalePath } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 import { BubbleBackground } from "./BubbleBackground";
 import styles from "./Hero.module.css";
 
@@ -10,7 +10,7 @@ const LINKS = {
   linkedin: getLinkedInUrl()
 } as const;
 
-const HERO_PROFILE_IMAGE = withBasePath("/images/hero/David-Fraimovich.png");
+const HERO_PROFILE_IMAGE = withVersionedAssetPath("/images/hero/David-Fraimovich.png");
 
 type HeroCopy = {
   titleIntro: string;

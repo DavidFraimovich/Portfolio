@@ -3,7 +3,7 @@ import { contactLinks, getLinkedInUrl, getMailtoHref, getResumeLink, resumeLinks
 import { getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { type Locale, withLocalePath } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
@@ -53,7 +53,7 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
   const linkedinUrl = getLinkedInUrl(site.linkedin_url);
   const mailtoHref = getMailtoHref(site.email);
   const localeResumeLink = getResumeLink(locale);
-  const assetPath = (path: string): string => withBasePath(path);
+  const assetPath = (path: string): string => withVersionedAssetPath(path);
 
   return (
     <>

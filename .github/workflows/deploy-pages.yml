@@ -38,6 +38,7 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           NEXT_PUBLIC_SITE_URL: https://davidfraimovich.github.io/portfolio/
+          NEXT_PUBLIC_ASSET_VERSION: ${{ github.sha }}
 
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3

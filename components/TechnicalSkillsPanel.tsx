@@ -1,5 +1,5 @@
 import { type Locale } from "@/lib/i18n";
-import { withBasePath } from "@/lib/site";
+import { withVersionedAssetPath } from "@/lib/site";
 import styles from "./TechnicalSkillsPanel.module.css";
 
 type TechnicalSkillsPanelProps = {
@@ -179,7 +179,7 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
                 <li key={badge.id}>
                   <span className={styles.badge}>
                     <img
-                      src={withBasePath(badge.icon)}
+                      src={withVersionedAssetPath(badge.icon)}
                       alt={`${badge.label} logo`}
                       className={`${styles.badgeIcon} ${styles[badge.tone]}`}
                     />
@@ -196,7 +196,7 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
                 <li key={badge.id}>
                   <span className={styles.badge}>
                     <img
-                      src={withBasePath(badge.icon)}
+                      src={withVersionedAssetPath(badge.icon)}
                       alt={`${badge.label} logo`}
                       className={`${styles.badgeIcon} ${styles[badge.tone]}`}
                     />
@@ -213,7 +213,7 @@ export function TechnicalSkillsPanel({ locale }: TechnicalSkillsPanelProps) {
                 <li key={badge.id}>
                   <span className={styles.badge}>
                     <img
-                      src={withBasePath(badge.icon)}
+                      src={withVersionedAssetPath(badge.icon)}
                       alt={`${badge.label} logo`}
                       className={`${styles.badgeIcon} ${styles[badge.tone]}`}
                     />
