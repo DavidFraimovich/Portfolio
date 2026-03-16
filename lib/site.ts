@@ -25,7 +25,7 @@ export function withVersionedAssetPath(path: string): string {
 
 function parseSiteUrl(raw: string | undefined): URL {
   const candidate = (raw || "").trim();
-  if (!candidate) return new URL("https://davidfraimovich.github.io/portfolio/");
+  if (!candidate) return new URL("https://davidfraimovich.github.io/Portfolio/");
 
   try {
     return new URL(candidate);
@@ -33,7 +33,7 @@ function parseSiteUrl(raw: string | undefined): URL {
     try {
       return new URL(`https://${candidate}`);
     } catch {
-      return new URL("https://davidfraimovich.github.io/portfolio/");
+      return new URL("https://davidfraimovich.github.io/Portfolio/");
     }
   }
 }

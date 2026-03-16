@@ -8,6 +8,10 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
+export function generateLocaleStaticParams(): Array<{ locale: Locale }> {
+  return locales.map((locale) => ({ locale }));
+}
+
 export function localeDirection(locale: Locale): "ltr" | "rtl" {
   return locale === "he" ? "rtl" : "ltr";
 }

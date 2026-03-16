@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, withLocalePath } from "@/lib/i18n";
+import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return generateLocaleStaticParams();
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;

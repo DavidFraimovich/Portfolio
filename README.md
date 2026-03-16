@@ -36,7 +36,7 @@ npm run dev
 
 ## Decap CMS (2 languages)
 
-Admin UI: `public/admin/index.html`
+Admin UI: `app/admin/page.tsx`
 Config: `public/admin/config.yml`
 
 Collections:
@@ -69,6 +69,12 @@ npm run dev
 Then open:
 
 - `http://localhost:3000/admin/` (or your active dev port)
+
+For the deployed GitHub Pages site, use:
+
+- `https://davidfraimovich.github.io/Portfolio/admin/`
+
+Production GitHub login needs a real OAuth provider. The current config supports local development with `npx decap-server`, but GitHub Pages alone cannot complete GitHub auth without that extra provider.
 
 ## GitHub Pages
 

@@ -7,7 +7,7 @@ import { SkillsRibbon } from "@/components/SkillsRibbon";
 import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
-import { isLocale, withLocalePath } from "@/lib/i18n";
+import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
@@ -15,11 +15,17 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return generateLocaleStaticParams();
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isLocale(locale) ? locale : "en";
   const site = getSiteContent(safeLocale);
-  const canonical = `${siteUrl}${withLocalePath(safeLocale)}`;
+  const canonical = `${siteUrl}/${safeLocale}`;
 
   return {
     title: site.nav_home,

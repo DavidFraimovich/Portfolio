@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 function resolveSiteBaseUrl(): string {
   const candidate = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
-  const fallback = "https://example.com";
+  const fallback = "https://davidfraimovich.github.io";
   const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
   const isUserPagesRepo = repositoryName.endsWith(".github.io");
   const projectPagesPath = repositoryName && !isUserPagesRepo ? `/${repositoryName}` : "";
