@@ -185,7 +185,7 @@
   color: var(--pb-title);
   font-size: clamp(44px, 6vw, 84px);
   line-height: 0.98;
-  letter-spacing: -0.05em;
+  letter-spacing: var(--site-display-tracking);
 }
 
 .subtitle {
@@ -319,7 +319,7 @@
   color: var(--pb-muted-strong);
   font-size: clamp(24px, 2vw, 32px);
   line-height: 1.08;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--site-heading-tracking);
   transition: color 180ms ease;
 }
 
@@ -364,11 +364,14 @@
 
 .panelSummary {
   margin: 0;
-  max-width: 30ch;
+  max-width: 100%;
   color: var(--pb-body-strong);
-  font-size: clamp(19px, 1.45vw, 24px);
+  font-size: clamp(18px, 1.2vw, 22px);
   line-height: 1.34;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--site-heading-tracking);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .panelDescription,
@@ -395,7 +398,7 @@
   color: var(--pb-title);
   font-size: clamp(34px, 4vw, 54px);
   line-height: 1.02;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--site-display-tracking);
   text-align: center;
 }
 
@@ -430,7 +433,7 @@
   color: var(--pb-title);
   font-size: clamp(24px, 2vw, 32px);
   line-height: 1.16;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .rtl .panelNumber {
@@ -542,8 +545,7 @@
   }
 
   .panelSummary {
-    font-size: 18px;
-    max-width: none;
+    font-size: 16px;
   }
 
   .panelDescription,

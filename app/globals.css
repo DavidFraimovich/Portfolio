@@ -171,15 +171,33 @@ body {
     linear-gradient(170deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 60%, var(--bg-grad-3) 100%);
   color: var(--text);
   font-family: var(--font-en);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
   transition: background 220ms ease, color 220ms ease;
+}
+
+.locale-root {
+  --site-copy-tracking: 0.008em;
+  --site-heading-tracking: -0.016em;
+  --site-display-tracking: -0.024em;
+  --site-ui-tracking: 0.008em;
+  letter-spacing: var(--site-copy-tracking);
 }
 
 .locale-root.locale-en {
   font-family: var(--font-en);
+  --site-copy-tracking: 0.008em;
+  --site-heading-tracking: -0.016em;
+  --site-display-tracking: -0.024em;
+  --site-ui-tracking: 0.008em;
 }
 
 .locale-root.locale-he {
   font-family: var(--font-he);
+  --site-copy-tracking: 0.014em;
+  --site-heading-tracking: -0.006em;
+  --site-display-tracking: -0.012em;
+  --site-ui-tracking: 0.012em;
 }
 
 button,
@@ -187,6 +205,7 @@ input,
 textarea,
 select {
   font: inherit;
+  letter-spacing: var(--site-ui-tracking);
 }
 
 a {
@@ -236,7 +255,7 @@ a {
   align-items: center;
   gap: 11.2px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: var(--site-ui-tracking);
   color: var(--text-strong);
 }
 
@@ -453,7 +472,7 @@ html[data-theme="light"] .brand-avatar {
   font-size: clamp(23px, 4.8vw, 30px);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--site-ui-tracking);
   transition: color 180ms ease;
 }
 
@@ -567,7 +586,7 @@ html[data-theme="light"] .nav-links a {
   margin: 0;
   font-size: clamp(35.2px, 5vw, 64px);
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--site-display-tracking);
 }
 
 .hero p {
@@ -640,7 +659,7 @@ html[data-theme="light"] .nav-links a {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--site-ui-tracking);
   line-height: 1;
   box-shadow: 0 10px 24px var(--btn-primary-shadow);
   transition:

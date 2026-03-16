@@ -87,7 +87,7 @@
   color: var(--pg-title);
   font-size: clamp(31px, 4.8vw, 46px);
   line-height: 1.12;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .subtitle {
@@ -103,7 +103,7 @@
   color: var(--pg-helper);
   font-size: clamp(12px, 1.6vw, 14px);
   line-height: 1.45;
-  letter-spacing: 0.02em;
+  letter-spacing: calc(var(--site-ui-tracking) + 0.01em);
   animation: helperPulse 1800ms ease-in-out infinite;
 }
 
@@ -129,7 +129,7 @@
   font-size: 15px;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--site-ui-tracking);
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
@@ -165,7 +165,7 @@
   color: var(--pg-chip-text);
   font-size: 20px;
   line-height: 1.06;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(var(--site-ui-tracking) + 0.002em);
   white-space: nowrap;
   transform: translate(-50%, -50%);
   opacity: 50;

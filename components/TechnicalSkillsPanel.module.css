@@ -163,7 +163,7 @@
   color: var(--ts-accent);
   font-size: clamp(30px, 2.45vw, 56px);
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--site-heading-tracking);
   font-weight: 400;
   text-align: center;
 }

@@ -139,7 +139,7 @@
   color: #f8fbff;
   font-size: clamp(36.8px, 8vw, 86px);
   line-height: 1.02;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--site-display-tracking);
   text-wrap: balance;
 }
 
@@ -249,7 +249,7 @@
   color: var(--btn-secondary-text);
   box-shadow: none;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--site-ui-tracking);
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
