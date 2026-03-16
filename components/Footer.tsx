@@ -19,10 +19,12 @@ type Props = {
 };
 
 type FooterCopy = {
+  close: string;
   actionLinkedin: string;
   contactShortcut: string;
   contactTitle: string;
   contactIntro: string;
+  copyrightTemplate: string;
   headline: string;
   infoLabel: string;
   messageLabel: string;
@@ -34,6 +36,7 @@ type FooterCopy = {
   resumeEn: string;
   resumeHe: string;
   send: string;
+  socialGroupLabel: string;
   socialLabels: {
     email: string;
     github: string;
@@ -61,71 +64,41 @@ type ActionLink = {
   label: string;
 };
 
-const footerCopy: Record<Locale, FooterCopy> = {
-  en: {
-    actionLinkedin: "Connect on LinkedIn",
-    actionsTitle: "Actions",
-    contactShortcut: "Contact me",
-    contactTitle: "Let's connect",
-    contactIntro: "Have a role, product challenge, or collaboration in mind? Send me a message",
-    headline: "Have a product challenge in mind?",
-    infoLabel: "More information",
-    messageLabel: "Message",
-    messagePlaceholder: "Tell me about the role, product challenge, or collaboration",
-    navTitle: "Navigation",
-    profileSummary: "Building products that connect business goals, user needs, and execution",
-    profileMetaLines: ["Fintech | SaaS | AI | Web & Mobile", "4+ years leading cross-functional product delivery"],
-    resumeEn: "Download Resume (En)",
-    resumeHe: "Download Resume (He)",
-    send: "Send",
+function getFooterCopy(site: SiteContent): FooterCopy {
+  return {
+    close: site.footer_dialog_close,
+    actionLinkedin: site.footer_action_linkedin,
+    actionsTitle: site.footer_actions_title,
+    contactShortcut: site.footer_contact_shortcut,
+    contactTitle: site.footer_contact_title,
+    contactIntro: site.footer_contact_intro,
+    copyrightTemplate: site.footer_copyright_template,
+    headline: site.footer_headline,
+    infoLabel: site.footer_info_label,
+    messageLabel: site.footer_message_label,
+    messagePlaceholder: site.footer_message_placeholder,
+    navTitle: site.footer_nav_title,
+    profileSummary: site.footer_profile_summary,
+    profileMetaLines: [site.footer_profile_meta_line_one, site.footer_profile_meta_line_two],
+    resumeEn: site.footer_resume_en,
+    resumeHe: site.footer_resume_he,
+    send: site.footer_send,
+    socialGroupLabel: site.footer_social_group_label,
     socialLabels: {
-      email: "Email David",
-      github: "View GitHub profile",
-      linkedin: "View LinkedIn profile",
-      phone: "Call David",
-      whatsapp: "Message on WhatsApp"
+      email: site.footer_social_email_label,
+      github: site.footer_social_github_label,
+      linkedin: site.footer_social_linkedin_label,
+      phone: site.footer_social_phone_label,
+      whatsapp: site.footer_social_whatsapp_label
     },
-    successSubtitle: "Usually replies within 1–2 business days",
-    successTitle: "תודה שפניתם, ההודעה נשלחה.",
-    tooltipLines: [
-      "Open to product roles and collaborations",
-      "Usually replies within 1–2 business days"
-    ]
-  },
-  he: {
-    actionLinkedin: "חיבור בלינקדאין",
-    actionsTitle: "פעולות",
-    contactShortcut: "צור איתי קשר",
-    contactTitle: "בואו נדבר",
-    contactIntro: "אם יש לכם תפקיד, אתגר מוצרי או שיתוף פעולה בראש, שלחו לי הודעה",
-    headline: "יש לכם אתגר מוצרי ?",
-    infoLabel: "מידע נוסף",
-    messageLabel: "הודעה",
-    messagePlaceholder: "ספרו לי על התפקיד, האתגר המוצרי או שיתוף הפעולה",
-    navTitle: "ניווט",
-    profileSummary: "בונה מוצרים שמחברים בין יעדים עסקיים, צרכי משתמשים וביצוע",
-    profileMetaLines: ["Fintech | SaaS | AI | Web & Mobile", "4+ שנות הובלת מוצר רב-תחומית מקצה לקצה"],
-    resumeEn: "קורות חיים (אנגלית)",
-    resumeHe: "קורות חיים (עברית)",
-    send: "שלחו",
-    socialLabels: {
-      email: "שליחת אימייל לדוד",
-      github: "מעבר לפרופיל GitHub",
-      linkedin: "מעבר לפרופיל LinkedIn",
-      phone: "התקשרות לדוד",
-      whatsapp: "שליחת הודעה ב-WhatsApp"
-    },
-    successSubtitle: "Usually replies within 1–2 business days",
-    successTitle: "תודה שפניתם, ההודעה נשלחה.",
-    tooltipLines: [
-      "פתוח לתפקידי מוצר ושיתופי פעולה",
-      "בדרך כלל חוזר תוך 1–2 ימי עסקים"
-    ]
-  }
-};
+    successSubtitle: site.footer_success_subtitle,
+    successTitle: site.footer_success_title,
+    tooltipLines: [site.footer_tooltip_line_one, site.footer_tooltip_line_two]
+  };
+}
 
 export function Footer({ locale, site }: Props) {
-  const copy = footerCopy[locale];
+  const copy = getFooterCopy(site);
   const currentYear = new Date().getFullYear();
   const email = getContactEmail(site.email);
   const linkedinUrl = getLinkedInUrl(site.linkedin_url);
@@ -149,10 +122,10 @@ export function Footer({ locale, site }: Props) {
     { href: getMailtoHref(email), icon: MailIcon, label: copy.socialLabels.email },
     { external: true, href: contactLinks.github, icon: GitHubIcon, label: copy.socialLabels.github }
   ];
-  const copyrightText =
-    locale === "he"
-      ? `Copyright © ${currentYear} ${site.brand_name}. כל הזכויות שמורות.`
-      : `Copyright © ${currentYear} ${site.brand_name}. All Rights Reserved.`;
+  const copyrightText = renderFooterTemplate(copy.copyrightTemplate, {
+    year: String(currentYear),
+    brand: site.brand_name
+  });
 
   return (
     <footer className={styles.footer}>
@@ -185,7 +158,7 @@ export function Footer({ locale, site }: Props) {
               {copy.profileMetaLines[1]}
             </p>
 
-            <ul className={styles.socialList} aria-label={locale === "he" ? "קישורי קשר" : "Contact links"}>
+            <ul className={styles.socialList} aria-label={copy.socialGroupLabel}>
               {socialLinks.map((item) => {
                 const Icon = item.icon;
 
@@ -251,7 +224,7 @@ export function Footer({ locale, site }: Props) {
 
           <FooterContactPanel
             copy={{
-              close: "סגור",
+              close: copy.close,
               heading: copy.contactTitle,
               infoLabel: copy.infoLabel,
               intro: copy.contactIntro,
@@ -277,6 +250,10 @@ export function Footer({ locale, site }: Props) {
       </div>
     </footer>
   );
+}
+
+function renderFooterTemplate(template: string, values: Record<string, string>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? "");
 }
 
 function ButtonArrowIcon(): ReactElement {

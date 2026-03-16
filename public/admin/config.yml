@@ -135,6 +135,34 @@ collections:
           - { name: detail_results_label, label: Detail Results Label, widget: string }
           - { name: detail_learnings_label, label: Detail Learnings Label, widget: string }
           - { name: footer_note, label: Footer Note, widget: string }
+          - { name: footer_headline, label: Footer Headline, widget: string }
+          - { name: footer_contact_shortcut, label: Footer Contact Shortcut, widget: string }
+          - { name: footer_profile_summary, label: Footer Profile Summary, widget: text }
+          - { name: footer_profile_meta_line_one, label: Footer Profile Meta Line One, widget: string }
+          - { name: footer_profile_meta_line_two, label: Footer Profile Meta Line Two, widget: string }
+          - { name: footer_nav_title, label: Footer Navigation Title, widget: string }
+          - { name: footer_actions_title, label: Footer Actions Title, widget: string }
+          - { name: footer_action_linkedin, label: Footer LinkedIn Action Label, widget: string }
+          - { name: footer_resume_en, label: Footer Resume EN Label, widget: string }
+          - { name: footer_resume_he, label: Footer Resume HE Label, widget: string }
+          - { name: footer_contact_title, label: Footer Contact Title, widget: string }
+          - { name: footer_contact_intro, label: Footer Contact Intro, widget: text }
+          - { name: footer_info_label, label: Footer Info Label, widget: string }
+          - { name: footer_message_label, label: Footer Message Label, widget: string }
+          - { name: footer_message_placeholder, label: Footer Message Placeholder, widget: text }
+          - { name: footer_send, label: Footer Send Label, widget: string }
+          - { name: footer_success_title, label: Footer Success Title, widget: string }
+          - { name: footer_success_subtitle, label: Footer Success Subtitle, widget: string }
+          - { name: footer_tooltip_line_one, label: Footer Tooltip Line One, widget: string }
+          - { name: footer_tooltip_line_two, label: Footer Tooltip Line Two, widget: string }
+          - { name: footer_dialog_close, label: Footer Dialog Close Label, widget: string }
+          - { name: footer_social_group_label, label: Footer Social Group Label, widget: string }
+          - { name: footer_social_email_label, label: Footer Social Email Label, widget: string }
+          - { name: footer_social_github_label, label: Footer Social GitHub Label, widget: string }
+          - { name: footer_social_linkedin_label, label: Footer Social LinkedIn Label, widget: string }
+          - { name: footer_social_phone_label, label: Footer Social Phone Label, widget: string }
+          - { name: footer_social_whatsapp_label, label: Footer Social WhatsApp Label, widget: string }
+          - { name: footer_copyright_template, label: Footer Copyright Template, widget: string }
 
       - name: site_he
         label: Site UI (HE)
@@ -182,3 +210,31 @@ collections:
           - { name: detail_results_label, label: תווית תוצאות, widget: string }
           - { name: detail_learnings_label, label: תווית תובנות, widget: string }
           - { name: footer_note, label: טקסט פוטר, widget: string }
+          - { name: footer_headline, label: כותרת פוטר, widget: string }
+          - { name: footer_contact_shortcut, label: טקסט קיצור דרך ליצירת קשר, widget: string }
+          - { name: footer_profile_summary, label: תקציר פרופיל בפוטר, widget: text }
+          - { name: footer_profile_meta_line_one, label: שורת מטא ראשונה בפוטר, widget: string }
+          - { name: footer_profile_meta_line_two, label: שורת מטא שנייה בפוטר, widget: string }
+          - { name: footer_nav_title, label: כותרת ניווט בפוטר, widget: string }
+          - { name: footer_actions_title, label: כותרת פעולות בפוטר, widget: string }
+          - { name: footer_action_linkedin, label: טקסט פעולה לינקדאין בפוטר, widget: string }
+          - { name: footer_resume_en, label: טקסט קורות חיים אנגלית בפוטר, widget: string }
+          - { name: footer_resume_he, label: טקסט קורות חיים עברית בפוטר, widget: string }
+          - { name: footer_contact_title, label: כותרת יצירת קשר בפוטר, widget: string }
+          - { name: footer_contact_intro, label: פתיח יצירת קשר בפוטר, widget: text }
+          - { name: footer_info_label, label: תווית מידע נוסף בפוטר, widget: string }
+          - { name: footer_message_label, label: תווית הודעה בפוטר, widget: string }
+          - { name: footer_message_placeholder, label: Placeholder להודעה בפוטר, widget: text }
+          - { name: footer_send, label: טקסט כפתור שליחה בפוטר, widget: string }
+          - { name: footer_success_title, label: כותרת הודעת הצלחה בפוטר, widget: string }
+          - { name: footer_success_subtitle, label: תת כותרת הודעת הצלחה בפוטר, widget: string }
+          - { name: footer_tooltip_line_one, label: שורת tooltip ראשונה בפוטר, widget: string }
+          - { name: footer_tooltip_line_two, label: שורת tooltip שנייה בפוטר, widget: string }
+          - { name: footer_dialog_close, label: טקסט סגירה בדיאלוג פוטר, widget: string }
+          - { name: footer_social_group_label, label: תווית קבוצת קישורי קשר בפוטר, widget: string }
+          - { name: footer_social_email_label, label: תווית קישור אימייל בפוטר, widget: string }
+          - { name: footer_social_github_label, label: תווית קישור GitHub בפוטר, widget: string }
+          - { name: footer_social_linkedin_label, label: תווית קישור לינקדאין בפוטר, widget: string }
+          - { name: footer_social_phone_label, label: תווית קישור טלפון בפוטר, widget: string }
+          - { name: footer_social_whatsapp_label, label: תווית קישור WhatsApp בפוטר, widget: string }
+          - { name: footer_copyright_template, label: תבנית זכויות יוצרים בפוטר, widget: string }
