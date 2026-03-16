@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
+import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
@@ -21,7 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = `${siteUrl}${withLocalePath(safeLocale, "/about")}`;
 
   return {
-    title: site.nav_about,
+    title: {
+      absolute: buildDocumentTitle(site.nav_about, site.brand_name)
+    },
     description: site.about_intro,
     alternates: {
       canonical

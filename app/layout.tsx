@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { siteDefaults, siteUrl } from "@/lib/site";
+import { siteDefaults, siteUrl, withVersionedAssetPath } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     description: siteDefaults.description,
     type: "website",
     url: siteUrl
+  },
+  icons: {
+    icon: [{ url: withVersionedAssetPath("/icon.svg"), type: "image/svg+xml", sizes: "any" }],
+    shortcut: [{ url: withVersionedAssetPath("/favicon.ico") }],
+    apple: [{ url: withVersionedAssetPath("/apple-icon.png"), sizes: "180x180", type: "image/png" }]
   },
   twitter: {
     card: "summary_large_image",

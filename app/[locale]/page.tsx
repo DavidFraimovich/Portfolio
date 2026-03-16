@@ -8,6 +8,7 @@ import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
+import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
@@ -28,7 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = `${siteUrl}/${safeLocale}`;
 
   return {
-    title: site.nav_home,
+    title: {
+      absolute: buildDocumentTitle(site.nav_home, site.brand_name)
+    },
     description: site.subheadline,
     alternates: {
       canonical

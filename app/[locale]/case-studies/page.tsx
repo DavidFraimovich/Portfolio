@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseStudies } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
+import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { getSiteContent } from "@/lib/siteContent";
 
@@ -24,7 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = `${siteUrl}${withLocalePath(safeLocale, "/case-studies")}`;
 
   return {
-    title: site.nav_case_studies,
+    title: {
+      absolute: buildDocumentTitle(site.nav_case_studies, site.brand_name)
+    },
     description: site.case_studies_intro,
     alternates: {
       canonical

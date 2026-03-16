@@ -5,6 +5,7 @@ import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStud
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { isLocale, locales, type Locale, withLocalePath } from "@/lib/i18n";
+import { buildDocumentTitle } from "@/lib/metadata";
 import { getSiteContent } from "@/lib/siteContent";
 import { siteUrl } from "@/lib/site";
 
@@ -23,18 +24,23 @@ export function generateStaticParams(): Array<{ locale: Locale; slug: string }> 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const safeLocale = isLocale(locale) ? locale : "en";
+  const site = getSiteContent(safeLocale);
   const entry = getCaseStudyBySlug(safeLocale, slug);
 
   if (!entry) {
     return {
-      title: "Case Study Not Found"
+      title: {
+        absolute: buildDocumentTitle("Case Study Not Found", site.brand_name)
+      }
     };
   }
 
   const canonical = `${siteUrl}${withLocalePath(safeLocale, `/case-studies/${entry.slug}`)}`;
 
   return {
-    title: entry.frontmatter.title,
+    title: {
+      absolute: buildDocumentTitle(entry.frontmatter.title, site.brand_name)
+    },
     description: entry.frontmatter.description,
     alternates: {
       canonical

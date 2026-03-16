@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">DF monogram favicon</title>
+  <defs>
+    <linearGradient id="bg" x1="32" y1="20" x2="224" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#141028" />
+      <stop offset="1" stop-color="#050507" />
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="232" height="232" rx="56" fill="url(#bg)" />
+  <path d="M12 12H152L88 244H12V12Z" fill="#7B5CFF" opacity="0.12" />
+  <rect x="12.5" y="12.5" width="231" height="231" rx="55.5" fill="none" stroke="#F8FBFF" stroke-opacity="0.08" />
+  <path
+    fill="#F8FBFF"
+    fill-rule="evenodd"
+    d="M62 56H95C128.6 56 151 80.8 151 128S128.6 200 95 200H62V56ZM89 83V173H95C112.9 173 124 156.3 124 128S112.9 83 95 83H89Z"
+  />
+  <rect x="158" y="56" width="22" height="144" rx="6" fill="#F8FBFF" />
+  <rect x="158" y="56" width="42" height="22" rx="6" fill="#F8FBFF" />
+  <rect x="158" y="117" width="34" height="21" rx="6" fill="#F8FBFF" />
+</svg>
