@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/Hero";
 import { ProductPlaybookSection } from "@/components/ProductPlaybookSection";
 import { SkillsRibbon } from "@/components/SkillsRibbon";
+import { TrackedLink } from "@/components/TrackedLink";
 import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
@@ -70,9 +70,19 @@ export default async function LocalizedHomePage({ params }: Props) {
           <article key={item.slug} className="card">
             <p className="meta">{formatStableDate(item.frontmatter.date)}</p>
             <h3>
-              <Link href={withLocalePath(locale, `/case-studies/${item.slug}`)}>
+              <TrackedLink
+                href={withLocalePath(locale, `/case-studies/${item.slug}`)}
+                tracking={{
+                  eventName: "case_study_click",
+                  kind: "internal",
+                  label: item.frontmatter.title,
+                  locale,
+                  location: "home_selected_case_studies",
+                  section: "home"
+                }}
+              >
                 {item.frontmatter.title}
-              </Link>
+              </TrackedLink>
             </h3>
             <p>{item.frontmatter.description}</p>
             <div className="pill-row">

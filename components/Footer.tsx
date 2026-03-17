@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { ReactElement } from "react";
 import { FooterContactPanel } from "@/components/FooterContactPanel";
+import { TrackedLink } from "@/components/TrackedLink";
 import styles from "@/components/Footer.module.css";
 import {
   contactLinks,
@@ -25,6 +25,7 @@ type FooterCopy = {
   contactTitle: string;
   contactIntro: string;
   copyrightTemplate: string;
+  errorMessage: string;
   headline: string;
   infoLabel: string;
   messageLabel: string;
@@ -36,6 +37,7 @@ type FooterCopy = {
   resumeEn: string;
   resumeHe: string;
   send: string;
+  sending: string;
   socialGroupLabel: string;
   socialLabels: {
     email: string;
@@ -73,6 +75,7 @@ function getFooterCopy(site: SiteContent): FooterCopy {
     contactTitle: site.footer_contact_title,
     contactIntro: site.footer_contact_intro,
     copyrightTemplate: site.footer_copyright_template,
+    errorMessage: site.footer_error_message,
     headline: site.footer_headline,
     infoLabel: site.footer_info_label,
     messageLabel: site.footer_message_label,
@@ -83,6 +86,7 @@ function getFooterCopy(site: SiteContent): FooterCopy {
     resumeEn: site.footer_resume_en,
     resumeHe: site.footer_resume_he,
     send: site.footer_send,
+    sending: site.footer_sending,
     socialGroupLabel: site.footer_social_group_label,
     socialLabels: {
       email: site.footer_social_email_label,
@@ -132,12 +136,23 @@ export function Footer({ locale, site }: Props) {
       <div className={styles.shell}>
         <div className={styles.topRow}>
           <h2 className={styles.headline}>{copy.headline}</h2>
-          <a className={styles.contactShortcut} href={`#${contactPanelId}`}>
+          <TrackedLink
+            className={styles.contactShortcut}
+            href={`#${contactPanelId}`}
+            tracking={{
+              eventName: "cta_click",
+              kind: "hash",
+              label: copy.contactShortcut,
+              locale,
+              location: "footer_contact_shortcut",
+              section: "footer"
+            }}
+          >
             <span>{copy.contactShortcut}</span>
             <span className={styles.shortcutIcon} aria-hidden="true">
               <ButtonArrowIcon />
             </span>
-          </a>
+          </TrackedLink>
         </div>
 
         <div className={styles.divider} />
@@ -164,17 +179,30 @@ export function Footer({ locale, site }: Props) {
 
                 return (
                   <li key={item.label}>
-                    <a
+                    <TrackedLink
                       className={styles.socialLink}
                       href={item.href}
                       aria-label={item.label}
                       target={item.external ? "_blank" : undefined}
                       rel={item.external ? "noreferrer" : undefined}
+                      external={item.external}
+                      tracking={{
+                        eventName: "social_click",
+                        kind: item.href.startsWith("mailto:")
+                          ? "mailto"
+                          : item.href.startsWith("tel:")
+                            ? "tel"
+                            : "external",
+                        label: item.label,
+                        locale,
+                        location: "footer_social",
+                        section: "footer"
+                      }}
                     >
                       <span className={styles.socialIcon} aria-hidden="true">
                         <Icon />
                       </span>
-                    </a>
+                    </TrackedLink>
                   </li>
                 );
               })}
@@ -186,9 +214,20 @@ export function Footer({ locale, site }: Props) {
             <ul className={styles.navList}>
               {navigationLinks.map((item) => (
                 <li key={item.href}>
-                  <Link className={styles.navLink} href={item.href}>
+                  <TrackedLink
+                    className={styles.navLink}
+                    href={item.href}
+                    tracking={{
+                      eventName: "navigation_click",
+                      kind: "internal",
+                      label: item.label,
+                      locale,
+                      location: "footer_nav",
+                      section: "footer"
+                    }}
+                  >
                     {item.label}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>
@@ -204,18 +243,27 @@ export function Footer({ locale, site }: Props) {
 
                 return (
                   <li key={item.label}>
-                    <a
+                    <TrackedLink
                       className={styles.actionLink}
                       href={item.href}
                       download={item.download}
                       target={item.external ? "_blank" : undefined}
                       rel={item.external ? "noreferrer" : undefined}
+                      external={item.external}
+                      tracking={{
+                        eventName: item.download ? "resume_download_click" : "social_click",
+                        kind: item.download ? "download" : "external",
+                        label: item.label,
+                        locale,
+                        location: "footer_actions",
+                        section: "footer"
+                      }}
                     >
                       <span>{item.label}</span>
                       <span className={styles.actionIcon} aria-hidden="true">
                         <Icon />
                       </span>
-                    </a>
+                    </TrackedLink>
                   </li>
                 );
               })}
@@ -230,7 +278,9 @@ export function Footer({ locale, site }: Props) {
               intro: copy.contactIntro,
               messageLabel: copy.messageLabel,
               placeholder: copy.messagePlaceholder,
+              errorMessage: copy.errorMessage,
               send: copy.send,
+              sending: copy.sending,
               successSubtitle: copy.successSubtitle,
               successTitle: copy.successTitle,
               tooltipLines: copy.tooltipLines

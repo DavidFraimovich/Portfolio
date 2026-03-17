@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { contactLinks, getLinkedInUrl, getResumeLink } from "@/lib/contactLinks";
+import { TrackedLink } from "@/components/TrackedLink";
 import { type Locale, withLocalePath } from "@/lib/i18n";
 import { withVersionedAssetPath } from "@/lib/site";
 import { BubbleBackground } from "./BubbleBackground";
@@ -74,21 +74,55 @@ export function Hero({ locale = "en" }: HeroProps) {
           <p className={styles.subtitle}>{copy.subtitle}</p>
 
           <div className={styles.ctaRow}>
-            <Link href={withLocalePath(locale, "/case-studies")} className={`${styles.button} ${styles.primaryButton}`}>
+            <TrackedLink
+              href={withLocalePath(locale, "/case-studies")}
+              className={`${styles.button} ${styles.primaryButton}`}
+              tracking={{
+                eventName: "cta_click",
+                kind: "internal",
+                label: copy.primaryCta,
+                locale,
+                location: "hero_primary",
+                section: "hero"
+              }}
+            >
               {copy.primaryCta}
-            </Link>
-            <a href={LINKS.whatsapp} className={`${styles.button} ${styles.secondaryButton}`} target="_blank" rel="noreferrer">
+            </TrackedLink>
+            <TrackedLink
+              href={LINKS.whatsapp}
+              className={`${styles.button} ${styles.secondaryButton}`}
+              target="_blank"
+              rel="noreferrer"
+              external
+              tracking={{
+                eventName: "social_click",
+                kind: "external",
+                label: copy.secondaryCta,
+                locale,
+                location: "hero_whatsapp",
+                section: "hero"
+              }}
+            >
               {copy.secondaryCta}
-            </a>
+            </TrackedLink>
           </div>
 
           <div className={styles.quickRow}>
-            <a
+            <TrackedLink
               href={LINKS.linkedin}
               className={`${styles.quickButton} ${styles.quickLinkedin}`}
               target="_blank"
               rel="noreferrer"
               aria-label={copy.linkedinCta}
+              external
+              tracking={{
+                eventName: "social_click",
+                kind: "external",
+                label: copy.linkedinCta,
+                locale,
+                location: "hero_linkedin",
+                section: "hero"
+              }}
             >
               <span className={styles.quickIcon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
@@ -96,13 +130,22 @@ export function Hero({ locale = "en" }: HeroProps) {
                 </svg>
               </span>
               <span>{copy.linkedinCta}</span>
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
               href={ctaCvLink}
               className={`${styles.quickButton} ${styles.quickCv}`}
               target="_blank"
               rel="noreferrer"
               aria-label={copy.cvCta}
+              external
+              tracking={{
+                eventName: "resume_download_click",
+                kind: "download",
+                label: copy.cvCta,
+                locale,
+                location: "hero_resume",
+                section: "hero"
+              }}
             >
               <span className={styles.quickIcon} aria-hidden="true">
                 <svg viewBox="0 0 20 20" focusable="false">
@@ -110,7 +153,7 @@ export function Hero({ locale = "en" }: HeroProps) {
                 </svg>
               </span>
               <span>{copy.cvCta}</span>
-            </a>
+            </TrackedLink>
           </div>
         </div>
 

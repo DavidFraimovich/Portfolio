@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { TrackedLink } from "@/components/TrackedLink";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
 import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
@@ -57,15 +58,40 @@ export default async function LocalizedContactPage({ params }: Props) {
         <article className="card">
           <h2>{site.contact_email_label}</h2>
           <p>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <TrackedLink
+              href={`mailto:${site.email}`}
+              tracking={{
+                eventName: "contact_click",
+                kind: "mailto",
+                label: site.contact_email_label,
+                locale,
+                location: "contact_page",
+                section: "contact"
+              }}
+            >
+              {site.email}
+            </TrackedLink>
           </p>
         </article>
         <article className="card">
           <h2>{site.contact_linkedin_label}</h2>
           <p>
-            <a href={site.linkedin_url} target="_blank" rel="noreferrer">
+            <TrackedLink
+              href={site.linkedin_url}
+              target="_blank"
+              rel="noreferrer"
+              external
+              tracking={{
+                eventName: "social_click",
+                kind: "external",
+                label: site.contact_linkedin_label,
+                locale,
+                location: "contact_page",
+                section: "contact"
+              }}
+            >
               {site.linkedin_url}
-            </a>
+            </TrackedLink>
           </p>
         </article>
       </div>

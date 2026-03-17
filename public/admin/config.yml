@@ -151,6 +151,8 @@ collections:
           - { name: footer_message_label, label: Footer Message Label, widget: string }
           - { name: footer_message_placeholder, label: Footer Message Placeholder, widget: text }
           - { name: footer_send, label: Footer Send Label, widget: string }
+          - { name: footer_sending, label: Footer Sending Label, widget: string }
+          - { name: footer_error_message, label: Footer Error Message, widget: text }
           - { name: footer_success_title, label: Footer Success Title, widget: string }
           - { name: footer_success_subtitle, label: Footer Success Subtitle, widget: string }
           - { name: footer_tooltip_line_one, label: Footer Tooltip Line One, widget: string }
@@ -226,6 +228,8 @@ collections:
           - { name: footer_message_label, label: תווית הודעה בפוטר, widget: string }
           - { name: footer_message_placeholder, label: Placeholder להודעה בפוטר, widget: text }
           - { name: footer_send, label: טקסט כפתור שליחה בפוטר, widget: string }
+          - { name: footer_sending, label: טקסט כפתור שליחה בזמן שליחה, widget: string }
+          - { name: footer_error_message, label: הודעת שגיאה בפוטר, widget: text }
           - { name: footer_success_title, label: כותרת הודעת הצלחה בפוטר, widget: string }
           - { name: footer_success_subtitle, label: תת כותרת הודעת הצלחה בפוטר, widget: string }
           - { name: footer_tooltip_line_one, label: שורת tooltip ראשונה בפוטר, widget: string }

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactElement } from "react";
+import { TrackedLink } from "@/components/TrackedLink";
 import type { Locale } from "@/lib/i18n";
 import { withLocalePath } from "@/lib/i18n";
 import { withVersionedAssetPath } from "@/lib/site";
@@ -27,7 +27,18 @@ export function Nav({ locale, site }: Props): ReactElement {
   return (
     <header className="site-shell">
       <nav className="nav" aria-label="Main navigation">
-        <Link href={withLocalePath(locale)} className="brand">
+        <TrackedLink
+          href={withLocalePath(locale)}
+          className="brand"
+          tracking={{
+            eventName: "navigation_click",
+            kind: "internal",
+            label: site.brand_name,
+            locale,
+            location: "header_brand",
+            section: "header"
+          }}
+        >
           <span className="brand-avatar" aria-hidden="true">
             <img
               src={HEADER_PROFILE_IMAGE}
@@ -40,13 +51,24 @@ export function Nav({ locale, site }: Props): ReactElement {
           <span className="brand-copy">
             <span className="brand-name">{site.brand_name}</span>
           </span>
-        </Link>
+        </TrackedLink>
         <div className="nav-actions">
           <div className="nav-links">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
+              <TrackedLink
+                key={item.href}
+                href={item.href}
+                tracking={{
+                  eventName: "navigation_click",
+                  kind: "internal",
+                  label: item.label,
+                  locale,
+                  location: "header_nav",
+                  section: "header"
+                }}
+              >
                 {item.label}
-              </Link>
+              </TrackedLink>
             ))}
           </div>
           <div className="toolbar-controls">

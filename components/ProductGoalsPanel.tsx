@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { type CSSProperties, type MouseEvent, useRef, useState } from "react";
+import { TrackedLink } from "@/components/TrackedLink";
 import { type Locale, withLocalePath } from "@/lib/i18n";
 import styles from "./ProductGoalsPanel.module.css";
 
@@ -211,9 +211,20 @@ export function ProductGoalsPanel({ locale }: ProductGoalsPanelProps) {
           <p className={styles.subtitle}>{copy.subtitle}</p>
           <p className={styles.helper}>{copy.helper}</p>
           <div className={styles.actions}>
-            <Link href={withLocalePath(locale, "/contact")} className={styles.contactButton}>
+            <TrackedLink
+              href={withLocalePath(locale, "/contact")}
+              className={styles.contactButton}
+              tracking={{
+                eventName: "cta_click",
+                kind: "internal",
+                label: copy.contactCta,
+                locale,
+                location: "product_goals_panel",
+                section: "home"
+              }}
+            >
               {copy.contactCta}
-            </Link>
+            </TrackedLink>
           </div>
         </div>
 

@@ -56,6 +56,8 @@
   "footer_message_label": "Message",
   "footer_message_placeholder": "Tell me about the role, product challenge, or collaboration",
   "footer_send": "Send",
+  "footer_sending": "Sending...",
+  "footer_error_message": "Message delivery failed. Please try again in a moment or reach out by email or WhatsApp.",
   "footer_success_title": "Thanks, your message has been sent.",
   "footer_success_subtitle": "Usually replies within 1-2 business days",
   "footer_tooltip_line_one": "Open to product roles and collaborations",

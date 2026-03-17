@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev-with-relay.mjs",
+    "dev:next": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cms": "npx decap-server"
+    "cms": "npx decap-server",
+    "relay:contact": "node --env-file=.env.local scripts/contact-relay.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.35.1",

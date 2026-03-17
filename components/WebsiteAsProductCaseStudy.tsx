@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { contactLinks, getLinkedInUrl, getMailtoHref, getResumeLink, resumeLinks } from "@/lib/contactLinks";
+import { TrackedLink } from "@/components/TrackedLink";
 import { getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { type Locale, withLocalePath } from "@/lib/i18n";
@@ -91,15 +91,51 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
           </article>
         </section>
         <div className="cta-row">
-          <Link className="cta" href={withLocalePath(locale, "/case-studies")}>
+          <TrackedLink
+            className="cta"
+            href={withLocalePath(locale, "/case-studies")}
+            tracking={{
+              eventName: "cta_click",
+              kind: "internal",
+              label: isHebrew ? "למחקרי מקרה" : "View Case Studies",
+              locale,
+              location: "website_product_brief",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "למחקרי מקרה" : "View Case Studies"}
-          </Link>
-          <a className="cta cta-secondary" href={localeResumeLink} target="_blank" rel="noreferrer">
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={localeResumeLink}
+            target="_blank"
+            rel="noreferrer"
+            external
+            tracking={{
+              eventName: "resume_download_click",
+              kind: "download",
+              label: isHebrew ? "הורדת קורות חיים" : "Download CV",
+              locale,
+              location: "website_product_brief",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "הורדת קורות חיים" : "Download CV"}
-          </a>
-          <Link className="cta cta-secondary" href={withLocalePath(locale, "/contact")}>
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={withLocalePath(locale, "/contact")}
+            tracking={{
+              eventName: "cta_click",
+              kind: "internal",
+              label: isHebrew ? "צור איתי קשר" : "Contact",
+              locale,
+              location: "website_product_brief",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "צור איתי קשר" : "Contact"}
-          </Link>
+          </TrackedLink>
         </div>
       </section>
 
@@ -136,12 +172,34 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
             <h3>{isHebrew ? "A: מגייסים (30 שניות)" : "A: Recruiter (30s)"}</h3>
             <p>{isHebrew ? "לצפייה מהירה בתקציר וצור איתי קשר." : "Quick path for screening and contact."}</p>
             <div className="cta-row compact">
-              <Link className="cta cta-secondary" href={withLocalePath(locale, "/resume")}>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={withLocalePath(locale, "/resume")}
+                tracking={{
+                  eventName: "cta_click",
+                  kind: "internal",
+                  label: isHebrew ? "קורות חיים" : "Resume",
+                  locale,
+                  location: "website_product_recruiter_track",
+                  section: "website_product"
+                }}
+              >
                 {isHebrew ? "קורות חיים" : "Resume"}
-              </Link>
-              <Link className="cta cta-secondary" href={withLocalePath(locale, "/contact")}>
+              </TrackedLink>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={withLocalePath(locale, "/contact")}
+                tracking={{
+                  eventName: "cta_click",
+                  kind: "internal",
+                  label: isHebrew ? "צור קשר" : "Contact",
+                  locale,
+                  location: "website_product_recruiter_track",
+                  section: "website_product"
+                }}
+              >
                 {isHebrew ? "צור קשר" : "Contact"}
-              </Link>
+              </TrackedLink>
             </div>
           </article>
           <article className="card">
@@ -152,24 +210,71 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
                 : "Deep dive into decision-making, execution, and outcomes."}
             </p>
             <div className="cta-row compact">
-              <a className="cta cta-secondary" href={`#${featuredSectionId}`}>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={`#${featuredSectionId}`}
+                tracking={{
+                  eventName: "cta_click",
+                  kind: "hash",
+                  label: isHebrew ? "פיצ'רד קייסים" : "Featured Cases",
+                  locale,
+                  location: "website_product_hiring_manager_track",
+                  section: "website_product"
+                }}
+              >
                 {isHebrew ? "פיצ'רד קייסים" : "Featured Cases"}
-              </a>
-              <Link className="cta cta-secondary" href={withLocalePath(locale, "/about")}>
+              </TrackedLink>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={withLocalePath(locale, "/about")}
+                tracking={{
+                  eventName: "cta_click",
+                  kind: "internal",
+                  label: isHebrew ? "איך אני עובד" : "How I work",
+                  locale,
+                  location: "website_product_hiring_manager_track",
+                  section: "website_product"
+                }}
+              >
                 {isHebrew ? "איך אני עובד" : "How I work"}
-              </Link>
+              </TrackedLink>
             </div>
           </article>
           <article className="card">
             <h3>{isHebrew ? "C: מפנה (דקה)" : "C: Referral (1m)"}</h3>
             <p>{isHebrew ? "תקציר שיתופי מהיר + לינקדאין." : "Share-ready summary plus LinkedIn."}</p>
             <div className="cta-row compact">
-              <a className="cta cta-secondary" href={`#${shareSummarySectionId}`}>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={`#${shareSummarySectionId}`}
+                tracking={{
+                  eventName: "cta_click",
+                  kind: "hash",
+                  label: isHebrew ? "תקציר לשיתוף" : "Shareable Summary",
+                  locale,
+                  location: "website_product_referral_track",
+                  section: "website_product"
+                }}
+              >
                 {isHebrew ? "תקציר לשיתוף" : "Shareable Summary"}
-              </a>
-              <a className="cta cta-secondary" href={linkedinUrl} target="_blank" rel="noreferrer">
+              </TrackedLink>
+              <TrackedLink
+                className="cta cta-secondary"
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                external
+                tracking={{
+                  eventName: "social_click",
+                  kind: "external",
+                  label: "LinkedIn",
+                  locale,
+                  location: "website_product_referral_track",
+                  section: "website_product"
+                }}
+              >
                 LinkedIn
-              </a>
+              </TrackedLink>
             </div>
           </article>
         </section>
@@ -222,7 +327,19 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
             <article key={item.slug} className="card featured-card">
               <img src={assetPath(item.image)} alt={item.title} className="featured-thumb" />
               <h3>
-                <Link href={withLocalePath(locale, `/case-studies/${item.slug}`)}>{item.title}</Link>
+                <TrackedLink
+                  href={withLocalePath(locale, `/case-studies/${item.slug}`)}
+                  tracking={{
+                    eventName: "case_study_click",
+                    kind: "internal",
+                    label: item.title,
+                    locale,
+                    location: "website_product_featured_cases",
+                    section: "website_product"
+                  }}
+                >
+                  {item.title}
+                </TrackedLink>
               </h3>
               <p className="meta">{item.meta}</p>
             </article>
@@ -283,21 +400,88 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
             : "Product + technical PM with delivery, complex API integrations, cross-team dependency management, and business differentiation through AI + Data."}
         </p>
         <div className="cta-row">
-          <a className="cta cta-secondary" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
+          <TrackedLink
+            className="cta cta-secondary"
+            href={contactLinks.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            external
+            tracking={{
+              eventName: "social_click",
+              kind: "external",
+              label: isHebrew ? "צור קשר (WhatsApp)" : "Contact (WhatsApp)",
+              locale,
+              location: "website_product_share_summary",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "צור קשר (WhatsApp)" : "Contact (WhatsApp)"}
-          </a>
-          <a className="cta cta-secondary" href={mailtoHref}>
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={mailtoHref}
+            tracking={{
+              eventName: "contact_click",
+              kind: "mailto",
+              label: isHebrew ? "שלח לי מייל" : "Mail me",
+              locale,
+              location: "website_product_share_summary",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "שלח לי מייל" : "Mail me"}
-          </a>
-          <a className="cta cta-secondary" href={linkedinUrl} target="_blank" rel="noreferrer">
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={linkedinUrl}
+            target="_blank"
+            rel="noreferrer"
+            external
+            tracking={{
+              eventName: "social_click",
+              kind: "external",
+              label: "LinkedIn",
+              locale,
+              location: "website_product_share_summary",
+              section: "website_product"
+            }}
+          >
             LinkedIn
-          </a>
-          <a className="cta cta-secondary" href={resumeLinks.he} target="_blank" rel="noreferrer">
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={resumeLinks.he}
+            target="_blank"
+            rel="noreferrer"
+            external
+            tracking={{
+              eventName: "resume_download_click",
+              kind: "download",
+              label: isHebrew ? "הורדת קו\"ח (HE)" : "Download CV (HE)",
+              locale,
+              location: "website_product_share_summary",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "הורדת קו\"ח (HE)" : "Download CV (HE)"}
-          </a>
-          <a className="cta cta-secondary" href={resumeLinks.en} target="_blank" rel="noreferrer">
+          </TrackedLink>
+          <TrackedLink
+            className="cta cta-secondary"
+            href={resumeLinks.en}
+            target="_blank"
+            rel="noreferrer"
+            external
+            tracking={{
+              eventName: "resume_download_click",
+              kind: "download",
+              label: isHebrew ? "הורדת קו\"ח (EN)" : "Download CV (EN)",
+              locale,
+              location: "website_product_share_summary",
+              section: "website_product"
+            }}
+          >
             {isHebrew ? "הורדת קו\"ח (EN)" : "Download CV (EN)"}
-          </a>
+          </TrackedLink>
         </div>
       </section>
     </>

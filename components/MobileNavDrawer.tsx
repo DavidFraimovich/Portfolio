@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactElement } from "react";
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { TrackedLink } from "@/components/TrackedLink";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import type { Locale } from "@/lib/i18n";
 
@@ -111,14 +111,22 @@ export function MobileNavDrawer({ locale, navItems }: Props): ReactElement {
 
                       return (
                         <li key={item.href}>
-                          <Link
+                          <TrackedLink
                             href={item.href}
                             className={`mobile-nav-link ${active ? "active" : ""}`}
                             onClick={() => setOpen(false)}
+                            tracking={{
+                              eventName: "navigation_click",
+                              kind: "internal",
+                              label: item.label,
+                              locale,
+                              location: "mobile_nav",
+                              section: "header"
+                            }}
                           >
                             <span className="mobile-nav-bullet" aria-hidden="true" />
                             <span>{item.label}</span>
-                          </Link>
+                          </TrackedLink>
                         </li>
                       );
                     })}

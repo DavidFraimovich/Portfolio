@@ -56,6 +56,8 @@
   "footer_message_label": "הודעה",
   "footer_message_placeholder": "ספרו לי על התפקיד, האתגר המוצרי או שיתוף הפעולה",
   "footer_send": "שלחו",
+  "footer_sending": "שולח...",
+  "footer_error_message": "שליחת ההודעה נכשלה. נסו שוב בעוד רגע או פנו אליי במייל או ב-WhatsApp.",
   "footer_success_title": "תודה שפניתם, ההודעה נשלחה.",
   "footer_success_subtitle": "בדרך כלל חוזר תוך 1-2 ימי עסקים",
   "footer_tooltip_line_one": "פתוח לתפקידי מוצר ושיתופי פעולה",

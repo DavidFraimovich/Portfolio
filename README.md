@@ -9,6 +9,26 @@ npm install
 npm run dev
 ```
 
+`npm run dev` now starts both the Next.js app and the local Telegram contact relay.
+
+## Analytics and contact relay
+
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables GA4 on the static site.
+- `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` points the footer form to a public relay endpoint.
+- Local Telegram relay:
+
+```bash
+npm run relay:contact
+```
+
+- Default local endpoint: `http://127.0.0.1:8787/contact`
+- Relay env vars:
+  - `TELEGRAM_DEPLOY_GROUP_TOKEN`
+  - `TELEGRAM_DEPLOY_GROUP_ID`
+  - `CONTACT_RELAY_ALLOWED_ORIGINS`
+
+For GitHub Pages deploys, expose `NEXT_PUBLIC_GA_MEASUREMENT_ID` and `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` in the `github-pages` environment so the build can bake them into the static output.
+
 ## Language architecture
 
 - English: `/en`

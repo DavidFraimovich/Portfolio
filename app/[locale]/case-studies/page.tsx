@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { TrackedLink } from "@/components/TrackedLink";
 import { getAllCaseStudies } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
@@ -65,9 +65,19 @@ export default async function LocalizedCaseStudiesPage({ params }: Props) {
           <article key={item.slug} className="card">
             <p className="meta">{formatStableDate(item.frontmatter.date)}</p>
             <h2>
-              <Link href={withLocalePath(locale, `/case-studies/${item.slug}`)}>
+              <TrackedLink
+                href={withLocalePath(locale, `/case-studies/${item.slug}`)}
+                tracking={{
+                  eventName: "case_study_click",
+                  kind: "internal",
+                  label: item.frontmatter.title,
+                  locale,
+                  location: "case_studies_list",
+                  section: "case_studies"
+                }}
+              >
                 {item.frontmatter.title}
-              </Link>
+              </TrackedLink>
             </h2>
             <p>{item.frontmatter.description}</p>
             <div className="pill-row">

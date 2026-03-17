@@ -10,6 +10,8 @@ import {
   useRef,
   useState
 } from "react";
+import { getMessageLengthBucket, trackEvent } from "@/lib/analytics";
+import { submitContactForm } from "@/lib/contactForm";
 import { localeDirection, type Locale } from "@/lib/i18n";
 import styles from "./Footer.module.css";
 
@@ -20,12 +22,14 @@ const FOCUSABLE_SELECTOR =
 
 type ContactPanelCopy = {
   close: string;
+  errorMessage: string;
   heading: string;
   infoLabel: string;
   intro: string;
   messageLabel: string;
   placeholder: string;
   send: string;
+  sending: string;
   successSubtitle: string;
   successTitle: string;
   tooltipLines: [string, string];
@@ -45,6 +49,8 @@ export function FooterContactPanel({
   panelId
 }: Props): ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [tooltipMode, setTooltipMode] = useState<"closed" | "hover" | "manual">("closed");
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -55,9 +61,16 @@ export function FooterContactPanel({
   const formRef = useRef<HTMLFormElement>(null);
   const desktopTooltipId = useId();
   const mobileTooltipId = useId();
+  const statusMessageId = useId();
   const titleId = useId();
   const descriptionId = useId();
   const isTooltipOpen = tooltipMode !== "closed";
+  const submitButtonDescription = [
+    !isMobileLayout && isTooltipOpen ? desktopTooltipId : null,
+    submissionError ? statusMessageId : null
+  ]
+    .filter(Boolean)
+    .join(" ") || undefined;
 
   useEffect(() => {
     setMounted(true);
@@ -171,11 +184,63 @@ export function FooterContactPanel({
     setIsModalOpen(false);
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
+
+    if (isSubmitting) return;
+
+    const normalizedMessage = message.trim();
+    if (!normalizedMessage) {
+      setSubmissionError(copy.errorMessage);
+      return;
+    }
+
     setTooltipMode("closed");
-    setMessage("");
-    setIsModalOpen(true);
+    setSubmissionError(null);
+    setIsSubmitting(true);
+
+    const pagePath = typeof window !== "undefined" ? `${window.location.pathname}${window.location.search}` : "";
+
+    try {
+      await submitContactForm({
+        locale,
+        message: normalizedMessage,
+        pagePath,
+        pageTitle: typeof document !== "undefined" ? document.title : undefined,
+        referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
+        source: "footer_contact",
+        submittedAt: new Date().toISOString(),
+        userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined
+      });
+
+      trackEvent("generate_lead", {
+        contact_method: "message",
+        form_name: "footer_contact",
+        locale,
+        message_length_bucket: getMessageLengthBucket(normalizedMessage),
+        page_path: pagePath
+      });
+      trackEvent("contact_notification_sent", {
+        channel: "telegram",
+        form_name: "footer_contact",
+        locale,
+        page_path: pagePath
+      });
+
+      setMessage("");
+      setIsModalOpen(true);
+    } catch (error) {
+      trackEvent("contact_notification_failed", {
+        channel: "telegram",
+        form_name: "footer_contact",
+        locale,
+        page_path: pagePath
+      });
+      setSubmissionError(copy.errorMessage);
+      console.error("Footer contact form submission failed.", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function openHoverTooltip(): void {
@@ -229,9 +294,19 @@ export function FooterContactPanel({
             className={styles.messageField}
             name="message"
             placeholder={copy.placeholder}
+            aria-describedby={submissionError ? statusMessageId : undefined}
+            aria-invalid={submissionError ? "true" : "false"}
             rows={4}
+            required
             value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={(event) => {
+              setMessage(event.target.value);
+
+              if (submissionError) {
+                setSubmissionError(null);
+              }
+            }}
+            disabled={isSubmitting}
           />
 
           <div
@@ -252,16 +327,27 @@ export function FooterContactPanel({
             <button
               type="submit"
               className={styles.sendButton}
-              aria-describedby={!isMobileLayout && isTooltipOpen ? desktopTooltipId : undefined}
+              aria-describedby={submitButtonDescription}
               onFocus={openHoverTooltip}
               onMouseEnter={openHoverTooltip}
+              disabled={isSubmitting}
             >
-              <span>{copy.send}</span>
+              <span>{isSubmitting ? copy.sending : copy.send}</span>
               <span className={styles.sendIcon} aria-hidden="true">
                 <SendArrowIcon />
               </span>
             </button>
           </div>
+
+          <p
+            id={statusMessageId}
+            className={styles.statusMessage}
+            data-visible={submissionError ? "true" : "false"}
+            role={submissionError ? "alert" : "status"}
+            aria-live="polite"
+          >
+            {submissionError || ""}
+          </p>
         </form>
       </div>
 

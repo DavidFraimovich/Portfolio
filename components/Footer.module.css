@@ -374,6 +374,11 @@
   color: var(--footer-subtle);
 }
 
+.messageField:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
 .sendRow {
   position: relative;
   display: flex;
@@ -462,6 +467,27 @@
 .dialogCloseButton:hover {
   transform: translateY(-1px);
   filter: saturate(105%) brightness(1.03);
+}
+
+.sendButton:disabled {
+  cursor: progress;
+  opacity: 0.72;
+  transform: none;
+  filter: none;
+}
+
+.statusMessage {
+  min-height: 22px;
+  margin: 0;
+  color: #ffcfbf;
+  font-size: 14px;
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.statusMessage[data-visible="true"] {
+  opacity: 1;
 }
 
 .infoButton {

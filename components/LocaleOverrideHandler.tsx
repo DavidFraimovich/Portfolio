@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { switchLocalePath, type Locale } from "@/lib/i18n";
+import { localeDirection, switchLocalePath, type Locale } from "@/lib/i18n";
 import { parseLocaleOverride, saveLocalePreference } from "@/lib/localePreference";
 
 type Props = {
@@ -12,6 +12,11 @@ type Props = {
 export function LocaleOverrideHandler({ locale }: Props) {
   const router = useRouter();
   const pathname = usePathname() || "";
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = localeDirection(locale);
+  }, [locale]);
 
   useEffect(() => {
     const currentParams = new URLSearchParams(window.location.search);

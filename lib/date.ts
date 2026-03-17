@@ -1,6 +1,6 @@
 const stableDateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
-  month: "short",
+  month: "2-digit",
   day: "2-digit",
   timeZone: "UTC"
 });
