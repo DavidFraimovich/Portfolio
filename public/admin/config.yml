@@ -99,6 +99,15 @@ collections:
           - { name: headline, label: Headline, widget: string }
           - { name: subheadline, label: Subheadline, widget: text }
           - { name: primary_cta_text, label: Primary CTA Text, widget: string }
+          - { name: hero_social_linkedin_label, label: Hero LinkedIn Icon Label, widget: string }
+          - { name: hero_social_whatsapp_label, label: Hero WhatsApp Icon Label, widget: string }
+          - { name: hero_trust_group_label, label: Hero Trust Group Label, widget: string }
+          - { name: hero_trust_experience_value, label: Hero Trust Experience Value, widget: string }
+          - { name: hero_trust_experience_label, label: Hero Trust Experience Label, widget: string }
+          - { name: hero_trust_domains_value, label: Hero Trust Domains Value, widget: string }
+          - { name: hero_trust_domains_label, label: Hero Trust Domains Label, widget: string }
+          - { name: hero_trust_projects_value, label: Hero Trust Projects Value, widget: string }
+          - { name: hero_trust_projects_label, label: Hero Trust Projects Label, widget: string }
           - { name: linkedin_url, label: LinkedIn URL, widget: string }
           - { name: email, label: Email, widget: string }
           - { name: nav_home, label: Nav Home, widget: string }
@@ -176,6 +185,15 @@ collections:
           - { name: headline, label: כותרת ראשית, widget: string }
           - { name: subheadline, label: כותרת משנה, widget: text }
           - { name: primary_cta_text, label: טקסט CTA ראשי, widget: string }
+          - { name: hero_social_linkedin_label, label: תווית אייקון לינקדאין ב-hero, widget: string }
+          - { name: hero_social_whatsapp_label, label: תווית אייקון WhatsApp ב-hero, widget: string }
+          - { name: hero_trust_group_label, label: תווית קבוצת אמון ב-hero, widget: string }
+          - { name: hero_trust_experience_value, label: ערך ניסיון ב-hero, widget: string }
+          - { name: hero_trust_experience_label, label: תיאור ניסיון ב-hero, widget: string }
+          - { name: hero_trust_domains_value, label: ערך תחומי התמחות ב-hero, widget: string }
+          - { name: hero_trust_domains_label, label: תיאור תחומי התמחות ב-hero, widget: string }
+          - { name: hero_trust_projects_value, label: ערך פרויקטים ב-hero, widget: string }
+          - { name: hero_trust_projects_label, label: תיאור פרויקטים ב-hero, widget: string }
           - { name: linkedin_url, label: קישור לינקדאין, widget: string }
           - { name: email, label: אימייל, widget: string }
           - { name: nav_home, label: ניווט בית, widget: string }

@@ -2,7 +2,9 @@ import { contactLinks, getLinkedInUrl, getResumeLink } from "@/lib/contactLinks"
 import { TrackedLink } from "@/components/TrackedLink";
 import { type Locale, withLocalePath } from "@/lib/i18n";
 import { withVersionedAssetPath } from "@/lib/site";
+import { getSiteContent } from "@/lib/siteContent";
 import { BubbleBackground } from "./BubbleBackground";
+import { LinkedInIcon, WhatsAppIcon } from "./SocialIcons";
 import styles from "./Hero.module.css";
 
 const LINKS = {
@@ -18,8 +20,6 @@ type HeroCopy = {
   titleRole: string;
   subtitle: string;
   primaryCta: string;
-  secondaryCta: string;
-  linkedinCta: string;
   cvCta: string;
   panelImageAlt: string;
 };
@@ -29,10 +29,8 @@ const heroCopy: Record<Locale, HeroCopy> = {
     titleIntro: "I'm",
     titleName: "David,",
     titleRole: "Product Manager",
-    subtitle: "I turn buisiness requirments into shipped impact — fast, measurable, and built to scale.",
+    subtitle: "I turn business requirements into shipped impact — fast, measurable, and built to scale.",
     primaryCta: "Portfolio",
-    secondaryCta: "Contact",
-    linkedinCta: "LinkedIn",
     cvCta: "Download CV",
     panelImageAlt: "Portrait image"
   },
@@ -42,8 +40,6 @@ const heroCopy: Record<Locale, HeroCopy> = {
     titleRole: "מנהל מוצר",
     subtitle: "אני הופך צרכים עסקים לפתרונות בעלי השפעה מדידה, מדויקת וסקיילבילית",
     primaryCta: "לתיק עבודות",
-    secondaryCta: "צור איתי קשר",
-    linkedinCta: "LinkedIn",
     cvCta: "הורדת קו\"ח",
     panelImageAlt: "תמונת פרופיל"
   }
@@ -55,7 +51,36 @@ type HeroProps = {
 
 export function Hero({ locale = "en" }: HeroProps) {
   const copy = heroCopy[locale];
+  const site = getSiteContent(locale);
   const ctaCvLink = getResumeLink(locale);
+  const socialLinks = [
+    {
+      href: LINKS.linkedin,
+      icon: LinkedInIcon,
+      label: site.hero_social_linkedin_label,
+      location: "hero_linkedin"
+    },
+    {
+      href: LINKS.whatsapp,
+      icon: WhatsAppIcon,
+      label: site.hero_social_whatsapp_label,
+      location: "hero_whatsapp"
+    }
+  ] as const;
+  const trustItems = [
+    {
+      value: site.hero_trust_experience_value,
+      label: site.hero_trust_experience_label
+    },
+    {
+      value: site.hero_trust_domains_value,
+      label: site.hero_trust_domains_label
+    },
+    {
+      value: site.hero_trust_projects_value,
+      label: site.hero_trust_projects_label
+    }
+  ] as const;
 
   return (
     <section className={`${styles.hero} ${styles.heroAnimatedBg} hero-root`} aria-labelledby="hero-title">
@@ -73,6 +98,37 @@ export function Hero({ locale = "en" }: HeroProps) {
           </h1>
           <p className={styles.subtitle}>{copy.subtitle}</p>
 
+          <ul className={styles.socialList} aria-label={site.footer_social_group_label}>
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <li key={item.label}>
+                  <TrackedLink
+                    href={item.href}
+                    className={styles.socialLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={item.label}
+                    external
+                    tracking={{
+                      eventName: "social_click",
+                      kind: "external",
+                      label: item.label,
+                      locale,
+                      location: item.location,
+                      section: "hero"
+                    }}
+                  >
+                    <span className={styles.socialIcon} aria-hidden="true">
+                      <Icon />
+                    </span>
+                  </TrackedLink>
+                </li>
+              );
+            })}
+          </ul>
+
           <div className={styles.ctaRow}>
             <TrackedLink
               href={withLocalePath(locale, "/case-studies")}
@@ -89,54 +145,11 @@ export function Hero({ locale = "en" }: HeroProps) {
               {copy.primaryCta}
             </TrackedLink>
             <TrackedLink
-              href={LINKS.whatsapp}
+              href={ctaCvLink}
               className={`${styles.button} ${styles.secondaryButton}`}
               target="_blank"
               rel="noreferrer"
-              external
-              tracking={{
-                eventName: "social_click",
-                kind: "external",
-                label: copy.secondaryCta,
-                locale,
-                location: "hero_whatsapp",
-                section: "hero"
-              }}
-            >
-              {copy.secondaryCta}
-            </TrackedLink>
-          </div>
-
-          <div className={styles.quickRow}>
-            <TrackedLink
-              href={LINKS.linkedin}
-              className={`${styles.quickButton} ${styles.quickLinkedin}`}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={copy.linkedinCta}
-              external
-              tracking={{
-                eventName: "social_click",
-                kind: "external",
-                label: copy.linkedinCta,
-                locale,
-                location: "hero_linkedin",
-                section: "hero"
-              }}
-            >
-              <span className={styles.quickIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M7.2 8.4a1.92 1.92 0 1 1 0-3.84 1.92 1.92 0 0 1 0 3.84ZM8.86 19.3H5.56V9.64h3.3v9.66ZM20 19.3h-3.3v-4.7c0-1.23-.47-2.08-1.63-2.08-.88 0-1.4.59-1.64 1.16-.08.2-.1.46-.1.73v4.89h-3.3V9.64h3.3v1.37c.44-.67 1.23-1.62 3-1.62 2.18 0 3.67 1.42 3.67 4.46v5.45Z" />
-                </svg>
-              </span>
-              <span>{copy.linkedinCta}</span>
-            </TrackedLink>
-            <TrackedLink
-              href={ctaCvLink}
-              className={`${styles.quickButton} ${styles.quickCv}`}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={copy.cvCta}
+              download
               external
               tracking={{
                 eventName: "resume_download_click",
@@ -147,14 +160,18 @@ export function Hero({ locale = "en" }: HeroProps) {
                 section: "hero"
               }}
             >
-              <span className={styles.quickIcon} aria-hidden="true">
-                <svg viewBox="0 0 20 20" focusable="false">
-                  <path d="M5 3.8h7.1l2.9 2.9v9.5H5V3.8Zm6.8 0V7h2.2M7.6 10.1h4.9M7.6 12.7h4.9" />
-                </svg>
-              </span>
-              <span>{copy.cvCta}</span>
+              {copy.cvCta}
             </TrackedLink>
           </div>
+
+          <ul className={styles.trustList} aria-label={site.hero_trust_group_label}>
+            {trustItems.map((item) => (
+              <li key={`${item.value}-${item.label}`} className={styles.trustItem}>
+                <span className={styles.trustValue}>{item.value}</span>
+                <span className={styles.trustLabel}>{item.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className={styles.visualStage} aria-hidden="true">
