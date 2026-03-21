@@ -14,7 +14,9 @@ npm run dev
 ## Analytics and contact relay
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables GA4 on the static site.
-- `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` points the footer form to a public relay endpoint.
+- Preferred no-relay option for GitHub Pages: set `TELEGRAM_DEPLOY_GROUP_TOKEN` and `TELEGRAM_DEPLOY_GROUP_ID` in the `github-pages` environment. The workflow maps them into public client-side runtime variables during build.
+- Optional relay mode: `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` points the footer form to a public relay endpoint.
+- Direct Telegram mode exposes the bot token and chat ID in the public client bundle. Use it only if you explicitly accept that risk.
 - Local Telegram relay:
 
 ```bash
@@ -27,7 +29,10 @@ npm run relay:contact
   - `TELEGRAM_DEPLOY_GROUP_ID`
   - `CONTACT_RELAY_ALLOWED_ORIGINS`
 
-For GitHub Pages deploys, expose `NEXT_PUBLIC_GA_MEASUREMENT_ID` and `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` in the `github-pages` environment so the build can bake them into the static output.
+For GitHub Pages deploys, expose `NEXT_PUBLIC_GA_MEASUREMENT_ID` and either:
+
+- `TELEGRAM_DEPLOY_GROUP_TOKEN` + `TELEGRAM_DEPLOY_GROUP_ID` for direct client-side Telegram sending
+- or `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` for relay mode
 
 ## Language architecture
 

@@ -39,10 +39,16 @@ jobs:
         env:
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+          TELEGRAM_DEPLOY_GROUP_TOKEN: ${{ vars.TELEGRAM_DEPLOY_GROUP_TOKEN || secrets.TELEGRAM_DEPLOY_GROUP_TOKEN }}
+          TELEGRAM_DEPLOY_GROUP_ID: ${{ vars.TELEGRAM_DEPLOY_GROUP_ID || secrets.TELEGRAM_DEPLOY_GROUP_ID }}
         run: |
-          if [ -z "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" ]; then
-            echo "NEXT_PUBLIC_CONTACT_FORM_ENDPOINT is missing for the github-pages environment."
-            echo "Set it to your public relay URL, for example: https://your-relay.example.com/contact"
+          if [ -n "$TELEGRAM_DEPLOY_GROUP_TOKEN" ] && [ -n "$TELEGRAM_DEPLOY_GROUP_ID" ]; then
+            echo "Direct Telegram delivery is enabled for this build."
+            echo "Warning: the Telegram bot token and chat ID will be embedded into the public client bundle."
+          elif [ -z "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" ]; then
+            echo "No contact form transport is configured for the github-pages environment."
+            echo "Set TELEGRAM_DEPLOY_GROUP_TOKEN + TELEGRAM_DEPLOY_GROUP_ID for direct Telegram delivery,"
+            echo "or set NEXT_PUBLIC_CONTACT_FORM_ENDPOINT for relay mode."
             exit 1
           fi
 
@@ -59,6 +65,8 @@ jobs:
           NEXT_PUBLIC_ASSET_VERSION: ${{ github.sha }}
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+          NEXT_PUBLIC_TELEGRAM_DEPLOY_GROUP_TOKEN: ${{ vars.TELEGRAM_DEPLOY_GROUP_TOKEN || secrets.TELEGRAM_DEPLOY_GROUP_TOKEN }}
+          NEXT_PUBLIC_TELEGRAM_DEPLOY_GROUP_ID: ${{ vars.TELEGRAM_DEPLOY_GROUP_ID || secrets.TELEGRAM_DEPLOY_GROUP_ID }}
 
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3
