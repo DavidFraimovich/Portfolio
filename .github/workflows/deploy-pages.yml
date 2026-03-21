@@ -35,6 +35,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate public runtime config
+        env:
+          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+        run: |
+          if [ -z "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" ]; then
+            echo "NEXT_PUBLIC_CONTACT_FORM_ENDPOINT is missing for the github-pages environment."
+            echo "Set it to your public relay URL, for example: https://your-relay.example.com/contact"
+            exit 1
+          fi
+
+          if [ -z "$NEXT_PUBLIC_GA_MEASUREMENT_ID" ]; then
+            echo "NEXT_PUBLIC_GA_MEASUREMENT_ID is missing for the github-pages environment."
+            echo "The deploy can continue, but GA4 pageviews and events will not be sent."
+          fi
+
       - name: Build static export
         run: npm run build
         env:
