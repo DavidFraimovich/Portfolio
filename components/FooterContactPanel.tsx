@@ -10,7 +10,7 @@ import {
   useRef,
   useState
 } from "react";
-import { getMessageLengthBucket, trackEvent } from "@/lib/analytics";
+import { getCurrentPageAnalyticsContext, getMessageLengthBucket, trackEvent, trackException } from "@/lib/analytics";
 import { submitContactForm } from "@/lib/contactForm";
 import { localeDirection, type Locale } from "@/lib/i18n";
 import styles from "./Footer.module.css";
@@ -199,7 +199,8 @@ export function FooterContactPanel({
     setSubmissionError(null);
     setIsSubmitting(true);
 
-    const pagePath = typeof window !== "undefined" ? `${window.location.pathname}${window.location.search}` : "";
+    const pageContext = getCurrentPageAnalyticsContext();
+    const pagePath = typeof window !== "undefined" ? `${pageContext.path}${window.location.search}` : pageContext.path;
 
     try {
       await submitContactForm({
@@ -218,13 +219,17 @@ export function FooterContactPanel({
         form_name: "footer_contact",
         locale,
         message_length_bucket: getMessageLengthBucket(normalizedMessage),
-        page_path: pagePath
+        page_path: pagePath,
+        page_route: pageContext.route,
+        page_type: pageContext.pageType
       });
       trackEvent("contact_notification_sent", {
         channel: "telegram",
         form_name: "footer_contact",
         locale,
-        page_path: pagePath
+        page_path: pagePath,
+        page_route: pageContext.route,
+        page_type: pageContext.pageType
       });
 
       setMessage("");
@@ -234,7 +239,20 @@ export function FooterContactPanel({
         channel: "telegram",
         form_name: "footer_contact",
         locale,
-        page_path: pagePath
+        page_path: pagePath,
+        page_route: pageContext.route,
+        page_type: pageContext.pageType
+      });
+      trackException(error, {
+        fatal: false,
+        source: "footer_contact_form_submit",
+        extra: {
+          form_name: "footer_contact",
+          locale,
+          page_path: pagePath,
+          page_route: pageContext.route,
+          page_type: pageContext.pageType
+        }
       });
       setSubmissionError(copy.errorMessage);
       console.error("Footer contact form submission failed.", error);

@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Script from "next/script";
+import { AnalyticsErrorTracking } from "@/components/AnalyticsErrorTracking";
 import { googleAnalyticsMeasurementId } from "@/lib/analytics";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
@@ -24,6 +25,7 @@ export function GoogleAnalytics() {
       <Suspense fallback={null}>
         <AnalyticsPageView />
       </Suspense>
+      <AnalyticsErrorTracking />
     </>
   );
 }
