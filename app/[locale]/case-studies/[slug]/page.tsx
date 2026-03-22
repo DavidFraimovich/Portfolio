@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MdxContent } from "@/components/MdxContent";
+import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
@@ -63,9 +64,13 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
 
-  const site = getSiteContent(locale);
   const entry = getCaseStudyBySlug(locale, slug);
   if (!entry) notFound();
+  if (entry.slug === "signy") {
+    return <SignyNotionEmbed locale={locale} />;
+  }
+
+  const site = getSiteContent(locale);
   const isWebsiteAsProduct = entry.slug === "website-as-product";
 
   return (
