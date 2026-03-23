@@ -2,19 +2,19 @@
   "hero": {
     "eyebrow": "Resume",
     "title": "Product Manager with 4+ years of experience.",
-    "summary": "Leading end-to-end Web and Mobile product lifecycles across Fintech, SaaS, and B2C."
+    "summary": "Leading end-to-end Web and Mobile product lifecycles across B2B, Fintech, SaaS, and B2C."
   },
   "quickFacts": [
     {
       "value": "4+ years",
-      "label": "Web and Mobile product lifecycles"
+      "label": "End-to-end Web and Mobile products"
     },
     {
-      "value": "Fintech | SaaS | B2C",
+      "value": "B2B | Fintech | SaaS | B2C",
       "label": "Product sectors"
     },
     {
-      "value": "API | IoT | UX/UI",
+      "value": "IoT | API | Data-driven",
       "label": "Core competencies"
     },
     {
@@ -27,18 +27,18 @@
     "items": [
       {
         "icon": "compass",
-        "title": "Roadmap Planning",
-        "body": "Roadmap planning, KPI optimization, end-to-end feature delivery, and strong analytical thinking."
+        "title": "End-to-End Delivery",
+        "body": "Leading full Web and Mobile product lifecycles from concept, through planning, to delivery."
       },
       {
         "icon": "workflow",
-        "title": "Research, UX, and Systems",
-        "body": "Market research, user and UX research, API integration, IoT integration, and process engineering."
+        "title": "B2B, IoT, and Integrations",
+        "body": "Experience in B2B product development, IoT projects, ERP systems, and complex API integrations."
       },
       {
         "icon": "layers",
-        "title": "Leadership and Stakeholders",
-        "body": "Stakeholder management and cross-functional team leadership across product, design, engineering, and QA."
+        "title": "Agile and Analytical Leadership",
+        "body": "Data-driven decisions, Agile/Scrum delivery, and leading cross-functional teams across product, design, engineering, and QA."
       }
     ]
   },
@@ -48,10 +48,11 @@
     "items": [
       {
         "company": "LoanWise",
+        "city": "Petah Tikva",
         "roles": ["Product Manager"],
         "period": "May 2025 - Today",
         "duration": "11 months",
-        "summary": "LoanWise - Mortgages in ISR and abroad, early-stage startup (Petah Tikva).",
+        "summary": "Mortgages in Israel and abroad, early-stage startup.",
         "highlights": [
           "Led product development prior to launch, including roadmap updates and task prioritization based on strategic changes.",
           "Developed go-to-market strategy for competitive markets, integrating unique tech solutions with rapid market adaptations.",
@@ -59,24 +60,26 @@
           "Directed blitzscaling efforts to penetrate multiple niches simultaneously.",
           "Met aggressive targets within short timeframes, operated effectively under uncertainty, and optimized resource allocation."
         ],
-        "chips": ["Fintech", "Early-stage", "Roadmap", "Go-to-market", "Vendors", "Blitzscaling"]
+        "chips": ["B2B", "Fintech", "Mortgages", "Early-stage", "Roadmap", "Go-to-market", "Vendors", "Blitzscaling"]
       },
       {
         "company": "Moonsite",
+        "city": "Rehovot",
         "roles": ["Product Manager"],
         "period": "Apr 2023 - May 2025",
         "duration": "2 years 1 month",
-        "summary": "Moonsite - Software development company (Fintech sector).",
+        "summary": "Software development company in the Fintech sector.",
         "highlights": [
           "Managed end-to-end delivery of Web and Fintech mobile applications, as well as B2C event, dating apps, and a smart AI search platform.",
           "Designed and planned complex API integrations with ERP systems, governmental bodies, and external APIs.",
           "Led a team of 10 (frontend, backend, QA, design, Scrum master, CTO) under Scrum of Scrums methodology.",
           "Key clients: Menora Mivtachim, ERN, Bar-Ilan University, and LoanWise."
         ],
-        "chips": ["Fintech", "Web", "Mobile", "B2C", "API Integration", "Scrum of Scrums", "Team of 10"]
+        "chips": ["B2B", "Fintech", "Web", "Mobile", "B2C", "API Integration", "ERP", "Scrum of Scrums", "Team of 10"]
       },
       {
         "company": "Havat HaNoar Youth Village",
+        "city": "Kfar HaYarok",
         "roles": ["Learning Center Manager"],
         "period": "2020 - 2025",
         "duration": "5 years",
@@ -86,20 +89,20 @@
           "Owned an 800,000 NIS budget.",
           "Specified and implemented a management information system."
         ],
-        "chips": ["Leadership", "90 staff", "800,000 NIS budget", "Management Information System", "Operations"]
+        "chips": ["Leadership", "Operations", "90 staff", "800,000 NIS budget", "Management Information System", "Implementation"]
       },
       {
         "company": "Signy",
         "roles": ["Product Manager"],
         "period": "Jun 2021 - Jun 2022",
         "duration": "1 year",
-        "summary": "Signy - Digital signature platform.",
+        "summary": "Digital signature platform.",
         "highlights": [
           "Managed an Agile/Kanban team of 6 (dev, design, QA).",
           "Took the product from concept to MVP launch in 6 months.",
           "Delivered full technical specifications (DB, ERD, UX), selected technologies, and designed system architecture."
         ],
-        "chips": ["0→1", "MVP", "Agile/Kanban", "Team of 6", "DB", "ERD", "UX"]
+        "chips": ["Digital Signature", "0→1", "MVP", "Agile/Kanban", "Team of 6", "DB", "ERD", "UX"]
       },
       {
         "company": "Rent-il",
@@ -112,21 +115,21 @@
           "Built the product from scratch.",
           "Designed a large and complex database."
         ],
-        "chips": ["Systems Analysis", "Team of 4", "0→1", "Database Design", "Long-term Rental"]
+        "chips": ["Systems Analysis", "Team of 4", "0→1", "Long-term Rental", "Database Design", "Product Specs"]
       },
       {
         "company": "Smart-Campus",
         "roles": ["Business Analyst", "Assistant Product Manager (Part-time)"],
         "period": "Jun 2018 - Jun 2020",
         "duration": "2 years",
-        "summary": "Smart-Campus - EdTech ERP and SaaS solutions for education organizations.",
+        "summary": "EdTech ERP and SaaS solutions for education organizations.",
         "highlights": [
           "Produced technical specs for ERP modules.",
           "Worked as Assistant Product Manager in a part-time capacity.",
           "Led an IoT-based security project team with cameras and controllers.",
           "Integrated hardware and software via secure communication protocols."
         ],
-        "chips": ["ERP", "SaaS", "EdTech", "IoT", "Technical Specs", "Part-time PM"]
+        "chips": ["EdTech", "ERP", "SaaS", "IoT", "Technical Specs", "Assistant PM", "Security Project"]
       }
     ]
   },

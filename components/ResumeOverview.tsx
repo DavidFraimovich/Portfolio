@@ -94,8 +94,8 @@ export function ResumeOverview({ content, locale, site }: ResumeOverviewProps) {
         </div>
       </section>
 
-      <section className={`${styles.surface} ${styles.timelineSurface}`} aria-labelledby="resume-timeline-title">
-        <div className={styles.surfaceHeader}>
+      <section className={styles.timelineSurface} aria-labelledby="resume-timeline-title">
+        <div className={`${styles.surfaceHeader} ${styles.timelineHeader}`}>
           <h2 id="resume-timeline-title" className={styles.sectionTitle}>
             {content.timeline.title}
           </h2>
@@ -104,27 +104,33 @@ export function ResumeOverview({ content, locale, site }: ResumeOverviewProps) {
 
         <ol className={styles.timeline}>
           {content.timeline.items.map((item) => (
-            <li key={`${item.company}-${item.role}-${item.period}`} className={styles.timelineItem}>
+            <li key={`${item.company}-${item.period}`} className={styles.timelineItem}>
               <article className={styles.timelineCard}>
-                <div className={styles.timelineTopRow}>
-                  <span className={styles.periodPill}>{item.period}</span>
-                  {item.tags?.length ? (
-                    <div className={styles.tagRow} aria-label={locale === "he" ? "תגיות תפקיד" : "Role tags"}>
-                      {item.tags.map((tag) => (
-                        <span key={tag} className={styles.tag}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
+                <div className={styles.timelineCardHeader}>
+                  <h3 className={styles.companyTitle}>
+                    <span className={styles.companyName}>{item.company}</span>
+                    {item.city ? <span className={styles.companyCity}>{item.city}</span> : null}
+                  </h3>
+
+                  <p className={styles.timelineSummary}>{item.summary}</p>
+
+                  <p className={styles.roleLine}>
+                    <span className={styles.roleLabel}>
+                      {locale === "he" ? (item.roles.length > 1 ? "תפקידים" : "תפקיד") : item.roles.length > 1 ? "Roles" : "Role"}
+                    </span>
+                    <span className={styles.roleText}>{item.roles.join(" • ")}</span>
+                  </p>
                 </div>
 
-                <div className={styles.timelineHeading}>
-                  <h3 className={styles.roleTitle}>{item.role}</h3>
-                  <p className={styles.companyName}>{item.company}</p>
-                </div>
-
-                <p className={styles.timelineSummary}>{item.summary}</p>
+                {item.chips?.length ? (
+                  <div className={styles.tagRow} aria-label={locale === "he" ? "תגיות תפקיד" : "Role tags"}>
+                    {item.chips.map((chip) => (
+                      <span key={chip} className={styles.tag}>
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
 
                 <ul className={styles.highlightsList}>
                   {item.highlights.map((highlight) => (
@@ -132,6 +138,11 @@ export function ResumeOverview({ content, locale, site }: ResumeOverviewProps) {
                   ))}
                 </ul>
               </article>
+
+              <div className={styles.timelineMeta}>
+                <p className={styles.timelinePeriod}>{item.period}</p>
+                <p className={styles.timelineDuration}>{item.duration}</p>
+              </div>
             </li>
           ))}
         </ol>

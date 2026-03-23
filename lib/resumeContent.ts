@@ -23,6 +23,7 @@ export type ResumeStrength = {
 
 export type ResumeTimelineEntry = {
   chips?: string[];
+  city?: string;
   company: string;
   duration: string;
   highlights: string[];
