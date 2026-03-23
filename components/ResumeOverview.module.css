@@ -293,7 +293,7 @@
 
 .timeline {
   position: relative;
-  width: min(100%, 980px);
+  width: min(100%, 920px);
   margin: 32px auto 0;
   padding: 0;
   list-style: none;
@@ -302,59 +302,20 @@
 }
 
 .timeline::before {
-  content: "";
-  position: absolute;
-  top: 22px;
-  bottom: 22px;
-  inset-inline-end: 74px;
-  width: 1px;
-  background: var(--resume-divider);
-}
-
-.rtl .timeline::before {
-  left: 74px;
-  right: auto;
-  inset-inline-end: auto;
+  content: none;
 }
 
 .timelineItem {
   position: relative;
-  display: grid;
-  grid-template-areas: "card meta";
-  grid-template-columns: minmax(0, 1fr) 148px;
-  gap: 24px;
-  align-items: start;
-}
-
-.rtl .timelineItem {
-  direction: ltr;
-  grid-template-areas: "meta card";
-  grid-template-columns: 148px minmax(0, 1fr);
 }
 
 .timelineItem::before {
-  content: "";
-  position: absolute;
-  top: 30px;
-  inset-inline-end: 68px;
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  border: 2px solid rgba(205, 192, 255, 0.44);
-  background: var(--resume-accent);
-  box-shadow: 0 0 0 5px rgba(123, 92, 255, 0.08);
-}
-
-.rtl .timelineItem::before {
-  left: 68px;
-  right: auto;
-  inset-inline-end: auto;
+  content: none;
 }
 
 .timelineCard {
-  grid-area: card;
   position: relative;
-  padding: 24px 26px 24px;
+  padding: 24px 28px 24px 164px;
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
@@ -373,18 +334,19 @@
 }
 
 .timelineMeta {
-  grid-area: meta;
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  width: 112px;
   display: grid;
   gap: 4px;
   align-content: start;
-  justify-items: end;
-  padding-top: 8px;
-  text-align: right;
+  justify-items: start;
+  text-align: left;
 }
 
 .rtl .timelineMeta {
   direction: rtl;
-  justify-items: start;
   text-align: left;
 }
 
@@ -724,33 +686,13 @@
     padding: 0 12px;
   }
 
-  .timelineItem {
-    grid-template-columns: minmax(0, 1fr) 128px;
-    gap: 18px;
+  .timelineCard {
+    padding-left: 148px;
   }
 
-  .rtl .timelineItem {
-    grid-template-columns: 128px minmax(0, 1fr);
-  }
-
-  .timeline::before {
-    inset-inline-end: 64px;
-  }
-
-  .rtl .timeline::before {
-    left: 64px;
-    right: auto;
-    inset-inline-end: auto;
-  }
-
-  .timelineItem::before {
-    inset-inline-end: 58px;
-  }
-
-  .rtl .timelineItem::before {
-    left: 58px;
-    right: auto;
-    inset-inline-end: auto;
+  .timelineMeta {
+    left: 24px;
+    width: 100px;
   }
 
   .quickFactsGrid,
@@ -814,42 +756,17 @@
     border-inline-start: 0;
   }
 
-  .timelineItem {
-    grid-template-areas:
-      "meta"
-      "card";
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .timeline::before {
-    top: 72px;
-    bottom: 12px;
-    inset-inline-start: 7px;
-    inset-inline-end: auto;
-  }
-
-  .timelineItem::before {
-    top: 68px;
-    inset-inline-start: 1px;
-    inset-inline-end: auto;
-    width: 12px;
-    height: 12px;
-  }
-
-  .rtl .timelineItem {
-    grid-template-areas:
-      "meta"
-      "card";
-    grid-template-columns: 1fr;
+  .timelineCard {
+    padding: 20px 18px 20px 108px;
   }
 
   .timelineMeta,
   .rtl .timelineMeta {
+    top: 20px;
+    left: 18px;
+    width: 76px;
     justify-items: start;
     text-align: left;
-    padding-top: 0;
-    padding-inline-start: 24px;
   }
 
   .timelineCard,

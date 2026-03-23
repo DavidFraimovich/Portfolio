@@ -106,6 +106,11 @@ export function ResumeOverview({ content, locale, site }: ResumeOverviewProps) {
           {content.timeline.items.map((item) => (
             <li key={`${item.company}-${item.period}`} className={styles.timelineItem}>
               <article className={styles.timelineCard}>
+                <div className={styles.timelineMeta}>
+                  <p className={styles.timelinePeriod}>{item.period}</p>
+                  <p className={styles.timelineDuration}>{item.duration}</p>
+                </div>
+
                 <div className={styles.timelineCardHeader}>
                   <h3 className={styles.companyTitle}>
                     <span className={styles.companyName}>{item.company}</span>
@@ -138,11 +143,6 @@ export function ResumeOverview({ content, locale, site }: ResumeOverviewProps) {
                   ))}
                 </ul>
               </article>
-
-              <div className={styles.timelineMeta}>
-                <p className={styles.timelinePeriod}>{item.period}</p>
-                <p className={styles.timelineDuration}>{item.duration}</p>
-              </div>
             </li>
           ))}
         </ol>
