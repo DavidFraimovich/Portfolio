@@ -3,7 +3,7 @@
 import { useReducedMotion } from "framer-motion";
 import { type CSSProperties, type MouseEvent, useRef, useState } from "react";
 import { TrackedLink } from "@/components/TrackedLink";
-import { type Locale, withLocalePath } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import styles from "./ProductGoalsPanel.module.css";
 
 type ProductGoalsPanelProps = {
@@ -119,6 +119,7 @@ function pickRandomLabel(labels: string[]): string {
 
 export function ProductGoalsPanel({ locale }: ProductGoalsPanelProps) {
   const copy = PANEL_COPY[locale];
+  const footerContactHref = `#footer-contact-${locale}`;
   const reduceMotion = useReducedMotion();
   const panelRef = useRef<HTMLDivElement | null>(null);
   const chipCounterRef = useRef(0);
@@ -212,11 +213,11 @@ export function ProductGoalsPanel({ locale }: ProductGoalsPanelProps) {
           <p className={styles.helper}>{copy.helper}</p>
           <div className={styles.actions}>
             <TrackedLink
-              href={withLocalePath(locale, "/contact")}
+              href={footerContactHref}
               className={styles.contactButton}
               tracking={{
                 eventName: "cta_click",
-                kind: "internal",
+                kind: "hash",
                 label: copy.contactCta,
                 locale,
                 location: "product_goals_panel",

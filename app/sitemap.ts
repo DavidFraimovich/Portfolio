@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
-  const staticPerLocale = ["", "/about", "/contact", "/resume", "/case-studies"];
+  const staticPerLocale = ["", "/resume", "/case-studies"];
 
   const staticRoutes = locales.flatMap((locale) =>
     staticPerLocale.map((route) => ({

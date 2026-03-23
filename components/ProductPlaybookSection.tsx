@@ -231,7 +231,7 @@ export function ProductPlaybookSection({ locale }: ProductPlaybookSectionProps) 
   }
 
   return (
-    <section className={`${styles.section} ${rtlClassName}`} aria-labelledby={headingId}>
+    <section id="product-playbook" className={`${styles.section} ${rtlClassName}`} aria-labelledby={headingId}>
       <div className={styles.shell}>
         <div className={styles.processSurface}>
           <div className={styles.processHeader}>

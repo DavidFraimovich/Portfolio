@@ -111,7 +111,6 @@ export function Footer({ locale, site }: Props) {
   const messageFieldId = `footer-message-${locale}`;
   const navigationLinks = [
     { href: withLocalePath(locale), label: site.nav_home },
-    { href: withLocalePath(locale, "/about"), label: site.nav_about },
     { href: withLocalePath(locale, "/resume"), label: site.nav_resume },
     { href: withLocalePath(locale, "/case-studies"), label: site.nav_case_studies }
   ];

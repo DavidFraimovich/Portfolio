@@ -19,9 +19,7 @@ export function Nav({ locale, site }: Props): ReactElement {
   const navItems: NavItem[] = [
     { href: withLocalePath(locale), label: site.nav_home },
     { href: withLocalePath(locale, "/case-studies"), label: site.nav_case_studies },
-    { href: withLocalePath(locale, "/resume"), label: site.nav_resume },
-    { href: withLocalePath(locale, "/about"), label: site.nav_about },
-    { href: withLocalePath(locale, "/contact"), label: site.nav_contact }
+    { href: withLocalePath(locale, "/resume"), label: site.nav_resume }
   ];
 
   return (

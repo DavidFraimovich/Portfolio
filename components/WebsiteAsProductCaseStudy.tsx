@@ -50,6 +50,8 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
   const site = getSiteContent(locale);
   const posts = getAllPosts(locale).slice(0, 2);
   const featuredCards = getFeaturedCards(locale);
+  const footerContactHref = `#footer-contact-${locale}`;
+  const howIWorkHref = `${withLocalePath(locale)}#product-playbook`;
   const linkedinUrl = getLinkedInUrl(site.linkedin_url);
   const mailtoHref = getMailtoHref(site.email);
   const localeResumeLink = getResumeLink(locale);
@@ -124,10 +126,10 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
           </TrackedLink>
           <TrackedLink
             className="cta cta-secondary"
-            href={withLocalePath(locale, "/contact")}
+            href={footerContactHref}
             tracking={{
               eventName: "cta_click",
-              kind: "internal",
+              kind: "hash",
               label: isHebrew ? "צור איתי קשר" : "Contact",
               locale,
               location: "website_product_brief",
@@ -188,10 +190,10 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
               </TrackedLink>
               <TrackedLink
                 className="cta cta-secondary"
-                href={withLocalePath(locale, "/contact")}
+                href={footerContactHref}
                 tracking={{
                   eventName: "cta_click",
-                  kind: "internal",
+                  kind: "hash",
                   label: isHebrew ? "צור קשר" : "Contact",
                   locale,
                   location: "website_product_recruiter_track",
@@ -226,7 +228,7 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
               </TrackedLink>
               <TrackedLink
                 className="cta cta-secondary"
-                href={withLocalePath(locale, "/about")}
+                href={howIWorkHref}
                 tracking={{
                   eventName: "cta_click",
                   kind: "internal",
