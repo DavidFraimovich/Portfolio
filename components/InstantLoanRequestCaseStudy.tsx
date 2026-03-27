@@ -136,41 +136,39 @@ export function InstantLoanRequestCaseStudy({ locale }: Props) {
       </section>
 
       <section className={styles.detailsSection} aria-labelledby={`instant-loan-details-${locale}`}>
-        <div className={styles.detailsSurface}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle} id={`instant-loan-details-${locale}`}>
-              {locale === "he" ? "המהלך המוצרי" : "Product story"}
-            </h2>
-          </div>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle} id={`instant-loan-details-${locale}`}>
+            {locale === "he" ? "המהלך המוצרי" : "Product story"}
+          </h2>
+        </div>
 
-          <div className={styles.detailsGrid}>
-            {content.sections.map((section) => (
-              <article
-                className={`${styles.sectionCard} ${section.wide ? styles.sectionCardWide : ""}`}
-                key={section.title}
-              >
-                <h3 className={styles.sectionCardTitle}>{section.title}</h3>
+        <div className={styles.detailsGrid}>
+          {content.sections.map((section) => (
+            <article
+              className={`${styles.sectionCard} ${section.wide ? styles.sectionCardWide : ""}`}
+              key={section.title}
+            >
+              <h3 className={styles.sectionCardTitle}>{section.title}</h3>
 
-                {section.intro ? <p className={styles.sectionIntroText}>{section.intro}</p> : null}
+              {section.intro ? <p className={styles.sectionIntroText}>{section.intro}</p> : null}
 
-                {section.paragraphs?.map((paragraph) => (
-                  <p className={styles.sectionParagraph} key={paragraph}>
-                    {paragraph}
-                  </p>
-                ))}
+              {section.paragraphs?.map((paragraph) => (
+                <p className={styles.sectionParagraph} key={paragraph}>
+                  {paragraph}
+                </p>
+              ))}
 
-                {section.bullets?.length ? (
-                  <ul className={styles.sectionList}>
-                    {section.bullets.map((bullet) => (
-                      <li className={styles.sectionListItem} key={bullet}>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </article>
-            ))}
-          </div>
+              {section.bullets?.length ? (
+                <ul className={styles.sectionList}>
+                  {section.bullets.map((bullet) => (
+                    <li className={styles.sectionListItem} key={bullet}>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          ))}
         </div>
       </section>
     </div>

@@ -63,15 +63,18 @@
 }
 
 .summarySection,
-.metricsSection,
-.detailsSection {
+.metricsSection {
   width: min(1120px, 100%);
   margin: 0 auto;
 }
 
+.detailsSection {
+  width: 100%;
+  margin: 0;
+}
+
 .summaryShell,
-.metricsSurface,
-.detailsSurface {
+.metricsSurface {
   border: 1px solid var(--loan-panel-border);
   border-radius: 32px;
   background: var(--loan-panel-bg);
@@ -200,8 +203,7 @@
   unicode-bidi: plaintext;
 }
 
-.metricsSurface,
-.detailsSurface {
+.metricsSurface {
   padding: 30px 32px 32px;
 }
 
@@ -309,22 +311,20 @@
 
 .detailsGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 0;
 }
 
 .sectionCard {
   min-width: 0;
   display: grid;
   gap: 16px;
-  padding: 26px;
-  border: 1px solid var(--loan-card-border);
-  border-radius: 28px;
-  background: var(--loan-card-bg);
+  padding: 28px 0;
+  border-top: 1px solid var(--loan-divider);
 }
 
-.sectionCardWide {
-  grid-column: 1 / -1;
+.sectionCard:first-child {
+  border-top: 0;
 }
 
 .sectionCardTitle {
@@ -364,7 +364,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .metadataCard,
   .metricCard,
-  .sectionCard,
   .heroBadge {
     transition:
       transform 180ms ease,
@@ -373,7 +372,6 @@
   }
 
   .metricCard:hover,
-  .sectionCard:hover,
   .heroBadge:hover {
     transform: translateY(-3px);
   }
@@ -385,16 +383,14 @@
 
 @media (max-width: 900px) {
   .summaryShell,
-  .metricsSurface,
-  .detailsSurface {
+  .metricsSurface {
     padding: 24px;
     border-radius: 28px;
   }
 
   .heroRow,
   .metadataGrid,
-  .metricsGrid,
-  .detailsGrid {
+  .metricsGrid {
     grid-template-columns: 1fr;
   }
 
@@ -412,10 +408,6 @@
   .metricCard {
     min-height: 0;
   }
-
-  .sectionCardWide {
-    grid-column: auto;
-  }
 }
 
 @media (max-width: 640px) {
@@ -424,8 +416,7 @@
   }
 
   .summaryShell,
-  .metricsSurface,
-  .detailsSurface {
+  .metricsSurface {
     padding: 20px 18px;
     border-radius: 24px;
   }
@@ -436,10 +427,13 @@
   }
 
   .metadataCard,
-  .metricCard,
-  .sectionCard {
+  .metricCard {
     padding: 20px 18px;
     border-radius: 22px;
+  }
+
+  .sectionCard {
+    padding: 22px 0;
   }
 
   .sectionIntro,

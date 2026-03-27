@@ -192,16 +192,6 @@ export const instantLoanRequestSystemCaseStudyContent = {
         ]
       },
       {
-        title: "Representative Product Goals",
-        bullets: [
-          "Reach a 70%+ completion rate in the initial flow.",
-          "Reduce initial setup time to less than 15 minutes.",
-          "Lower drop-off by 20% at a major step in the process.",
-          "Detect critical issues in less than 24 hours.",
-          "Improve first-time activation among new users by 30%."
-        ]
-      },
-      {
         title: "What the Project Required From Me",
         wide: true,
         paragraphs: [
@@ -344,16 +334,6 @@ export const instantLoanRequestSystemCaseStudyContent = {
           "יצירת חוויית שימוש ברורה ללא תלות בהדרכה ממושכת",
           "בניית תהליך שקל למדוד, לנתח ולשפר",
           "יצירת תשתית שתאפשר התפתחות מוצרית בהמשך"
-        ]
-      },
-      {
-        title: "דוגמאות ליעדי מוצר מייצגים",
-        bullets: [
-          "הגעה לשיעור השלמה של 70%+ בתהליך הראשוני",
-          "קיצור זמן ההקמה הראשוני לפחות מ־15 דקות",
-          "הורדת שיעור הנטישה בשלב מרכזי בתהליך ב־20%",
-          "זיהוי תקלות קריטיות תוך פחות מ־24 שעות",
-          "שיפור שיעור ההפעלה הראשונית של משתמשים חדשים ב־30%"
         ]
       },
       {
