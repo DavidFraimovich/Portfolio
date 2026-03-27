@@ -2,8 +2,7 @@ import {
   BriefcaseBusiness,
   Building2,
   Clock3,
-  Expand,
-  PiggyBank,
+  Images,
   Repeat2,
   ShieldCheck,
   Smartphone,
@@ -66,71 +65,64 @@ function SectionIcon({ icon }: { icon: PaamonimSectionIconKey }) {
 
 export function PaamonimCaseStudy({ locale }: Props) {
   const content = paamonimCaseStudyContent[locale];
+  const [displayTitle, displaySubtitle] = content.title.split(" — ");
 
   return (
     <div className={styles.root}>
       <section className={styles.summarySection} aria-labelledby={`paamonim-title-${locale}`}>
         <div className={styles.summaryShell}>
-          <div className={styles.heroRow}>
+          <div className={styles.heroVisual} aria-hidden="true">
+            <div className={styles.heroSystemWrap}>
+              <img
+                alt=""
+                className={styles.heroSystemImage}
+                decoding="async"
+                loading="eager"
+                src="/images/case-studies/paamonim/hero-system.png"
+              />
+            </div>
+          </div>
+
+          <div className={styles.heroContent}>
             <div className={styles.heroText}>
-              <p className={styles.eyebrow}>{content.metadataTitle}</p>
-              <h1 className={styles.title} id={`paamonim-title-${locale}`}>
-                {content.title}
-              </h1>
-              <h2 className={styles.valueStatement}>{content.valueStatement}</h2>
-              <p className={styles.summary}>{content.summary}</p>
+              <div className={styles.eyebrowPill}>
+                <span className={styles.eyebrowDot} aria-hidden="true" />
+                <p className={styles.eyebrow}>{content.metadataTitle}</p>
+              </div>
+
+              <div className={styles.heroHeadingBlock}>
+                <h1 className={styles.titleMain} id={`paamonim-title-${locale}`}>
+                  {displayTitle}
+                </h1>
+                {displaySubtitle ? <p className={styles.titleSub}>{displaySubtitle}</p> : null}
+              </div>
+
+              <div className={styles.heroBody}>
+                <p className={styles.valueStatement}>{content.valueStatement}</p>
+                <p className={styles.summary}>{content.summary}</p>
+              </div>
             </div>
 
-            <div className={styles.heroMedia}>
-              <div className={styles.heroMediaBadge} aria-hidden="true">
-                <PiggyBank className={styles.heroMediaBadgeIcon} strokeWidth={1.85} />
-              </div>
+            <div className={styles.metadataPanel}>
+              <dl className={styles.metadataGrid} aria-label={content.metadataTitle}>
+                {content.metadata.map((item) => (
+                  <div className={styles.metadataCard} key={item.label}>
+                    <dt className={styles.metadataLabel}>
+                      <MetadataIcon icon={item.icon} />
+                      <span className={styles.metadataLabelText}>{item.label}</span>
+                    </dt>
+                    <dd className={styles.metadataValue}>{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
 
-              <div className={styles.heroImageFrame}>
-                <img
-                  alt={content.heroImageAlt}
-                  className={styles.heroImage}
-                  decoding="async"
-                  loading="eager"
-                  src="/images/case-studies/paamonim/hero-system.png"
-                />
-              </div>
+            <div className={styles.scrollCue} aria-hidden="true">
+              <span className={styles.scrollLine} />
+              <span className={styles.scrollLabel}>{content.scrollLabel}</span>
             </div>
           </div>
-
-          <dl className={styles.metadataGrid} aria-label={content.metadataTitle}>
-            {content.metadata.map((item) => (
-              <div className={styles.metadataCard} key={item.label}>
-                <dt className={styles.metadataLabel}>
-                  <MetadataIcon icon={item.icon} />
-                  <span className={styles.metadataLabelText}>{item.label}</span>
-                </dt>
-                <dd className={styles.metadataValue}>{item.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
-      </section>
-
-      <section className={styles.revealSection} aria-label={content.revealLabel}>
-        <details className={styles.mediaDisclosure}>
-          <summary className={styles.mediaDisclosureSummary}>
-            <span className={styles.mediaDisclosureLabel}>{content.revealLabel}</span>
-            <span className={styles.mediaDisclosureIconWrap} aria-hidden="true">
-              <Expand className={styles.mediaDisclosureIcon} strokeWidth={1.9} />
-            </span>
-          </summary>
-
-          <div className={styles.expandedMediaFrame}>
-            <img
-              alt={content.expandedImageAlt}
-              className={styles.expandedImage}
-              decoding="async"
-              loading="lazy"
-              src="/images/case-studies/paamonim/expanded-system.png"
-            />
-          </div>
-        </details>
       </section>
 
       <section className={styles.metricsSection} aria-labelledby={`paamonim-metrics-${locale}`}>
@@ -183,6 +175,29 @@ export function PaamonimCaseStudy({ locale }: Props) {
               </ul>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.screensSection} aria-labelledby={`paamonim-screens-${locale}`}>
+        <div className={styles.screensHeader}>
+          <div className={styles.sectionTitleRow}>
+            <span className={styles.sectionTitleIconWrap} aria-hidden="true">
+              <Images className={styles.sectionTitleIcon} strokeWidth={1.9} />
+            </span>
+            <h2 className={styles.sectionTitle} id={`paamonim-screens-${locale}`}>
+              {content.screensTitle}
+            </h2>
+          </div>
+        </div>
+
+        <div className={styles.screensMediaFrame} aria-label={content.screensAriaLabel}>
+          <img
+            alt={content.screensImageAlt}
+            className={styles.screensImage}
+            decoding="async"
+            loading="lazy"
+            src="/images/case-studies/paamonim/expanded-system.png"
+          />
         </div>
       </section>
     </div>

@@ -19,6 +19,7 @@ import {
   type SignyIconKey,
   signyNotionEmbedUrls
 } from "@/lib/signy";
+import { withVersionedAssetPath } from "@/lib/site";
 
 type Props = {
   locale: Locale;
@@ -35,6 +36,12 @@ const METADATA_ICONS: Record<SignyIconKey, LucideIcon> = {
 
 const METRIC_ICONS: LucideIcon[] = [Rocket, Send, FileSignature];
 const PAIN_ICONS: LucideIcon[] = [Workflow, Repeat2, Map, Gauge, UsersRound];
+const SIGNY_HERO_IMAGE = withVersionedAssetPath("/images/case-studies/signy/hero-system.svg");
+
+const SIGNY_HERO_IMAGE_ALT: Record<Locale, string> = {
+  en: "Illustration of the Signy document workflow system and digital signature flow.",
+  he: "אילוסטרציה של מערכת תהליך המסמכים והחתימה הדיגיטלית של Signy."
+};
 
 function MetadataIcon({ icon }: { icon: SignyIconKey }) {
   const Icon = METADATA_ICONS[icon];
@@ -54,17 +61,32 @@ export function SignyNotionEmbed({ locale }: Props) {
   const title = locale === "he" ? "Signy Notion embed Hebrew" : "Signy Notion embed English";
   const metricsHeadingId = `signy-metrics-${locale}`;
   const painsHeadingId = `signy-pains-${locale}`;
+  const heroImageAlt = SIGNY_HERO_IMAGE_ALT[locale];
 
   return (
     <div className={styles.root}>
       <section className={styles.summarySection} aria-labelledby={`signy-title-${locale}`}>
         <div className={styles.summaryShell}>
-          <div className={styles.heroBlock}>
-            <h1 className={styles.title} id={`signy-title-${locale}`}>
-              {content.title}
-            </h1>
-            <h2 className={styles.valueStatement}>{content.valueStatement}</h2>
-            <p className={styles.summary}>{content.summary}</p>
+          <div className={styles.heroGrid}>
+            <div className={styles.heroBlock}>
+              <h1 className={styles.title} id={`signy-title-${locale}`}>
+                {content.title}
+              </h1>
+              <h2 className={styles.valueStatement}>{content.valueStatement}</h2>
+              <p className={styles.summary}>{content.summary}</p>
+            </div>
+
+            <div className={styles.heroVisual}>
+              <div className={styles.heroVisualFrame}>
+                <img
+                  alt={heroImageAlt}
+                  className={styles.heroVisualImage}
+                  decoding="async"
+                  loading="eager"
+                  src={SIGNY_HERO_IMAGE}
+                />
+              </div>
+            </div>
           </div>
 
           <dl className={styles.metadataGrid}>

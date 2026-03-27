@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { TrackedLink } from "@/components/TrackedLink";
+import { CaseStudiesShowcase } from "@/components/CaseStudiesShowcase";
 import { getAllCaseStudies } from "@/lib/content";
-import { formatStableDate } from "@/lib/date";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
 import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
@@ -53,43 +52,5 @@ export default async function LocalizedCaseStudiesPage({ params }: Props) {
   const site = getSiteContent(locale);
   const caseStudies = getAllCaseStudies(locale);
 
-  return (
-    <>
-      <section className="hero">
-        <h1>{site.case_studies_title}</h1>
-        <p>{site.case_studies_intro}</p>
-      </section>
-
-      <section className="grid" aria-label={site.case_studies_title}>
-        {caseStudies.map((item) => (
-          <article key={item.slug} className="card">
-            <p className="meta">{formatStableDate(item.frontmatter.date)}</p>
-            <h2>
-              <TrackedLink
-                href={withLocalePath(locale, `/case-studies/${item.slug}`)}
-                tracking={{
-                  eventName: "case_study_click",
-                  kind: "internal",
-                  label: item.frontmatter.title,
-                  locale,
-                  location: "case_studies_list",
-                  section: "case_studies"
-                }}
-              >
-                {item.frontmatter.title}
-              </TrackedLink>
-            </h2>
-            <p>{item.frontmatter.description}</p>
-            <div className="pill-row">
-              {item.frontmatter.tags.map((tag) => (
-                <span className="pill" key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </section>
-    </>
-  );
+  return <CaseStudiesShowcase locale={locale} title={site.case_studies_title} caseStudies={caseStudies} />;
 }

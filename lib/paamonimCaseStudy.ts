@@ -32,9 +32,10 @@ type PaamonimCaseStudyContent = {
   summary: string;
   metadataTitle: string;
   metadata: PaamonimMetadataItem[];
-  heroImageAlt: string;
-  revealLabel: string;
-  expandedImageAlt: string;
+  scrollLabel: string;
+  screensTitle: string;
+  screensAriaLabel: string;
+  screensImageAlt: string;
   metricsTitle: string;
   metricsAriaLabel: string;
   metrics: PaamonimMetricCard[];
@@ -73,9 +74,10 @@ export const paamonimCaseStudyContent = {
         icon: "tags"
       }
     ],
-    heroImageAlt: "Paamonim mobile app screens shown inside the case study hero",
-    revealLabel: "Show more",
-    expandedImageAlt: "Expanded Paamonim system screens",
+    scrollLabel: "Scroll to explore",
+    screensTitle: "System screens",
+    screensAriaLabel: "Paamonim system screens",
+    screensImageAlt: "Expanded Paamonim system screens",
     metricsTitle: "Success metrics",
     metricsAriaLabel: "Paamonim KPI cards",
     metrics: [
@@ -173,9 +175,10 @@ export const paamonimCaseStudyContent = {
         icon: "tags"
       }
     ],
-    heroImageAlt: "מסכי אפליקציית פעמונים בתוך אזור ההירו של מחקר המקרה",
-    revealLabel: "הצג עוד",
-    expandedImageAlt: "תצוגה מורחבת של מסכי מערכת פעמונים",
+    scrollLabel: "גללו כדי להמשיך",
+    screensTitle: "מסכי המערכת",
+    screensAriaLabel: "מסכי המערכת של פעמונים",
+    screensImageAlt: "תצוגה מורחבת של מסכי מערכת פעמונים",
     metricsTitle: "מדדי הצלחה",
     metricsAriaLabel: "כרטיסיות KPI של פעמונים",
     metrics: [
