@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { InstantLoanRequestCaseStudy } from "@/components/InstantLoanRequestCaseStudy";
 import { MdxContent } from "@/components/MdxContent";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
@@ -68,6 +69,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   if (!entry) notFound();
   if (entry.slug === "signy") {
     return <SignyNotionEmbed locale={locale} />;
+  }
+  if (entry.slug === "instant-loan-request-system") {
+    return <InstantLoanRequestCaseStudy locale={locale} />;
   }
 
   const site = getSiteContent(locale);
