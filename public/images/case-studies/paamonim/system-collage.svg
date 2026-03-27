@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1040" fill="none">
+  <rect width="1400" height="1040" fill="#ffffff"/>
+  <g>
+    <rect x="34" y="18" width="370" height="732" rx="56" fill="#242C45"/>
+    <rect x="43" y="27" width="352" height="714" rx="48" fill="#FBFCFF"/>
+    <path d="M43 27H395V212C338 232 297 240 237 240C176 240 113 224 43 191V27Z" fill="#8CB9E0"/>
+    <path d="M43 430C109 399 157 389 216 393C287 397 334 423 395 476V741H43V430Z" fill="#ffffff"/>
+    <path d="M89 352C118 282 128 232 132 174C155 212 172 278 182 332C150 341 126 347 89 352Z" fill="#B7C7FF"/>
+    <path d="M313 347C302 309 292 231 299 168C336 215 356 274 362 336C344 338 332 341 313 347Z" fill="#D5DEFF"/>
+    <rect x="136" y="565" width="166" height="52" rx="26" fill="#5399DD"/>
+    <text x="219" y="599" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">הוסיפו חסכונות/נכסים+</text>
+    <rect x="73" y="669" width="292" height="56" rx="18" fill="#ffffff"/>
+    <text x="219" y="507" fill="#26305A" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">חסכונות ונכסים</text>
+    <text x="219" y="541" fill="#636E8C" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">ניהול הכנסות, הוצאות, תקציב ונכסים</text>
+    <text x="219" y="700" fill="#7A7F8E" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">מסכי מובייל לניהול כלכלי יומיומי</text>
+    <circle cx="220" cy="172" r="22" fill="#394056"/>
+    <path d="M188 211C196 182 218 170 248 174L260 265H177L188 211Z" fill="#EE4A53"/>
+    <path d="M168 283C183 267 208 258 234 259C256 259 277 266 289 282V316H168V283Z" fill="#3142AF"/>
+    <rect x="192" y="247" width="126" height="72" rx="14" fill="#4C76F6"/>
+    <circle cx="294" cy="275" r="16" fill="#FFBE55"/>
+    <path d="M211 289H260" stroke="#FFC15D" stroke-width="9" stroke-linecap="round"/>
+    <path d="M208 307H235" stroke="#FFC15D" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="515" y="138" width="370" height="612" rx="56" fill="#242C45"/>
+    <rect x="524" y="147" width="352" height="594" rx="48" fill="#FFF7D9"/>
+    <path d="M524 490C586 465 636 457 701 461C764 465 818 483 876 520V741H524V490Z" fill="#ffffff"/>
+    <rect x="593" y="573" width="212" height="52" rx="26" fill="#5399DD"/>
+    <text x="699" y="607" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">יאללה, בואו נתחיל</text>
+    <text x="700" y="488" fill="#16A0E7" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">פעמונים</text>
+    <text x="700" y="539" fill="#26305A" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">ברוכים הבאים!</text>
+    <text x="700" y="661" fill="#7A7F8E" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">כניסה למסע כלכלי מסודר, ברור ודיגיטלי</text>
+    <rect x="595" y="308" width="92" height="132" rx="22" fill="#8F9CFF"/>
+    <circle cx="675" cy="328" r="10" fill="#F9D2B6"/>
+    <path d="M645 352C652 332 668 322 691 324L699 398H637L645 352Z" fill="#5D75FF"/>
+    <path d="M620 308H637V420H620" stroke="#B0AE95" stroke-width="6"/>
+    <path d="M618 308H686" stroke="#B0AE95" stroke-width="6"/>
+    <path d="M737 334C714 318 692 330 679 354C697 375 719 392 751 403C753 378 749 354 737 334Z" fill="#FFD7A2"/>
+    <rect x="741" y="410" width="22" height="52" rx="10" fill="#F1B24F"/>
+    <circle cx="789" cy="441" r="12" fill="#D56E6E"/>
+    <path d="M553 395C566 339 582 298 613 270C608 329 596 381 582 425" stroke="#A3D3A0" stroke-width="14" stroke-linecap="round"/>
+    <path d="M576 369C555 368 541 380 536 398C559 402 576 396 588 383" fill="#8DD5A6"/>
+    <path d="M600 320C579 322 567 336 565 357C585 357 600 347 610 332" fill="#AEE0B3"/>
+  </g>
+  <g>
+    <rect x="996" y="18" width="370" height="732" rx="56" fill="#242C45"/>
+    <rect x="1005" y="27" width="352" height="714" rx="48" fill="#FFF7D9"/>
+    <path d="M1005 420C1064 395 1120 385 1182 389C1241 393 1303 413 1357 448V741H1005V420Z" fill="#ffffff"/>
+    <text x="1181" y="498" fill="#26305A" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle">תכנון תקציב</text>
+    <text x="1181" y="558" fill="#606A87" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">ניהול תקציב ברור ומדויק למשק הבית</text>
+    <text x="1181" y="593" fill="#606A87" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">והתאמה לצרכים שעולים מהשטח</text>
+    <rect x="1083" y="614" width="195" height="52" rx="26" fill="#5399DD"/>
+    <text x="1180" y="648" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">קדימה, לתכנון התקציב</text>
+    <text x="1181" y="698" fill="#8B8E95" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">אל תצא לי שוב</text>
+    <circle cx="1142" cy="179" r="22" fill="#3B4054"/>
+    <path d="M1102 223C1112 191 1134 176 1166 179L1180 275H1088L1102 223Z" fill="#F0A041"/>
+    <path d="M1100 283C1125 263 1157 255 1191 256V342H1100V283Z" fill="#2D3860"/>
+    <rect x="1175" y="192" width="104" height="62" rx="10" fill="#2F4FB9"/>
+    <circle cx="1255" cy="223" r="7" fill="#FFBE55"/>
+    <path d="M1188 221H1232" stroke="#FFC15D" stroke-width="7" stroke-linecap="round"/>
+    <path d="M1190 236H1210" stroke="#FFC15D" stroke-width="7" stroke-linecap="round"/>
+    <path d="M1269 182H1312" stroke="#6B7395" stroke-width="3" stroke-linecap="round"/>
+    <path d="M1269 214H1312" stroke="#6B7395" stroke-width="3" stroke-linecap="round"/>
+    <path d="M1269 246H1312" stroke="#6B7395" stroke-width="3" stroke-linecap="round"/>
+    <path d="M1239 183L1248 192L1261 177" stroke="#88B2E2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1239 215L1248 224L1261 209" stroke="#88B2E2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1239 247L1248 256L1261 241" stroke="#88B2E2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="98" y="812" width="356" height="228" rx="30" fill="#242C45"/>
+    <rect x="107" y="821" width="338" height="210" rx="22" fill="#ffffff"/>
+    <text x="271" y="875" fill="#303750" font-family="Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">תקציבים</text>
+    <path d="M407 864H427" stroke="#303750" stroke-width="5" stroke-linecap="round"/>
+    <path d="M415 856L427 864L415 872" stroke="#303750" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="152" y="918" fill="#7A63A8" font-family="Arial, sans-serif" font-size="22">+ הוסף תקציב</text>
+    <rect x="134" y="945" width="286" height="56" rx="12" fill="#E2F7EA"/>
+    <text x="160" y="981" fill="#4F5F6C" font-family="Arial, sans-serif" font-size="18">10-2021</text>
+    <text x="392" y="981" fill="#303750" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="end">10-2021</text>
+  </g>
+  <g>
+    <rect x="942" y="812" width="356" height="228" rx="30" fill="#242C45"/>
+    <rect x="951" y="821" width="338" height="210" rx="22" fill="#ffffff"/>
+    <text x="1120" y="875" fill="#303750" font-family="Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">הגדר תקציב</text>
+    <path d="M1250 864H1270" stroke="#303750" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1258 856L1270 864L1258 872" stroke="#303750" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="992" y="914" width="255" height="30" rx="15" fill="#F9DED4"/>
+    <rect x="992" y="961" width="223" height="26" rx="13" fill="#F0EAF7"/>
+    <text x="1247" y="908" fill="#736F7A" font-family="Arial, sans-serif" font-size="18" text-anchor="end">₪ 8,000 :תקציב הוצאות</text>
+    <text x="1247" y="956" fill="#736F7A" font-family="Arial, sans-serif" font-size="18" text-anchor="end">₪ 9,000 :תקציב הכנסות</text>
+  </g>
+</svg>

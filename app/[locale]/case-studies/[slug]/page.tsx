@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { InstantLoanRequestCaseStudy } from "@/components/InstantLoanRequestCaseStudy";
 import { MdxContent } from "@/components/MdxContent";
+import { PaamonimCaseStudy } from "@/components/PaamonimCaseStudy";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
@@ -72,6 +73,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   }
   if (entry.slug === "instant-loan-request-system") {
     return <InstantLoanRequestCaseStudy locale={locale} />;
+  }
+  if (entry.slug === "paamonim-smart-financial-management-app") {
+    return <PaamonimCaseStudy locale={locale} />;
   }
 
   const site = getSiteContent(locale);
