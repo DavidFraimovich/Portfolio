@@ -119,6 +119,13 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     imageSrc: withVersionedAssetPath("/images/case-studies/signy/hero-system.svg"),
     objectPosition: "center center"
   },
+  "research-search-engine-based-on-rag": {
+    accentTone: "sky",
+    imageSrc: withVersionedAssetPath("/images/case-studies/research-rag/hero-image.png"),
+    mediaEligible: true,
+    objectPosition: "center center",
+    preferredSlot: "vertical"
+  },
   "website-as-product": {
     accentTone: "sky"
   },

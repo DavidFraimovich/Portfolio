@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { InstantLoanRequestCaseStudy } from "@/components/InstantLoanRequestCaseStudy";
 import { MdxContent } from "@/components/MdxContent";
 import { PaamonimCaseStudy } from "@/components/PaamonimCaseStudy";
+import { ResearchSearchCaseStudy } from "@/components/ResearchSearchCaseStudy";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
@@ -82,6 +83,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   }
   if (entry.slug === "paamonim-smart-financial-management-app") {
     return <PaamonimCaseStudy locale={locale} />;
+  }
+  if (entry.slug === "research-search-engine-based-on-rag") {
+    return <ResearchSearchCaseStudy locale={locale} />;
   }
 
   const site = getSiteContent(locale);
