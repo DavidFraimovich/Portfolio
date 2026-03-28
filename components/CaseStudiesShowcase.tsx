@@ -76,7 +76,6 @@ const PRIMARY_SLOTS: CardSlot[] = [
 
 const HERO_PRIORITY = [
   "paamonim-smart-financial-management-app",
-  "ai-agent-competitive-edge",
   "erp-government-api-integrations",
   "mvp-6-months"
 ] as const;
@@ -97,13 +96,6 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     mediaEligible: true,
     objectPosition: "center 28%",
     preferredSlot: "feature"
-  },
-  "ai-agent-competitive-edge": {
-    accentTone: "violet",
-    imageSrc: withVersionedAssetPath("/images/featured/ai-agent.svg"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "vertical"
   },
   "erp-government-api-integrations": {
     accentTone: "mint",

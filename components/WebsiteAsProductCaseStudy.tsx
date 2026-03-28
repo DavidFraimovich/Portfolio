@@ -25,12 +25,6 @@ function getFeaturedCards(locale: Locale): FeaturedCard[] {
 
   return [
     {
-      slug: "ai-agent-competitive-edge",
-      title: isHebrew ? "AI Agent כיתרון תחרותי" : "AI Agent as a competitive edge",
-      meta: isHebrew ? "פינטק, שלב מוקדם" : "Fintech, early-stage",
-      image: "/images/featured/ai-agent.svg"
-    },
-    {
       slug: "erp-government-api-integrations",
       title: isHebrew ? "אינטגרציות ERP + APIs ממשלתיים" : "ERP + Government API integrations",
       meta: "Fintech/SaaS",
@@ -307,7 +301,11 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
           </article>
           <article className="card impact-tile">
             <h3>04</h3>
-            <p>{isHebrew ? "AI Agent + אופטימיזציית BI/Data" : "AI Agent + BI/Data optimization"}</p>
+            <p>
+              {isHebrew
+                ? "אופטימיזציית BI/Data לשיפור נראות תפעולית"
+                : "BI/Data optimization for stronger operational visibility"}
+            </p>
           </article>
           <article className="card impact-tile">
             <h3>05</h3>
@@ -371,8 +369,8 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
           </li>
           <li>
             {isHebrew
-              ? "AI Agent לדיפרנציאציה + BI/Data לשיפור החלטות תפעוליות."
-              : "AI Agent for differentiation + BI/Data to improve operations and decisions."}
+              ? "BI/Data לשיפור החלטות תפעוליות ונראות צוותית."
+              : "BI/Data improvements to strengthen operational decisions and team visibility."}
           </li>
         </ol>
       </section>
@@ -398,8 +396,8 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
         </h2>
         <p>
           {isHebrew
-            ? "PM מוצרי וטכני עם ניסיון 0→1, אינטגרציות API מורכבות, ניהול תלויות בין-צוותיות ויצירת יתרון עסקי דרך AI + Data."
-            : "Product + technical PM with delivery, complex API integrations, cross-team dependency management, and business differentiation through AI + Data."}
+            ? "PM מוצרי וטכני עם ניסיון 0→1, אינטגרציות API מורכבות, ניהול תלויות בין-צוותיות והובלת החלטות מבוססות Data."
+            : "Product + technical PM with delivery, complex API integrations, cross-team dependency management, and data-informed product decisions."}
         </p>
         <div className="cta-row">
           <TrackedLink
