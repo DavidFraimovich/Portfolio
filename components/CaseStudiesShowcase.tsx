@@ -60,7 +60,7 @@ const heroCopy = {
   he: {
     eyebrow: "עבודות נבחרות",
     overflowTitle: "מחקרי מקרה נוספים",
-    scrollLabel: "גללו כדי לחקור"
+    scrollLabel: "גללו כדי לראות עוד"
   }
 } satisfies Record<Locale, { eyebrow: string; overflowTitle: string; scrollLabel: string }>;
 
@@ -154,14 +154,6 @@ const toneStyles: Record<AccentTone, CaseStudyToneStyle> = {
     "--case-glow": "rgba(144, 160, 191, 0.2)"
   }
 };
-
-function getTitleLines(title: string): [string, string?] {
-  const parts = title.trim().split(/\s+/);
-  if (parts.length <= 1) return [title];
-
-  const midpoint = Math.ceil(parts.length / 2);
-  return [parts.slice(0, midpoint).join(" "), parts.slice(midpoint).join(" ")];
-}
 
 function getCardConfig(slug: string): CaseStudyListCardConfig {
   return CASE_STUDY_LIST_CONFIG[slug] ?? { accentTone: "violet" };
@@ -534,7 +526,6 @@ export function CaseStudiesShowcase({
   const copy = heroCopy[locale];
   const heroMedia = resolveHeroMedia(orderedCaseStudies);
   const { overflow, primary } = assignPrimarySlots(orderedCaseStudies);
-  const [titleLineOne, titleLineTwo] = getTitleLines(title);
 
   return (
     <div className={styles.page}>
@@ -560,13 +551,7 @@ export function CaseStudiesShowcase({
             </div>
 
             <h1 className={styles.heroTitle} id="case-studies-hero-title">
-              <span>{titleLineOne}</span>
-              {titleLineTwo ? (
-                <>
-                  <br />
-                  <span>{titleLineTwo}</span>
-                </>
-              ) : null}
+              {title}
             </h1>
 
             <p className={styles.heroIntro}>{renderHeroIntro(locale)}</p>

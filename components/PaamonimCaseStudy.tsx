@@ -68,7 +68,7 @@ export function PaamonimCaseStudy({ locale }: Props) {
   const [displayTitle, displaySubtitle] = content.title.split(" — ");
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-locale={locale}>
       <section className={styles.summarySection} aria-labelledby={`paamonim-title-${locale}`}>
         <div className={styles.summaryShell}>
           <div className={styles.heroVisual} aria-hidden="true">
@@ -85,11 +85,6 @@ export function PaamonimCaseStudy({ locale }: Props) {
 
           <div className={styles.heroContent}>
             <div className={styles.heroText}>
-              <div className={styles.eyebrowPill}>
-                <span className={styles.eyebrowDot} aria-hidden="true" />
-                <p className={styles.eyebrow}>{content.metadataTitle}</p>
-              </div>
-
               <div className={styles.heroHeadingBlock}>
                 <h1 className={styles.titleMain} id={`paamonim-title-${locale}`}>
                   {displayTitle}
@@ -99,7 +94,6 @@ export function PaamonimCaseStudy({ locale }: Props) {
 
               <div className={styles.heroBody}>
                 <p className={styles.valueStatement}>{content.valueStatement}</p>
-                <p className={styles.summary}>{content.summary}</p>
               </div>
             </div>
 
@@ -122,6 +116,23 @@ export function PaamonimCaseStudy({ locale }: Props) {
               <span className={styles.scrollLabel}>{content.scrollLabel}</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className={styles.aboutSection} aria-labelledby={`paamonim-about-${locale}`}>
+        <div className={styles.aboutSurface}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitleRow}>
+              <span className={styles.sectionTitleIconWrap} aria-hidden="true">
+                <Building2 className={styles.sectionTitleIcon} strokeWidth={1.9} />
+              </span>
+              <h2 className={styles.sectionTitle} id={`paamonim-about-${locale}`}>
+                {content.aboutTitle}
+              </h2>
+            </div>
+          </div>
+
+          <p className={styles.aboutCopy}>{content.summary}</p>
         </div>
       </section>
 

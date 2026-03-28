@@ -30,6 +30,7 @@ type PaamonimCaseStudyContent = {
   title: string;
   valueStatement: string;
   summary: string;
+  aboutTitle: string;
   metadataTitle: string;
   metadata: PaamonimMetadataItem[];
   scrollLabel: string;
@@ -50,6 +51,7 @@ export const paamonimCaseStudyContent = {
       "The app was developed as a central digital tool for day-to-day financial management, allowing users to manage the household from anywhere: income, expenses, debts, assets, and budget — all in one place. Alongside independent use, the system was also adapted for families receiving guidance from the organization’s volunteers, to enable efficient information sharing and a more precise guidance process.",
     summary:
       "Paamonim is a nonprofit social organization that works to promote balanced and responsible financial conduct among households in Israel. The organization provides financial guidance, knowledge, and practical tools to families and individuals, with the goal of strengthening economic independence and improving the quality of financial decision-making.",
+    aboutTitle: "About Paamonim",
     metadataTitle: "Project details",
     metadata: [
       {
@@ -148,6 +150,7 @@ export const paamonimCaseStudyContent = {
       "האפליקציה פותחה ככלי דיגיטלי מרכזי לניהול כלכלי יומיומי, המאפשר למשתמשים לנהל את משק הבית מכל מקום: הכנסות, הוצאות, חובות, נכסים ותקציב — הכל במקום אחד. לצד שימוש עצמאי, המערכת הותאמה גם למשפחות שמקבלות ליווי ממתנדבי הארגון, כדי לאפשר שיתוף מידע יעיל ותהליך ליווי מדויק יותר.",
     summary:
       "פעמונים היא עמותה חברתית ללא מטרות רווח, הפועלת לקידום התנהלות כלכלית מאוזנת ואחראית בקרב משקי בית בישראל. הארגון מעניק ליווי פיננסי, ידע וכלים פרקטיים למשפחות וליחידים, במטרה לחזק עצמאות כלכלית ולשפר את איכות קבלת ההחלטות הפיננסיות.",
+    aboutTitle: "אודות פעמונים",
     metadataTitle: "פרטי הפרויקט",
     metadata: [
       {

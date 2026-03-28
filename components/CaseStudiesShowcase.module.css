@@ -87,12 +87,13 @@
 .heroInner {
   position: relative;
   z-index: 3;
-  width: min(1100px, 92vw);
+  width: min(1440px, 92vw);
   margin: 0 auto;
 }
 
 .heroCopy {
-  width: min(760px, 100%);
+  width: min(75vw, 1320px);
+  max-width: 75vw;
 }
 
 .eyebrow {
@@ -125,20 +126,21 @@
 .heroTitle {
   margin: 20px 0 0;
   color: var(--text-strong);
-  font-size: clamp(64px, 11vw, 142px);
+  font-size: clamp(64px, 9vw, 142px);
   line-height: 0.9;
   letter-spacing: var(--site-display-tracking);
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .heroIntro {
   margin: 24px 0 0;
-  max-width: 620px;
+  width: min(75vw, 1240px);
+  max-width: 75vw;
   color: rgba(229, 235, 248, 0.84);
-  font-size: clamp(21px, 2.4vw, 34px);
+  font-size: clamp(18px, 1.7vw, 28px);
   line-height: 1.55;
   font-weight: 300;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .heroEmphasis {
@@ -779,6 +781,21 @@
   .hero {
     min-height: clamp(560px, 72vh, 760px);
     padding-bottom: 72px;
+  }
+
+  .heroCopy {
+    width: min(100%, 860px);
+    max-width: 100%;
+  }
+
+  .heroTitle,
+  .heroIntro {
+    white-space: normal;
+  }
+
+  .heroIntro {
+    width: min(100%, 760px);
+    max-width: 100%;
   }
 
   .editorialGrid {
