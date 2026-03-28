@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev-with-relay.mjs",
+    "dev:guard": "node --experimental-strip-types scripts/dev-server.mts",
     "dev:next": "next dev",
     "build": "next build",
     "start": "next start",

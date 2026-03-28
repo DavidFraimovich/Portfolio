@@ -434,7 +434,7 @@
 .metricsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 0;
 }
 
 .metricCard {
@@ -443,10 +443,11 @@
   display: grid;
   align-content: start;
   gap: 16px;
-  padding: 22px;
-  border: 1px solid var(--pa-card-border);
-  border-radius: 28px;
-  background: var(--pa-card-bg);
+  padding: 22px 26px;
+}
+
+.metricCard:not(:first-child) {
+  border-inline-start: 1px solid var(--pa-divider);
 }
 
 .metricTopRow {
@@ -471,9 +472,6 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  border-radius: 16px;
-  border: 1px solid var(--pa-card-border);
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .metricIcon {
@@ -611,6 +609,15 @@
 
   .metricCard {
     min-height: 0;
+  }
+
+  .metricCard {
+    padding: 22px 0;
+  }
+
+  .metricCard:not(:first-child) {
+    border-inline-start: 0;
+    border-top: 1px solid var(--pa-divider);
   }
 }
 

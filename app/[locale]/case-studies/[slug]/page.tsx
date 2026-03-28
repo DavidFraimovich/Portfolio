@@ -33,7 +33,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!entry) {
     return {
       title: {
-        absolute: buildDocumentTitle("Case Study Not Found", site.brand_name)
+        absolute: buildDocumentTitle(site.not_found_title, site.brand_name)
+      },
+      description: site.not_found_description,
+      twitter: {
+        card: "summary_large_image",
+        title: site.not_found_title,
+        description: site.not_found_description
       }
     };
   }

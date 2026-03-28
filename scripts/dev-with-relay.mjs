@@ -9,7 +9,7 @@ function runScript(name) {
   });
 }
 
-const processes = [runScript("relay:contact"), runScript("dev:next")];
+const processes = [runScript("relay:contact"), runScript("dev:guard")];
 let shuttingDown = false;
 
 function shutdown(exitCode = 0) {
