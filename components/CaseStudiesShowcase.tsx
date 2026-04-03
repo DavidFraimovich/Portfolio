@@ -83,6 +83,7 @@ const HERO_PRIORITY = [
 const CASE_STUDY_PRIORITY = [
   "signy",
   "paamonim-smart-financial-management-app",
+  "smart-campus-access-control-system",
   "instant-loan-request-system"
 ] as const;
 
@@ -96,6 +97,9 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     mediaEligible: true,
     objectPosition: "center 28%",
     preferredSlot: "feature"
+  },
+  "smart-campus-access-control-system": {
+    accentTone: "sky"
   },
   "erp-government-api-integrations": {
     accentTone: "mint",

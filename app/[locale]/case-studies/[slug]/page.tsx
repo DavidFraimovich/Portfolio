@@ -5,6 +5,7 @@ import { MdxContent } from "@/components/MdxContent";
 import { PaamonimCaseStudy } from "@/components/PaamonimCaseStudy";
 import { ResearchSearchCaseStudy } from "@/components/ResearchSearchCaseStudy";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
+import { SmartCampusCaseStudy } from "@/components/SmartCampusCaseStudy";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
@@ -83,6 +84,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   }
   if (entry.slug === "paamonim-smart-financial-management-app") {
     return <PaamonimCaseStudy locale={locale} />;
+  }
+  if (entry.slug === "smart-campus-access-control-system") {
+    return <SmartCampusCaseStudy locale={locale} />;
   }
   if (entry.slug === "research-search-engine-based-on-rag") {
     return <ResearchSearchCaseStudy locale={locale} />;
