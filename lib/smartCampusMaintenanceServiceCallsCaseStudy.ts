@@ -191,7 +191,7 @@ export const smartCampusMaintenanceServiceCallsCaseStudyContent = {
           icon: "users"
         }
       ],
-      mediaLabel: "Future media slot"
+      mediaLabel: "Smart Campus maintenance and service module hero image"
     },
     highlightsAriaLabel: "Maintenance and service module highlights",
     highlights: [
@@ -514,7 +514,7 @@ export const smartCampusMaintenanceServiceCallsCaseStudyContent = {
           icon: "period"
         }
       ],
-      mediaLabel: "מקום שמור למדיה"
+      mediaLabel: "תמונת hero של מודול אחזקה וקריאות שירות של Smart Campus"
     },
     highlightsAriaLabel: "היילייטים של מודול אחזקה וקריאות שירות",
     highlights: [

@@ -151,40 +151,22 @@ export function SmartCampusMaintenanceServiceCallsCaseStudy({ locale }: Props) {
               </div>
             </div>
 
-            <div
-              aria-label={content.hero.mediaLabel}
-              className={styles.heroVisual}
-              role="img"
-            >
+            <div className={styles.heroVisual}>
               <div className={styles.placeholderPanel}>
+                <img
+                  alt={content.hero.mediaLabel}
+                  className={styles.heroImage}
+                  decoding="async"
+                  fetchPriority="high"
+                  height="1412"
+                  loading="eager"
+                  src="/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
+                  width="1765"
+                />
+                <span className={styles.heroImageScrim} aria-hidden="true" />
                 <span className={styles.placeholderGlow} aria-hidden="true" />
                 <span className={styles.placeholderGlowSecondary} aria-hidden="true" />
                 <span className={styles.placeholderHalo} aria-hidden="true" />
-
-                <div className={styles.placeholderFrame} aria-hidden="true">
-                  <span className={styles.placeholderLine} />
-                  <span className={styles.placeholderLine} />
-                  <span className={styles.placeholderLine} />
-                  <span className={styles.placeholderDivider} />
-                  <div className={styles.placeholderTiles}>
-                    <span className={styles.placeholderTile} />
-                    <span className={styles.placeholderTile} />
-                    <span className={styles.placeholderTile} />
-                    <span className={styles.placeholderTileWide} />
-                  </div>
-                </div>
-
-                <div className={styles.placeholderCard} aria-hidden="true">
-                  <span className={styles.placeholderCardDot} />
-                  <span className={styles.placeholderCardRule} />
-                  <span className={styles.placeholderCardRuleShort} />
-                </div>
-
-                <div className={styles.placeholderTicket} aria-hidden="true">
-                  <span className={styles.placeholderTicketBar} />
-                  <span className={styles.placeholderTicketBarShort} />
-                  <span className={styles.placeholderTicketPill} />
-                </div>
               </div>
             </div>
           </div>

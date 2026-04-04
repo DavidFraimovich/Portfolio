@@ -11,6 +11,8 @@
   --lc-hero-panel: rgba(7, 11, 20, 0.74);
   --lc-hero-panel-border: rgba(99, 102, 241, 0.14);
   --lc-hero-divider: rgba(99, 102, 241, 0.14);
+  --lc-hero-overlay-solid: rgba(9, 12, 21, 0.84);
+  --lc-hero-overlay-mid: rgba(9, 12, 21, 0.48);
   --lc-top-bg:
     radial-gradient(130% 120% at 100% 0%, rgba(0, 245, 255, 0.12), rgba(0, 245, 255, 0) 44%),
     radial-gradient(90% 100% at 0% 0%, rgba(99, 102, 241, 0.18), rgba(99, 102, 241, 0) 48%),
@@ -40,6 +42,8 @@
   --lc-hero-panel: rgba(255, 255, 255, 0.72);
   --lc-hero-panel-border: rgba(99, 102, 241, 0.12);
   --lc-hero-divider: rgba(99, 102, 241, 0.12);
+  --lc-hero-overlay-solid: rgba(248, 251, 255, 0.94);
+  --lc-hero-overlay-mid: rgba(248, 251, 255, 0.58);
   --lc-top-bg:
     radial-gradient(130% 120% at 100% 0%, rgba(0, 245, 255, 0.11), rgba(0, 245, 255, 0) 46%),
     radial-gradient(90% 100% at 0% 0%, rgba(99, 102, 241, 0.14), rgba(99, 102, 241, 0) 48%),
@@ -67,6 +71,8 @@
     --lc-hero-panel: rgba(255, 255, 255, 0.72);
     --lc-hero-panel-border: rgba(99, 102, 241, 0.12);
     --lc-hero-divider: rgba(99, 102, 241, 0.12);
+    --lc-hero-overlay-solid: rgba(248, 251, 255, 0.94);
+    --lc-hero-overlay-mid: rgba(248, 251, 255, 0.58);
     --lc-top-bg:
       radial-gradient(130% 120% at 100% 0%, rgba(0, 245, 255, 0.11), rgba(0, 245, 255, 0) 46%),
       radial-gradient(90% 100% at 0% 0%, rgba(99, 102, 241, 0.14), rgba(99, 102, 241, 0) 48%),
@@ -84,6 +90,7 @@
     --lc-muted: #6d7c98;
     --lc-link: #243350;
   }
+
 }
 
 .heroSection {
@@ -127,40 +134,20 @@
 
 .root[data-locale="he"] .heroVisual::after {
   background: linear-gradient(to left,
-      rgba(9, 12, 21, 0.84) 0%,
-      rgba(9, 12, 21, 0.84) 24%,
-      rgba(9, 12, 21, 0.48) 50%,
+      var(--lc-hero-overlay-solid) 0%,
+      var(--lc-hero-overlay-solid) 24%,
+      var(--lc-hero-overlay-mid) 50%,
       rgba(0, 0, 0, 0.12) 72%,
       rgba(0, 0, 0, 0) 100%);
 }
 
 .root[data-locale="en"] .heroVisual::after {
   background: linear-gradient(to right,
-      rgba(9, 12, 21, 0.84) 0%,
-      rgba(9, 12, 21, 0.84) 24%,
-      rgba(9, 12, 21, 0.48) 50%,
+      var(--lc-hero-overlay-solid) 0%,
+      var(--lc-hero-overlay-solid) 24%,
+      var(--lc-hero-overlay-mid) 50%,
       rgba(0, 0, 0, 0.12) 72%,
       rgba(0, 0, 0, 0) 100%);
-}
-
-:global(html[data-theme="light"]) .root[data-locale="he"] .heroVisual::after,
-:global(html:not([data-theme="dark"])) .root[data-locale="he"] .heroVisual::after {
-  background: linear-gradient(to left,
-      rgba(248, 251, 255, 0.94) 0%,
-      rgba(248, 251, 255, 0.94) 24%,
-      rgba(248, 251, 255, 0.58) 50%,
-      rgba(248, 251, 255, 0.18) 72%,
-      rgba(248, 251, 255, 0) 100%);
-}
-
-:global(html[data-theme="light"]) .root[data-locale="en"] .heroVisual::after,
-:global(html:not([data-theme="dark"])) .root[data-locale="en"] .heroVisual::after {
-  background: linear-gradient(to right,
-      rgba(248, 251, 255, 0.94) 0%,
-      rgba(248, 251, 255, 0.94) 24%,
-      rgba(248, 251, 255, 0.58) 50%,
-      rgba(248, 251, 255, 0.18) 72%,
-      rgba(248, 251, 255, 0) 100%);
 }
 
 .heroImage {

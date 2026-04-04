@@ -113,7 +113,13 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     objectPosition: "center top"
   },
   "smart-campus-maintenance-service-calls-module": {
-    accentTone: "amber"
+    accentTone: "amber",
+    imageSrc: withVersionedAssetPath(
+      "/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
+    ),
+    mediaEligible: true,
+    objectPosition: "center center",
+    preferredSlot: "vertical"
   },
   "erp-government-api-integrations": {
     accentTone: "mint",
