@@ -151,8 +151,10 @@
   padding: 34px 0 34px;
   min-height: 1040px;
   /* background:
+  /* background:
     linear-gradient(180deg, var(--sc-hero-shell-top), var(--sc-hero-shell-bottom)),
     linear-gradient(90deg, var(--sc-hero-side-top), var(--sc-hero-side-mid) 58%, var(--sc-hero-side-top)),
+    var(--sc-hero-bg); */
     var(--sc-hero-bg); */
 }
 
@@ -187,6 +189,12 @@
       var(--sc-hero-copy-shadow-mid) 50%,
       rgba(0, 0, 0, 0.12) 72%,
       rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to left,
+      var(--sc-hero-copy-shadow-solid) 0%,
+      var(--sc-hero-copy-shadow-solid) 24%,
+      var(--sc-hero-copy-shadow-mid) 50%,
+      rgba(0, 0, 0, 0.12) 72%,
+      rgba(0, 0, 0, 0) 100%);
 }
 
 .root[data-locale="en"] .heroVisual::after {
@@ -196,10 +204,23 @@
       var(--sc-hero-copy-shadow-mid) 50%,
       rgba(0, 0, 0, 0.12) 72%,
       rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right,
+      var(--sc-hero-copy-shadow-solid) 0%,
+      var(--sc-hero-copy-shadow-solid) 24%,
+      var(--sc-hero-copy-shadow-mid) 50%,
+      rgba(0, 0, 0, 0.12) 72%,
+      rgba(0, 0, 0, 0) 100%);
 }
 
 .heroMediaWrap {
+.heroMediaWrap {
   position: absolute;
+  top: 72px;
+  right: 5%;
+  left: auto;
+  width: min(672px, 46vw);
+  opacity: 0.9;
+  filter: none;
   top: 72px;
   right: 5%;
   left: auto;
@@ -215,11 +236,26 @@
 .root[data-locale="he"] .heroMediaWrap {
   left: 5%;
   right: auto;
+.heroMediaWrap::before {
+  content: none;
+}
+
+.root[data-locale="he"] .heroMediaWrap {
+  left: 5%;
+  right: auto;
 }
 
 .heroMediaImage {
   display: block;
+.heroMediaImage {
+  display: block;
   width: 100%;
+  height: auto;
+  border-radius: 0;
+  border: 0;
+  transform: none;
+  object-position: center center;
+  box-shadow: none;
   height: auto;
   border-radius: 0;
   border: 0;
@@ -467,6 +503,7 @@
 }
 
 .highlightGrid {
+  gap: 0;
   gap: 0;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--sc-divider);
@@ -984,6 +1021,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
 
+
   .card,
   .screenImage,
   .chip,
@@ -1044,6 +1082,17 @@
     border-radius: 28px;
   }
 
+  .heroMediaWrap {
+    top: 96px;
+    right: 5%;
+    left: auto;
+    width: min(552px, 58vw);
+    opacity: 0.86;
+  }
+
+  .root[data-locale="he"] .heroMediaWrap {
+    left: 0;
+    right: auto;
   .heroMediaWrap {
     top: 96px;
     right: 5%;
@@ -1162,8 +1211,17 @@
     left: auto;
     width: min(324px, 80vw);
     opacity: 0.8;
+  .heroMediaWrap {
+    top: 184px;
+    right: 5%;
+    left: auto;
+    width: min(324px, 80vw);
+    opacity: 0.8;
   }
 
+  .root[data-locale="he"] .heroMediaWrap {
+    left: 0;
+    right: auto;
   .root[data-locale="he"] .heroMediaWrap {
     left: 0;
     right: auto;
@@ -1171,6 +1229,8 @@
 
   .metadataGrid,
   .highlightGrid,
+  .emphasisGrid,
+  .screensGrid {
   .emphasisGrid,
   .screensGrid {
     grid-template-columns: 1fr;
@@ -1196,6 +1256,7 @@
   }
 
   .metadataCard+.metadataCard {
+  .metadataCard+.metadataCard {
     border-top: 1px solid var(--sc-hero-divider);
   }
 
@@ -1206,6 +1267,10 @@
   .card {
     min-height: 0;
     padding: 20px 18px;
+  }
+
+  .screenCard {
+    padding: 12px;
   }
 
   .scrollCue {
@@ -1349,6 +1414,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 
   .accordionBody,
   .card,
