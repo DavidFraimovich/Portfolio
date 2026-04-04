@@ -1069,7 +1069,7 @@
     right: 5%;
     left: auto;
     width: min(552px, 58vw);
-    opacity: 0.86;
+    /* opacity: 0.86; */
   }
 
   .root[data-locale="he"] .heroMediaWrap {

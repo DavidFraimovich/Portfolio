@@ -11,6 +11,15 @@ npm run dev
 
 `npm run dev` now starts both the Next.js app and the local Telegram contact relay.
 
+## Local production preview
+
+```bash
+npm run build
+npm run start
+```
+
+`npm run start` serves the generated `out/` static export locally.
+
 ## Analytics and contact relay
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables GA4 on the static site.
