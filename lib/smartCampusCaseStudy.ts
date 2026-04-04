@@ -89,7 +89,6 @@ type SmartCampusCaseStudyContent = {
     subtitle: string;
     description: string;
     heroImageAlt: string;
-    heroImageAlt: string;
     chipsAriaLabel: string;
     chips: string[];
     metadataTitle: string;
@@ -119,7 +118,6 @@ export const smartCampusCaseStudyContent = {
       subtitle: "An IoT module for real-time entry and exit management",
       description:
         "A case study of a hardware-software product initiative that connected an ERP-based leave approval module with controllers, cameras, QR scanners, and NFC sensors - improving operational visibility and access control across educational institutions and youth villages.",
-      heroImageAlt: "Smart Campus access control module hero visual",
       heroImageAlt: "Smart Campus access control module hero visual",
       chipsAriaLabel: "Smart Campus project tags",
       chips: [
@@ -450,9 +448,8 @@ export const smartCampusCaseStudyContent = {
         `מחקר מקרה על פרויקט משולב חומרה-תוכנה, שחיבר בין מודול אישורי יציאה במערכת ${ltr(
           "ERP"
         )} לבין בקרים, מצלמות, סורקי ${ltr("QR")} וחיישני ${ltr(
-          "NFC"
-        )} - לטובת שליטה תפעולית טובה יותר במוסדות חינוך וכפרי נוער.`,
-      heroImageAlt: "תצוגת הירו של מודול בקרת הכניסה Smart Campus",
+        "NFC"
+      )} - לטובת שליטה תפעולית טובה יותר במוסדות חינוך וכפרי נוער.`,
       heroImageAlt: "תצוגת הירו של מודול בקרת הכניסה Smart Campus",
       chipsAriaLabel: "תגיות פרויקט Smart Campus",
       chips: [

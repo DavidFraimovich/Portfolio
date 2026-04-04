@@ -150,12 +150,6 @@
   width: 100%;
   padding: 34px 0 34px;
   min-height: 1040px;
-  /* background:
-  /* background:
-    linear-gradient(180deg, var(--sc-hero-shell-top), var(--sc-hero-shell-bottom)),
-    linear-gradient(90deg, var(--sc-hero-side-top), var(--sc-hero-side-mid) 58%, var(--sc-hero-side-top)),
-    var(--sc-hero-bg); */
-    var(--sc-hero-bg); */
 }
 
 .summaryShell::after {
@@ -213,7 +207,6 @@
 }
 
 .heroMediaWrap {
-.heroMediaWrap {
   position: absolute;
   top: 72px;
   right: 5%;
@@ -221,12 +214,6 @@
   width: min(672px, 46vw);
   opacity: 0.9;
   filter: none;
-  top: 72px;
-  right: 5%;
-  left: auto;
-  width: min(672px, 46vw);
-  opacity: 0.9;
-  filter: none;
 }
 
 .heroMediaWrap::before {
@@ -236,26 +223,11 @@
 .root[data-locale="he"] .heroMediaWrap {
   left: 5%;
   right: auto;
-.heroMediaWrap::before {
-  content: none;
 }
 
-.root[data-locale="he"] .heroMediaWrap {
-  left: 5%;
-  right: auto;
-}
-
-.heroMediaImage {
-  display: block;
 .heroMediaImage {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 0;
-  border: 0;
-  transform: none;
-  object-position: center center;
-  box-shadow: none;
   height: auto;
   border-radius: 0;
   border: 0;
@@ -1093,17 +1065,6 @@
   .root[data-locale="he"] .heroMediaWrap {
     left: 0;
     right: auto;
-  .heroMediaWrap {
-    top: 96px;
-    right: 5%;
-    left: auto;
-    width: min(552px, 58vw);
-    opacity: 0.86;
-  }
-
-  .root[data-locale="he"] .heroMediaWrap {
-    left: 0;
-    right: auto;
   }
 
   .metadataGrid {
@@ -1211,17 +1172,8 @@
     left: auto;
     width: min(324px, 80vw);
     opacity: 0.8;
-  .heroMediaWrap {
-    top: 184px;
-    right: 5%;
-    left: auto;
-    width: min(324px, 80vw);
-    opacity: 0.8;
   }
 
-  .root[data-locale="he"] .heroMediaWrap {
-    left: 0;
-    right: auto;
   .root[data-locale="he"] .heroMediaWrap {
     left: 0;
     right: auto;
@@ -1229,8 +1181,6 @@
 
   .metadataGrid,
   .highlightGrid,
-  .emphasisGrid,
-  .screensGrid {
   .emphasisGrid,
   .screensGrid {
     grid-template-columns: 1fr;
@@ -1255,8 +1205,7 @@
     border-top: 0;
   }
 
-  .metadataCard+.metadataCard {
-  .metadataCard+.metadataCard {
+  .metadataCard + .metadataCard {
     border-top: 1px solid var(--sc-hero-divider);
   }
 

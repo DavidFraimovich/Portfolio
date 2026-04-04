@@ -8,14 +8,15 @@ import {
   HardDrive,
   LayoutGrid,
   MapPinned,
-  Search,
   Package,
   Rocket,
   Route,
   Scale,
+  Search,
   ShieldCheck,
   TriangleAlert,
   UsersRound,
+  Workflow,
   type LucideIcon
 } from "lucide-react";
 import styles from "@/components/SmartCampusCaseStudy.module.css";
@@ -23,6 +24,7 @@ import {
   smartCampusCaseStudyContent,
   type SmartCampusAccordionIconKey,
   type SmartCampusEmphasisIconKey,
+  type SmartCampusHighlightIconKey,
   type SmartCampusMetadataIconKey
 } from "@/lib/smartCampusCaseStudy";
 import { localeDirection, type Locale } from "@/lib/i18n";
@@ -104,14 +106,6 @@ export function SmartCampusCaseStudy({ locale }: Props) {
                 loading="eager"
                 src="/images/case-studies/smart-campus-security-module/hero.png"
               />
-            <div className={styles.heroMediaWrap}>
-              <img
-                alt={content.hero.heroImageAlt}
-                className={styles.heroMediaImage}
-                decoding="async"
-                loading="eager"
-                src="/images/case-studies/smart-campus-security-module/hero.png"
-              />
             </div>
           </div>
 
@@ -166,9 +160,6 @@ export function SmartCampusCaseStudy({ locale }: Props) {
             <h2 className={styles.sectionTitle} id={`smart-campus-highlights-${locale}`}>
               {content.highlightsTitle}
             </h2>
-            <h2 className={styles.sectionTitle} id={`smart-campus-highlights-${locale}`}>
-              {content.highlightsTitle}
-            </h2>
           </div>
 
           <div className={styles.highlightGrid} aria-label={content.highlightsAriaLabel}>
@@ -186,9 +177,6 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-story-${locale}`}>
         <div className={styles.surface}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle} id={`smart-campus-story-${locale}`}>
-              {content.accordionTitle}
-            </h2>
             <h2 className={styles.sectionTitle} id={`smart-campus-story-${locale}`}>
               {content.accordionTitle}
             </h2>
@@ -288,9 +276,6 @@ export function SmartCampusCaseStudy({ locale }: Props) {
             <h2 className={styles.sectionTitle} id={`smart-campus-process-${locale}`}>
               {content.processTitle}
             </h2>
-            <h2 className={styles.sectionTitle} id={`smart-campus-process-${locale}`}>
-              {content.processTitle}
-            </h2>
           </div>
 
           <ol className={styles.processList}>
@@ -309,9 +294,6 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-analysis-${locale}`}>
         <div className={`${styles.surface} ${styles.emphasisSurface}`}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle} id={`smart-campus-analysis-${locale}`}>
-              {content.emphasisTitle}
-            </h2>
             <h2 className={styles.sectionTitle} id={`smart-campus-analysis-${locale}`}>
               {content.emphasisTitle}
             </h2>
