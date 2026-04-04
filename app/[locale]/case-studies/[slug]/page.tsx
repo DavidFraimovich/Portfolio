@@ -7,6 +7,7 @@ import { ResearchSearchCaseStudy } from "@/components/ResearchSearchCaseStudy";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { SmartCampusCaseStudy } from "@/components/SmartCampusCaseStudy";
 import { SmartCampusLearningCenterCaseStudy } from "@/components/SmartCampusLearningCenterCaseStudy";
+import { SmartCampusMaintenanceServiceCallsCaseStudy } from "@/components/SmartCampusMaintenanceServiceCallsCaseStudy";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
@@ -91,6 +92,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   }
   if (entry.slug === "smart-campus-learning-center-module") {
     return <SmartCampusLearningCenterCaseStudy locale={locale} />;
+  }
+  if (entry.slug === "smart-campus-maintenance-service-calls-module") {
+    return <SmartCampusMaintenanceServiceCallsCaseStudy locale={locale} />;
   }
   if (entry.slug === "research-search-engine-based-on-rag") {
     return <ResearchSearchCaseStudy locale={locale} />;

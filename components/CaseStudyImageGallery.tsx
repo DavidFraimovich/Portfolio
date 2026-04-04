@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight, Minus, Plus, X } from "lucide-react";
 import { type CSSProperties, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "@/components/CaseStudyImageGallery.module.css";
 import {
   getCaseStudyImageGalleryCopy,
@@ -36,6 +37,7 @@ type BaseProps = {
 type GridProps = BaseProps & {
   images: CaseStudyGalleryImage[];
   layout?: "grid";
+  previewIndices?: readonly number[];
 };
 
 type SingleProps = BaseProps & {
@@ -59,6 +61,16 @@ function normalizeOrientation(image: CaseStudyGalleryImage): "landscape" | "port
 
 export function CaseStudyImageGallery(props: Props) {
   const images = props.layout === "single" ? [props.image] : props.images;
+  const previewEntries =
+    props.layout === "single"
+      ? images.map((image, index) => ({ image, sourceIndex: index }))
+      : (props.previewIndices?.length
+          ? Array.from(new Set(props.previewIndices.filter((index) => index >= 0 && index < images.length)))
+          : images.map((_, index) => index)
+        ).map((sourceIndex) => ({
+          image: images[sourceIndex],
+          sourceIndex
+        }));
   const copy = props.copy ?? getCaseStudyImageGalleryCopy(props.locale);
   const direction = localeDirection(props.locale);
   const isRtl = direction === "rtl";
@@ -67,6 +79,7 @@ export function CaseStudyImageGallery(props: Props) {
   const previousKey = isRtl ? "ArrowRight" : "ArrowLeft";
   const nextKey = isRtl ? "ArrowLeft" : "ArrowRight";
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
   const [zoom, setZoom] = useState(MIN_ZOOM);
   const dialogRef = useRef<HTMLDivElement>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
@@ -77,6 +90,10 @@ export function CaseStudyImageGallery(props: Props) {
   const canNavigate = images.length > 1;
   const canZoomIn = zoom < MAX_ZOOM;
   const canZoomOut = zoom > MIN_ZOOM;
+
+  useEffect(() => {
+    setPortalRoot(document.body);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -218,16 +235,16 @@ export function CaseStudyImageGallery(props: Props) {
   return (
     <>
       <div className={rootClassName} aria-label={props.ariaLabel}>
-        {images.map((image, index) => (
+        {previewEntries.map(({ image, sourceIndex }) => (
           <figure
             className={itemClassName}
             data-orientation={normalizeOrientation(image)}
-            key={`${image.src}-${index}`}
+            key={`${image.src}-${sourceIndex}`}
           >
             <button
               type="button"
               className={cn(styles.trigger, props.classNames?.button)}
-              onClick={() => openGallery(index)}
+              onClick={() => openGallery(sourceIndex)}
               aria-label={image.alt ? `${copy.open}: ${image.alt}` : copy.open}
             >
               <img
@@ -242,121 +259,124 @@ export function CaseStudyImageGallery(props: Props) {
         ))}
       </div>
 
-      {activeImage ? (
-        <div className={styles.portal} onClick={closeGallery} role="presentation">
-          <div className={styles.backdrop} aria-hidden="true" />
-          <div className={styles.shell}>
-            <div
-              ref={dialogRef}
-              role="dialog"
-              aria-modal="true"
-              aria-label={dialogLabel}
-              aria-describedby={captionText ? captionId : undefined}
-              className={cn(styles.dialog, props.classNames?.dialog)}
-              dir={direction}
-              tabIndex={-1}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className={styles.toolbar}>
-                <span className={styles.counter}>
-                  {activePosition} / {images.length}
-                </span>
+      {activeImage && portalRoot
+        ? createPortal(
+            <div className={styles.portal} onClick={closeGallery} role="presentation">
+              <div className={styles.backdrop} aria-hidden="true" />
+              <div className={styles.shell}>
+                <div
+                  ref={dialogRef}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={dialogLabel}
+                  aria-describedby={captionText ? captionId : undefined}
+                  className={cn(styles.dialog, props.classNames?.dialog)}
+                  dir={direction}
+                  tabIndex={-1}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <div className={styles.toolbar}>
+                    <span className={styles.counter}>
+                      {activePosition} / {images.length}
+                    </span>
 
-                <div className={styles.toolbarActions}>
-                  {canNavigate ? (
-                    <>
+                    <div className={styles.toolbarActions}>
+                      {canNavigate ? (
+                        <>
+                          <button
+                            type="button"
+                            className={styles.iconButton}
+                            onClick={showPrevious}
+                            aria-label={copy.previous}
+                          >
+                            <PreviousIcon aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.iconButton}
+                            onClick={showNext}
+                            aria-label={copy.next}
+                          >
+                            <NextIcon aria-hidden="true" />
+                          </button>
+                        </>
+                      ) : null}
                       <button
                         type="button"
                         className={styles.iconButton}
+                        onClick={zoomOut}
+                        aria-label={copy.zoomOut}
+                        disabled={!canZoomOut}
+                      >
+                        <Minus aria-hidden="true" />
+                      </button>
+                      <span className={styles.zoomValue}>{Math.round(zoom * 100)}%</span>
+                      <button
+                        type="button"
+                        className={styles.iconButton}
+                        onClick={zoomIn}
+                        aria-label={copy.zoomIn}
+                        disabled={!canZoomIn}
+                      >
+                        <Plus aria-hidden="true" />
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.iconButton}
+                        onClick={closeGallery}
+                        aria-label={copy.close}
+                      >
+                        <X aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className={styles.stage}>
+                    {canNavigate ? (
+                      <button
+                        type="button"
+                        className={cn(styles.navButton, styles.navPrev)}
                         onClick={showPrevious}
                         aria-label={copy.previous}
                       >
                         <PreviousIcon aria-hidden="true" />
                       </button>
+                    ) : null}
+
+                    <div className={styles.viewport}>
+                      <figure className={styles.figure} style={galleryFigureStyle}>
+                        <img
+                          alt={activeImage.alt}
+                          className={styles.fullImage}
+                          decoding="async"
+                          src={activeImage.src}
+                        />
+                      </figure>
+                    </div>
+
+                    {canNavigate ? (
                       <button
                         type="button"
-                        className={styles.iconButton}
+                        className={cn(styles.navButton, styles.navNext)}
                         onClick={showNext}
                         aria-label={copy.next}
                       >
                         <NextIcon aria-hidden="true" />
                       </button>
-                    </>
+                    ) : null}
+                  </div>
+
+                  {captionText ? (
+                    <p id={captionId} className={cn(styles.caption, props.classNames?.caption)}>
+                      {captionText}
+                    </p>
                   ) : null}
-                  <button
-                    type="button"
-                    className={styles.iconButton}
-                    onClick={zoomOut}
-                    aria-label={copy.zoomOut}
-                    disabled={!canZoomOut}
-                  >
-                    <Minus aria-hidden="true" />
-                  </button>
-                  <span className={styles.zoomValue}>{Math.round(zoom * 100)}%</span>
-                  <button
-                    type="button"
-                    className={styles.iconButton}
-                    onClick={zoomIn}
-                    aria-label={copy.zoomIn}
-                    disabled={!canZoomIn}
-                  >
-                    <Plus aria-hidden="true" />
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.iconButton}
-                    onClick={closeGallery}
-                    aria-label={copy.close}
-                  >
-                    <X aria-hidden="true" />
-                  </button>
                 </div>
               </div>
-
-              <div className={styles.stage}>
-                {canNavigate ? (
-                  <button
-                    type="button"
-                    className={cn(styles.navButton, styles.navPrev)}
-                    onClick={showPrevious}
-                    aria-label={copy.previous}
-                  >
-                    <PreviousIcon aria-hidden="true" />
-                  </button>
-                ) : null}
-
-                <div className={styles.viewport}>
-                  <figure className={styles.figure} style={galleryFigureStyle}>
-                    <img
-                      alt={activeImage.alt}
-                      className={styles.fullImage}
-                      decoding="async"
-                      src={activeImage.src}
-                    />
-                  </figure>
-                </div>
-
-                {canNavigate ? (
-                  <button
-                    type="button"
-                    className={cn(styles.navButton, styles.navNext)}
-                    onClick={showNext}
-                    aria-label={copy.next}
-                  >
-                    <NextIcon aria-hidden="true" />
-                  </button>
-                ) : null}
-              </div>
-
-              {captionText ? (
-                <p id={captionId} className={cn(styles.caption, props.classNames?.caption)}>
-                  {captionText}
-                </p>
-              ) : null}
-            </div>
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            portalRoot
+          )
+        : null}
     </>
   );
 }

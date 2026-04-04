@@ -33,6 +33,8 @@ type Props = {
   locale: Locale;
 };
 
+const MARKETING_PREVIEW_INDICES = [0, 1, 2] as const;
+
 const METADATA_ICONS: Record<SmartCampusLearningCenterMetadataIconKey, LucideIcon> = {
   productType: LayoutGrid,
   role: BriefcaseBusiness,
@@ -236,6 +238,7 @@ export function SmartCampusLearningCenterCaseStudy({ locale }: Props) {
             dialogLabel={content.marketing.ariaLabel}
             images={content.marketing.slides}
             locale={locale}
+            previewIndices={MARKETING_PREVIEW_INDICES}
             classNames={{
               button: styles.marketingGalleryButton,
               image: styles.marketingGalleryImage,

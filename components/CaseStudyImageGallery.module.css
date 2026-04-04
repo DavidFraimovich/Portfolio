@@ -56,18 +56,21 @@
   width: 100%;
   height: 100%;
   display: grid;
+  place-items: center;
   padding: 16px;
 }
 
 .dialog {
-  --gallery-landscape-width: min(92vw, 1720px);
-  --gallery-portrait-width: min(42vw, 760px);
-  width: calc(100vw - 32px);
-  height: calc(100vh - 32px);
+  --gallery-landscape-width: min(84vw, 1560px);
+  --gallery-portrait-width: min(40vw, 700px);
+  width: min(1760px, 100%);
+  max-width: 100%;
+  height: min(calc(100vh - 32px), 100%);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 14px;
   padding: 18px;
+  box-sizing: border-box;
   border: 1px solid rgba(173, 189, 255, 0.2);
   border-radius: 32px;
   background:
@@ -80,11 +83,12 @@
 .toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
+  direction: ltr;
 }
 
 .counter {
+  margin-inline-end: auto;
   color: rgba(186, 197, 220, 0.84);
   font-size: 13px;
   line-height: 1.4;
@@ -97,6 +101,7 @@
 
 .toolbarActions {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
@@ -129,11 +134,11 @@
 }
 
 .navPrev {
-  inset-inline-start: 12px;
+  inset-inline-start: clamp(28px, 2.8vw, 40px);
 }
 
 .navNext {
-  inset-inline-end: 12px;
+  inset-inline-end: clamp(28px, 2.8vw, 40px);
 }
 
 .iconButton svg,
@@ -167,23 +172,25 @@
   overflow: auto;
   display: grid;
   place-items: center;
-  padding: 10px 82px;
+  padding: 10px clamp(92px, 8vw, 128px);
   scrollbar-gutter: stable both-edges;
 }
 
 .figure {
   --gallery-base-width: var(--gallery-landscape-width);
   --gallery-zoom: 1;
-  width: calc(var(--gallery-base-width) * var(--gallery-zoom));
+  display: grid;
+  place-items: center;
+  width: var(--gallery-base-width);
   max-width: none;
   margin: 0;
-  transition: width 180ms ease;
 }
 
 .fullImage {
   display: block;
-  width: 100%;
+  width: calc(100% * var(--gallery-zoom));
   height: auto;
+  max-width: none;
   border-radius: 28px;
 }
 
@@ -209,7 +216,7 @@
   .trigger,
   .image,
   .dialog,
-  .figure {
+  .fullImage {
     transition:
       transform 180ms ease,
       box-shadow 180ms ease,
@@ -233,12 +240,12 @@
   }
 
   .dialog {
-    --gallery-landscape-width: min(90vw, 1280px);
+    --gallery-landscape-width: min(88vw, 1280px);
     --gallery-portrait-width: min(56vw, 620px);
   }
 
   .viewport {
-    padding-inline: 58px;
+    padding-inline: 68px;
   }
 
   .navButton {
@@ -259,8 +266,8 @@
   .dialog {
     --gallery-landscape-width: min(94vw, 760px);
     --gallery-portrait-width: min(78vw, 460px);
-    width: calc(100vw - 24px);
-    height: calc(100vh - 24px);
+    width: 100%;
+    height: min(calc(100vh - 24px), 100%);
     padding: 14px;
     border-radius: 26px;
   }

@@ -22,6 +22,7 @@ function buildMarketingSlides(locale: Locale): CaseStudyGalleryImage[] {
 
   return marketingSlideFilenames.map((filename, index) => ({
     alt: `${slideLabel} ${String(index + 1).padStart(2, "0")}`,
+    loading: index < 4 ? "eager" : "lazy",
     orientation: "landscape",
     src: `/images/case-studies/smart-campus-study-center/${filename}`
   }));

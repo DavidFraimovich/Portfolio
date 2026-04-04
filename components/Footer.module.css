@@ -726,11 +726,13 @@
   }
 
   .profileHeader {
+    flex-wrap: wrap;
     gap: 14px;
   }
 
   .profileName {
     font-size: clamp(24px, 8vw, 34px);
+    white-space: normal;
   }
 
   .profileSummary {
