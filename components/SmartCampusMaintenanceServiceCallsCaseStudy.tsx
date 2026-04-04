@@ -19,6 +19,7 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { SmartCampusMaintenanceServiceCallsAccordion } from "@/components/SmartCampusMaintenanceServiceCallsAccordion";
 import styles from "@/components/SmartCampusMaintenanceServiceCallsCaseStudy.module.css";
 import type { Locale } from "@/lib/i18n";
+import { withVersionedAssetPath } from "@/lib/site";
 import {
   smartCampusMaintenanceServiceCallsCaseStudyContent,
   type SmartCampusMaintenanceEmphasisIconKey,
@@ -160,7 +161,9 @@ export function SmartCampusMaintenanceServiceCallsCaseStudy({ locale }: Props) {
                   fetchPriority="high"
                   height="1412"
                   loading="eager"
-                  src="/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
+                  src={withVersionedAssetPath(
+                    "/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
+                  )}
                   width="1765"
                 />
                 <span className={styles.heroImageScrim} aria-hidden="true" />

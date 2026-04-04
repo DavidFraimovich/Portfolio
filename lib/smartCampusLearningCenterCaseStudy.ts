@@ -1,5 +1,6 @@
 import type { CaseStudyGalleryImage } from "@/lib/caseStudyImageGallery";
 import type { Locale } from "@/lib/i18n";
+import { withVersionedAssetPath } from "@/lib/site";
 
 const smartCampusLink = "https://www.smart-campus.co.il/";
 const ltr = (value: string): string => `\u2066${value}\u2069`;
@@ -24,7 +25,7 @@ function buildMarketingSlides(locale: Locale): CaseStudyGalleryImage[] {
     alt: `${slideLabel} ${String(index + 1).padStart(2, "0")}`,
     loading: index < 4 ? "eager" : "lazy",
     orientation: "landscape",
-    src: `/images/case-studies/smart-campus-study-center/${filename}`
+    src: withVersionedAssetPath(`/images/case-studies/smart-campus-study-center/${filename}`)
   }));
 }
 

@@ -21,6 +21,7 @@ import { SmartCampusLearningCenterAccordion } from "@/components/SmartCampusLear
 import { TrackedLink } from "@/components/TrackedLink";
 import styles from "@/components/SmartCampusLearningCenterCaseStudy.module.css";
 import type { Locale } from "@/lib/i18n";
+import { withVersionedAssetPath } from "@/lib/site";
 import {
   smartCampusLearningCenterCaseStudyContent,
   type SmartCampusLearningCenterEmphasisIconKey,
@@ -106,7 +107,9 @@ export function SmartCampusLearningCenterCaseStudy({ locale }: Props) {
               fetchPriority="high"
               height="1094"
               loading="eager"
-              src="/images/case-studies/smart-campus-study-center/smart-campus-study-center-hero.png"
+              src={withVersionedAssetPath(
+                "/images/case-studies/smart-campus-study-center/smart-campus-study-center-hero.png"
+              )}
               width="1475"
             />
           </div>

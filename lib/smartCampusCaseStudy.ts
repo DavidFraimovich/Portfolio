@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { withVersionedAssetPath } from "@/lib/site";
 import type {
   CaseStudyGalleryImage,
   CaseStudyImageGalleryCopy
@@ -369,32 +370,36 @@ export const smartCampusCaseStudyContent = {
     },
     screens: [
       {
-        src: "/images/case-studies/smart-campus-security-module/Permission.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Permission.png"),
         alt: "Smart Campus permission management dashboard",
         orientation: "landscape"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Permission%20(Students).png",
+        src: withVersionedAssetPath(
+          "/images/case-studies/smart-campus-security-module/Permission%20(Students).png"
+        ),
         alt: "Smart Campus student permission screen",
         orientation: "landscape"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Frame%203492.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Frame%203492.png"),
         alt: "Smart Campus mobile access flow screen",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/X%20-%2025.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/X%20-%2025.png"),
         alt: "Smart Campus mobile approval journey screen",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Bid%202.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Bid%202.png"),
         alt: "Smart Campus mobile confirmation screen",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png",
+        src: withVersionedAssetPath(
+          "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png"
+        ),
         alt: "Smart Campus long mobile project screen",
         orientation: "portrait"
       }
@@ -701,32 +706,36 @@ export const smartCampusCaseStudyContent = {
     },
     screens: [
       {
-        src: "/images/case-studies/smart-campus-security-module/Permission.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Permission.png"),
         alt: "מסך ניהול אישורים של Smart Campus",
         orientation: "landscape"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Permission%20(Students).png",
+        src: withVersionedAssetPath(
+          "/images/case-studies/smart-campus-security-module/Permission%20(Students).png"
+        ),
         alt: "מסך אישורי תלמידים של Smart Campus",
         orientation: "landscape"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Frame%203492.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Frame%203492.png"),
         alt: "מסך מובייל של זרימת בקרת הכניסה",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/X%20-%2025.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/X%20-%2025.png"),
         alt: "מסך מובייל של תהליך אישור וגישה",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/Bid%202.png",
+        src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/Bid%202.png"),
         alt: "מסך מובייל של אישור פעולה",
         orientation: "portrait"
       },
       {
-        src: "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png",
+        src: withVersionedAssetPath(
+          "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png"
+        ),
         alt: "מסך מובייל ארוך מתוך הפרויקט",
         orientation: "portrait"
       }

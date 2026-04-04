@@ -32,6 +32,7 @@ import {
   type SmartCampusMetadataIconKey
 } from "@/lib/smartCampusCaseStudy";
 import type { Locale } from "@/lib/i18n";
+import { withVersionedAssetPath } from "@/lib/site";
 
 type Props = {
   locale: Locale;
@@ -114,7 +115,7 @@ export function SmartCampusCaseStudy({ locale }: Props) {
                 alt: content.hero.heroImageAlt,
                 loading: "eager",
                 orientation: "landscape",
-                src: "/images/case-studies/smart-campus-security-module/hero.png"
+                src: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/hero.png")
               }}
               locale={locale}
             />
