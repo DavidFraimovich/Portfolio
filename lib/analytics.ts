@@ -1,6 +1,7 @@
 import { basePath, siteUrl } from "@/lib/site";
 
 export const googleAnalyticsMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+const BLOCKED_ANALYTICS_HOSTNAMES = ["localhost", "127.0.0.1", "[::1]"] as const;
 
 type AnalyticsPrimitive = boolean | number | string;
 
@@ -47,6 +48,34 @@ declare global {
 const FILE_PATH_PATTERN = /\/[^/?#]+\.[a-z0-9]{1,8}$/i;
 const HTTP_PROTOCOL_PATTERN = /^https?:$/i;
 const ANALYTICS_TEXT_MAX_LENGTH = 180;
+
+function isBlockedAnalyticsHostname(hostname: string): boolean {
+  return BLOCKED_ANALYTICS_HOSTNAMES.includes(hostname as (typeof BLOCKED_ANALYTICS_HOSTNAMES)[number]);
+}
+
+export function isAnalyticsBlockedForCurrentHost(): boolean {
+  if (typeof window === "undefined") return false;
+  return isBlockedAnalyticsHostname(window.location.hostname);
+}
+
+export function getAnalyticsLocalhostGuardScript(measurementId: string): string {
+  const blockedHostnames = JSON.stringify(BLOCKED_ANALYTICS_HOSTNAMES);
+  const disableKey = JSON.stringify(`ga-disable-${measurementId}`);
+
+  return `
+    (function () {
+      try {
+        var hostnames = ${blockedHostnames};
+
+        if (hostnames.indexOf(window.location.hostname) === -1) {
+          return;
+        }
+
+        window[${disableKey}] = true;
+      } catch (e) {}
+    })();
+  `;
+}
 
 function getSiteOrigin(): string | undefined {
   try {
@@ -272,7 +301,12 @@ function normalizeError(error: unknown): { message?: string; name?: string; stac
 }
 
 export function canTrackAnalytics(): boolean {
-  return Boolean(googleAnalyticsMeasurementId && typeof window !== "undefined" && typeof window.gtag === "function");
+  return Boolean(
+    googleAnalyticsMeasurementId &&
+      typeof window !== "undefined" &&
+      !isAnalyticsBlockedForCurrentHost() &&
+      typeof window.gtag === "function"
+  );
 }
 
 export function trackEvent(name: string, params: AnalyticsParams = {}): void {

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Script from "next/script";
 import { AnalyticsErrorTracking } from "@/components/AnalyticsErrorTracking";
-import { googleAnalyticsMeasurementId } from "@/lib/analytics";
+import { getAnalyticsLocalhostGuardScript, googleAnalyticsMeasurementId } from "@/lib/analytics";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
 export function GoogleAnalytics() {
@@ -9,6 +9,9 @@ export function GoogleAnalytics() {
 
   return (
     <>
+      <Script id="google-analytics-localhost-guard" strategy="beforeInteractive">
+        {getAnalyticsLocalhostGuardScript(googleAnalyticsMeasurementId)}
+      </Script>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}`}
         strategy="afterInteractive"

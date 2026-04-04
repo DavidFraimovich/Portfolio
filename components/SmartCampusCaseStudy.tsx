@@ -5,16 +5,15 @@ import {
   CalendarDays,
   Clock3,
   Cpu,
-  FileText,
   HardDrive,
   LayoutGrid,
   MapPinned,
-  Network,
+  Search,
   Package,
+  Rocket,
   Route,
   Scale,
   ShieldCheck,
-  Sparkles,
   TriangleAlert,
   UsersRound,
   Workflow,
@@ -28,7 +27,8 @@ import {
   type SmartCampusHighlightIconKey,
   type SmartCampusMetadataIconKey
 } from "@/lib/smartCampusCaseStudy";
-import type { Locale } from "@/lib/i18n";
+import { localeDirection, type Locale } from "@/lib/i18n";
+import { SmartCampusScreensGallery } from "@/components/SmartCampusScreensGallery";
 
 type Props = {
   locale: Locale;
@@ -43,12 +43,6 @@ const METADATA_ICONS: Record<SmartCampusMetadataIconKey, LucideIcon> = {
   focus: ShieldCheck
 };
 
-const HIGHLIGHT_ICONS: Record<SmartCampusHighlightIconKey, LucideIcon> = {
-  integration: Workflow,
-  analysis: Network,
-  deployment: MapPinned
-};
-
 const ACCORDION_ICONS: Record<SmartCampusAccordionIconKey, LucideIcon> = {
   context: Building2,
   challenge: Cpu,
@@ -57,6 +51,12 @@ const ACCORDION_ICONS: Record<SmartCampusAccordionIconKey, LucideIcon> = {
   installation: HardDrive,
   pilot: MapPinned,
   impact: BarChart3
+};
+
+const HIGHLIGHT_ICONS: Record<SmartCampusHighlightIconKey, LucideIcon> = {
+  integration: Workflow,
+  analysis: Search,
+  deployment: Rocket
 };
 
 const EMPHASIS_ICONS: Record<SmartCampusEmphasisIconKey, LucideIcon> = {
@@ -72,16 +72,16 @@ function MetadataIcon({ icon }: { icon: SmartCampusMetadataIconKey }) {
   return <Icon className={styles.metadataIcon} aria-hidden="true" strokeWidth={1.85} />;
 }
 
-function HighlightIcon({ icon }: { icon: SmartCampusHighlightIconKey }) {
-  const Icon = HIGHLIGHT_ICONS[icon];
-
-  return <Icon className={styles.cardIcon} aria-hidden="true" strokeWidth={1.9} />;
-}
-
 function AccordionIcon({ icon }: { icon: SmartCampusAccordionIconKey }) {
   const Icon = ACCORDION_ICONS[icon];
 
   return <Icon className={styles.accordionIcon} aria-hidden="true" strokeWidth={1.9} />;
+}
+
+function HighlightIcon({ icon }: { icon: SmartCampusHighlightIconKey }) {
+  const Icon = HIGHLIGHT_ICONS[icon];
+
+  return <Icon className={styles.highlightIcon} aria-hidden="true" strokeWidth={1.9} />;
 }
 
 function EmphasisIcon({ icon }: { icon: SmartCampusEmphasisIconKey }) {
@@ -98,22 +98,14 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.summarySection} aria-labelledby={`smart-campus-title-${locale}`}>
         <div className={styles.summaryShell}>
           <div className={styles.heroVisual}>
-            <div className={styles.heroPreviewWrap}>
-              <div className={styles.heroPreviewPanel}>
-                <div className={styles.heroPreviewGrid} aria-hidden="true" />
-                <div className={styles.heroPreviewContent}>
-                  <p className={styles.heroPreviewEyebrow}>{content.hero.placeholderEyebrow}</p>
-                  <p className={styles.heroPreviewTitle}>{content.hero.placeholderTitle}</p>
-                  <p className={styles.heroPreviewCaption}>{content.hero.placeholderCaption}</p>
-                  <div className={styles.heroPreviewTags}>
-                    {content.hero.placeholderTags.map((tag) => (
-                      <span className={styles.heroPreviewTag} key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <div className={styles.heroMediaWrap}>
+              <img
+                alt={content.hero.heroImageAlt}
+                className={styles.heroMediaImage}
+                decoding="async"
+                loading="eager"
+                src="/images/case-studies/smart-campus-security-module/hero.png"
+              />
             </div>
           </div>
 
@@ -165,22 +157,15 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-highlights-${locale}`}>
         <div className={styles.surface}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitleRow}>
-              <span className={styles.sectionTitleIconWrap} aria-hidden="true">
-                <Sparkles className={styles.sectionTitleIcon} strokeWidth={1.9} />
-              </span>
-              <h2 className={styles.sectionTitle} id={`smart-campus-highlights-${locale}`}>
-                {content.highlightsTitle}
-              </h2>
-            </div>
+            <h2 className={styles.sectionTitle} id={`smart-campus-highlights-${locale}`}>
+              {content.highlightsTitle}
+            </h2>
           </div>
 
           <div className={styles.highlightGrid} aria-label={content.highlightsAriaLabel}>
             {content.highlights.map((item) => (
-              <article className={styles.card} key={item.title}>
-                <span className={styles.cardIconWrap}>
-                  <HighlightIcon icon={item.icon} />
-                </span>
+              <article className={styles.highlightRegion} key={item.title}>
+                <HighlightIcon icon={item.icon} />
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardBody}>{item.text}</p>
               </article>
@@ -192,14 +177,9 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-story-${locale}`}>
         <div className={styles.surface}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitleRow}>
-              <span className={styles.sectionTitleIconWrap} aria-hidden="true">
-                <FileText className={styles.sectionTitleIcon} strokeWidth={1.9} />
-              </span>
-              <h2 className={styles.sectionTitle} id={`smart-campus-story-${locale}`}>
-                {content.accordionTitle}
-              </h2>
-            </div>
+            <h2 className={styles.sectionTitle} id={`smart-campus-story-${locale}`}>
+              {content.accordionTitle}
+            </h2>
           </div>
 
           <div className={styles.accordionList}>
@@ -273,17 +253,29 @@ export function SmartCampusCaseStudy({ locale }: Props) {
         </div>
       </section>
 
+      <section className={styles.surfaceSection} aria-labelledby={`smart-campus-screens-${locale}`}>
+        <div className={styles.surface}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle} id={`smart-campus-screens-${locale}`}>
+              {content.screensTitle}
+            </h2>
+          </div>
+
+          <SmartCampusScreensGallery
+            ariaLabel={content.screensAriaLabel}
+            copy={content.gallery}
+            direction={localeDirection(locale)}
+            screens={content.screens}
+          />
+        </div>
+      </section>
+
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-process-${locale}`}>
         <div className={styles.surface}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitleRow}>
-              <span className={styles.sectionTitleIconWrap} aria-hidden="true">
-                <Route className={styles.sectionTitleIcon} strokeWidth={1.9} />
-              </span>
-              <h2 className={styles.sectionTitle} id={`smart-campus-process-${locale}`}>
-                {content.processTitle}
-              </h2>
-            </div>
+            <h2 className={styles.sectionTitle} id={`smart-campus-process-${locale}`}>
+              {content.processTitle}
+            </h2>
           </div>
 
           <ol className={styles.processList}>
@@ -302,14 +294,9 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.surfaceSection} aria-labelledby={`smart-campus-analysis-${locale}`}>
         <div className={`${styles.surface} ${styles.emphasisSurface}`}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitleRow}>
-              <span className={styles.sectionTitleIconWrap} aria-hidden="true">
-                <ShieldCheck className={styles.sectionTitleIcon} strokeWidth={1.9} />
-              </span>
-              <h2 className={styles.sectionTitle} id={`smart-campus-analysis-${locale}`}>
-                {content.emphasisTitle}
-              </h2>
-            </div>
+            <h2 className={styles.sectionTitle} id={`smart-campus-analysis-${locale}`}>
+              {content.emphasisTitle}
+            </h2>
           </div>
 
           <div className={styles.emphasisGrid}>
