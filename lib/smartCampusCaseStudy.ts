@@ -66,20 +66,23 @@ type SmartCampusEmphasisCard = {
   icon: SmartCampusEmphasisIconKey;
 };
 
+type SmartCampusScreen = {
+  src: string;
+  alt: string;
+  orientation: "landscape" | "portrait";
+};
+
 type SmartCampusCaseStudyContent = {
   hero: {
     eyebrow: string;
     title: string;
     subtitle: string;
     description: string;
+    heroImageAlt: string;
     chipsAriaLabel: string;
     chips: string[];
     metadataTitle: string;
     metadata: SmartCampusMetadataItem[];
-    placeholderEyebrow: string;
-    placeholderTitle: string;
-    placeholderCaption: string;
-    placeholderTags: string[];
     scrollLabel: string;
   };
   highlightsTitle: string;
@@ -87,6 +90,9 @@ type SmartCampusCaseStudyContent = {
   highlights: SmartCampusHighlightCard[];
   accordionTitle: string;
   accordion: SmartCampusAccordionItem[];
+  screensTitle: string;
+  screensAriaLabel: string;
+  screens: SmartCampusScreen[];
   processTitle: string;
   processSteps: string[];
   emphasisTitle: string;
@@ -101,6 +107,7 @@ export const smartCampusCaseStudyContent = {
       subtitle: "An IoT module for real-time entry, exit, and presence management",
       description:
         "A case study of a hardware-software product initiative that connected an ERP-based leave approval module with controllers, cameras, QR scanners, and NFC sensors - improving operational visibility and access control across educational institutions and youth villages.",
+      heroImageAlt: "Smart Campus access control module hero visual",
       chipsAriaLabel: "Smart Campus project tags",
       chips: [
         "IoT",
@@ -152,10 +159,6 @@ export const smartCampusCaseStudyContent = {
           icon: "focus"
         }
       ],
-      placeholderEyebrow: "Visual placeholder",
-      placeholderTitle: "Future installation / product visual",
-      placeholderCaption: "Reserved for a later hero image without breaking the case-study layout.",
-      placeholderTags: ["ERP", "API", "QR / NFC", "Field Unit"],
       scrollLabel: "Scroll to explore"
     },
     highlightsTitle: "Core strengths",
@@ -354,6 +357,40 @@ export const smartCampusCaseStudyContent = {
         ]
       }
     ],
+    screensTitle: "Project screens",
+    screensAriaLabel: "Smart Campus project screens",
+    screens: [
+      {
+        src: "/images/case-studies/smart-campus-security-module/Permission.png",
+        alt: "Smart Campus permission management dashboard",
+        orientation: "landscape"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Permission%20(Students).png",
+        alt: "Smart Campus student permission screen",
+        orientation: "landscape"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Frame%203492.png",
+        alt: "Smart Campus mobile access flow screen",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/X%20-%2025.png",
+        alt: "Smart Campus mobile approval journey screen",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Bid%202.png",
+        alt: "Smart Campus mobile confirmation screen",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png",
+        alt: "Smart Campus long mobile project screen",
+        orientation: "portrait"
+      }
+    ],
     processTitle: "Delivery path",
     processSteps: [
       "Alternative Research",
@@ -393,6 +430,7 @@ export const smartCampusCaseStudyContent = {
         )} לבין בקרים, מצלמות, סורקי ${ltr("QR")} וחיישני ${ltr(
           "NFC"
         )} - לטובת שליטה תפעולית טובה יותר במוסדות חינוך וכפרי נוער.`,
+      heroImageAlt: "תצוגת הירו של מודול בקרת הכניסה Smart Campus",
       chipsAriaLabel: "תגיות פרויקט Smart Campus",
       chips: [
         "IoT",
@@ -444,10 +482,6 @@ export const smartCampusCaseStudyContent = {
           icon: "focus"
         }
       ],
-      placeholderEyebrow: "מקום לתמונה",
-      placeholderTitle: "אזור שמור לוויז'ואל של ההתקנה",
-      placeholderCaption: "האזור נשמר נקי כדי לאפשר הוספת תמונת הירו בהמשך בלי לשבור את המבנה.",
-      placeholderTags: ["ERP", "API", "QR / NFC", "יחידת שטח"],
       scrollLabel: "גללו כדי להמשיך"
     },
     highlightsTitle: "מוקדי החוזק",
@@ -644,6 +678,40 @@ export const smartCampusCaseStudyContent = {
             text: "באמצעות בחירות טכנולוגיות נכונות, אפיון מדויק ולמידה מהשטח, הצלחנו לייצר פתרון ישים, סקיילבילי ורווחי."
           }
         ]
+      }
+    ],
+    screensTitle: "מסכים מהפרוייקט",
+    screensAriaLabel: "מסכים מתוך פרויקט Smart Campus",
+    screens: [
+      {
+        src: "/images/case-studies/smart-campus-security-module/Permission.png",
+        alt: "מסך ניהול אישורים של Smart Campus",
+        orientation: "landscape"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Permission%20(Students).png",
+        alt: "מסך אישורי תלמידים של Smart Campus",
+        orientation: "landscape"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Frame%203492.png",
+        alt: "מסך מובייל של זרימת בקרת הכניסה",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/X%20-%2025.png",
+        alt: "מסך מובייל של תהליך אישור וגישה",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/Bid%202.png",
+        alt: "מסך מובייל של אישור פעולה",
+        orientation: "portrait"
+      },
+      {
+        src: "/images/case-studies/smart-campus-security-module/iPhone%208%20-%2041.png",
+        alt: "מסך מובייל ארוך מתוך הפרויקט",
+        orientation: "portrait"
       }
     ],
     processTitle: "ציר היישום",

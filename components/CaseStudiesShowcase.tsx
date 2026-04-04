@@ -81,9 +81,9 @@ const HERO_PRIORITY = [
 ] as const;
 
 const CASE_STUDY_PRIORITY = [
-  "signy",
   "paamonim-smart-financial-management-app",
   "smart-campus-access-control-system",
+  "signy",
   "instant-loan-request-system"
 ] as const;
 
@@ -99,7 +99,11 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     preferredSlot: "feature"
   },
   "smart-campus-access-control-system": {
-    accentTone: "sky"
+    accentTone: "sky",
+    imageSrc: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/hero.png"),
+    mediaEligible: true,
+    objectPosition: "center center",
+    preferredSlot: "split"
   },
   "erp-government-api-integrations": {
     accentTone: "mint",
