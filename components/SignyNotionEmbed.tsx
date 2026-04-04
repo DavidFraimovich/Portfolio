@@ -12,6 +12,7 @@ import {
   Workflow,
   type LucideIcon
 } from "lucide-react";
+import { CaseStudyZoomableImage } from "@/components/CaseStudyImageGallery";
 import styles from "@/components/SignyNotionEmbed.module.css";
 import type { Locale } from "@/lib/i18n";
 import {
@@ -77,15 +78,22 @@ export function SignyNotionEmbed({ locale }: Props) {
             </div>
 
             <div className={styles.heroVisual}>
-              <div className={styles.heroVisualFrame}>
-                <img
-                  alt={heroImageAlt}
-                  className={styles.heroVisualImage}
-                  decoding="async"
-                  loading="eager"
-                  src={SIGNY_HERO_IMAGE}
-                />
-              </div>
+              <CaseStudyZoomableImage
+                ariaLabel={heroImageAlt}
+                classNames={{
+                  button: styles.heroVisualButton,
+                  image: styles.heroVisualImage,
+                  root: styles.heroVisualFrame
+                }}
+                dialogLabel={heroImageAlt}
+                image={{
+                  alt: heroImageAlt,
+                  loading: "eager",
+                  orientation: "landscape",
+                  src: SIGNY_HERO_IMAGE
+                }}
+                locale={locale}
+              />
             </div>
           </div>
 

@@ -807,6 +807,15 @@ html[data-theme="light"] .brief-hero {
   border: 1px solid var(--border);
 }
 
+.featured-thumb-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
 .timeline {
   margin: 0;
   padding-left: 23.2px;

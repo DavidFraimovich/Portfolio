@@ -1,4 +1,8 @@
 import type { Locale } from "@/lib/i18n";
+import type {
+  CaseStudyGalleryImage,
+  CaseStudyImageGalleryCopy
+} from "@/lib/caseStudyImageGallery";
 
 const ltr = (value: string): string => `\u2066${value}\u2069`;
 
@@ -66,22 +70,6 @@ type SmartCampusEmphasisCard = {
   icon: SmartCampusEmphasisIconKey;
 };
 
-export type SmartCampusScreen = {
-  src: string;
-  alt: string;
-  orientation: "landscape" | "portrait";
-};
-
-export type SmartCampusGalleryCopy = {
-  close: string;
-  dialogLabel: string;
-  next: string;
-  open: string;
-  previous: string;
-  zoomIn: string;
-  zoomOut: string;
-};
-
 type SmartCampusCaseStudyContent = {
   hero: {
     eyebrow: string;
@@ -102,8 +90,8 @@ type SmartCampusCaseStudyContent = {
   accordion: SmartCampusAccordionItem[];
   screensTitle: string;
   screensAriaLabel: string;
-  gallery: SmartCampusGalleryCopy;
-  screens: SmartCampusScreen[];
+  gallery: CaseStudyImageGalleryCopy;
+  screens: CaseStudyGalleryImage[];
   processTitle: string;
   processSteps: string[];
   emphasisTitle: string;

@@ -153,6 +153,15 @@
   opacity: 0.92;
 }
 
+.heroVisualButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
 .heroVisualImage {
   width: 100%;
   height: auto;

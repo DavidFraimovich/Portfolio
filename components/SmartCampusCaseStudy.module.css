@@ -214,6 +214,7 @@
   width: min(672px, 46vw);
   opacity: 0.9;
   filter: none;
+  pointer-events: auto;
 }
 
 .heroMediaWrap::before {
@@ -234,6 +235,15 @@
   transform: none;
   object-position: center center;
   box-shadow: none;
+}
+
+.heroMediaButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
 }
 
 .heroEyebrow,

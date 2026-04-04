@@ -1,8 +1,8 @@
 import {
   BriefcaseBusiness,
   Building2,
-  Clock3,
   Images,
+  Clock3,
   Repeat2,
   ShieldCheck,
   Smartphone,
@@ -12,6 +12,7 @@ import {
   UsersRound,
   type LucideIcon
 } from "lucide-react";
+import { CaseStudyZoomableImage } from "@/components/CaseStudyImageGallery";
 import styles from "@/components/PaamonimCaseStudy.module.css";
 import {
   paamonimCaseStudyContent,
@@ -201,15 +202,22 @@ export function PaamonimCaseStudy({ locale }: Props) {
           </div>
         </div>
 
-        <div className={styles.screensMediaFrame} aria-label={content.screensAriaLabel}>
-          <img
-            alt={content.screensImageAlt}
-            className={styles.screensImage}
-            decoding="async"
-            loading="lazy"
-            src="/images/case-studies/paamonim/expanded-system.png"
-          />
-        </div>
+        <CaseStudyZoomableImage
+          ariaLabel={content.screensAriaLabel}
+          classNames={{
+            button: styles.screensMediaButton,
+            image: styles.screensImage,
+            root: styles.screensMediaFrame
+          }}
+          dialogLabel={content.screensTitle}
+          image={{
+            alt: content.screensImageAlt,
+            loading: "lazy",
+            orientation: "landscape",
+            src: "/images/case-studies/paamonim/expanded-system.png"
+          }}
+          locale={locale}
+        />
       </section>
     </div>
   );

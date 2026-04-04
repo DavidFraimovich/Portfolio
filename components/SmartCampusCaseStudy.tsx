@@ -21,14 +21,17 @@ import {
 } from "lucide-react";
 import styles from "@/components/SmartCampusCaseStudy.module.css";
 import {
+  CaseStudyImageGridGallery,
+  CaseStudyZoomableImage
+} from "@/components/CaseStudyImageGallery";
+import {
   smartCampusCaseStudyContent,
   type SmartCampusAccordionIconKey,
   type SmartCampusEmphasisIconKey,
   type SmartCampusHighlightIconKey,
   type SmartCampusMetadataIconKey
 } from "@/lib/smartCampusCaseStudy";
-import { localeDirection, type Locale } from "@/lib/i18n";
-import { SmartCampusScreensGallery } from "@/components/SmartCampusScreensGallery";
+import type { Locale } from "@/lib/i18n";
 
 type Props = {
   locale: Locale;
@@ -98,15 +101,23 @@ export function SmartCampusCaseStudy({ locale }: Props) {
       <section className={styles.summarySection} aria-labelledby={`smart-campus-title-${locale}`}>
         <div className={styles.summaryShell}>
           <div className={styles.heroVisual}>
-            <div className={styles.heroMediaWrap}>
-              <img
-                alt={content.hero.heroImageAlt}
-                className={styles.heroMediaImage}
-                decoding="async"
-                loading="eager"
-                src="/images/case-studies/smart-campus-security-module/hero.png"
-              />
-            </div>
+            <CaseStudyZoomableImage
+              ariaLabel={content.hero.heroImageAlt}
+              classNames={{
+                button: styles.heroMediaButton,
+                image: styles.heroMediaImage,
+                root: styles.heroMediaWrap
+              }}
+              copy={content.gallery}
+              dialogLabel={content.hero.heroImageAlt}
+              image={{
+                alt: content.hero.heroImageAlt,
+                loading: "eager",
+                orientation: "landscape",
+                src: "/images/case-studies/smart-campus-security-module/hero.png"
+              }}
+              locale={locale}
+            />
           </div>
 
           <div className={styles.heroContent}>
@@ -261,11 +272,12 @@ export function SmartCampusCaseStudy({ locale }: Props) {
             </h2>
           </div>
 
-          <SmartCampusScreensGallery
+          <CaseStudyImageGridGallery
             ariaLabel={content.screensAriaLabel}
             copy={content.gallery}
-            direction={localeDirection(locale)}
-            screens={content.screens}
+            dialogLabel={content.gallery.dialogLabel}
+            images={content.screens}
+            locale={locale}
           />
         </div>
       </section>

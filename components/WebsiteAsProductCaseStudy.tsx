@@ -1,4 +1,5 @@
 import { contactLinks, getLinkedInUrl, getMailtoHref, getResumeLink, resumeLinks } from "@/lib/contactLinks";
+import { CaseStudyZoomableImage } from "@/components/CaseStudyImageGallery";
 import { TrackedLink } from "@/components/TrackedLink";
 import { getAllPosts } from "@/lib/content";
 import { formatStableDate } from "@/lib/date";
@@ -325,7 +326,21 @@ export function WebsiteAsProductCaseStudy({ locale }: Props) {
         <section className="grid" aria-label={isHebrew ? "עבודות נבחרות" : "Featured case studies"}>
           {featuredCards.map((item) => (
             <article key={item.slug} className="card featured-card">
-              <img src={assetPath(item.image)} alt={item.title} className="featured-thumb" />
+              <CaseStudyZoomableImage
+                ariaLabel={item.title}
+                classNames={{
+                  button: "featured-thumb-button",
+                  image: "featured-thumb"
+                }}
+                dialogLabel={item.title}
+                image={{
+                  alt: item.title,
+                  loading: "lazy",
+                  orientation: "landscape",
+                  src: assetPath(item.image)
+                }}
+                locale={locale}
+              />
               <h3>
                 <TrackedLink
                   href={withLocalePath(locale, `/case-studies/${item.slug}`)}

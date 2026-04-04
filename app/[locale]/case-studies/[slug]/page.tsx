@@ -143,7 +143,7 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
 
       {isWebsiteAsProduct && <WebsiteAsProductCaseStudy locale={locale} />}
 
-      <MdxContent source={entry.body} />
+      <MdxContent locale={locale} source={entry.body} />
     </>
   );
 }
