@@ -189,6 +189,11 @@ export const smartCampusMaintenanceServiceCallsCaseStudyContent = {
           label: "Users",
           value: "Maintenance Departments in Youth Villages",
           icon: "users"
+        },
+        {
+          label: "Project Start",
+          value: "06/2018",
+          icon: "period"
         }
       ],
       mediaLabel: "Smart Campus maintenance and service module hero image"
@@ -509,8 +514,8 @@ export const smartCampusMaintenanceServiceCallsCaseStudyContent = {
           icon: "duration"
         },
         {
-          label: "תקופה",
-          value: ltr("06/2018-12/2018"),
+          label: "תאריך התחלה",
+          value: "06/2018",
           icon: "period"
         }
       ],

@@ -1,6 +1,7 @@
 import {
   BriefcaseBusiness,
   Building2,
+  CalendarDays,
   Images,
   Clock3,
   Repeat2,
@@ -29,6 +30,7 @@ type Props = {
 const METADATA_ICONS: Record<PaamonimMetadataIconKey, LucideIcon> = {
   organization: Building2,
   product: Smartphone,
+  startDate: CalendarDays,
   team: UsersRound,
   tags: Tags
 };

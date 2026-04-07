@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
 
 export const exportRouteLocales = ["en", "he"] as const;
 
@@ -14,10 +13,6 @@ export type ExportRouteEntry = {
 type StaticLocaleRoute = {
   path: string;
   includeInSitemap: boolean;
-};
-
-type CaseStudyFrontmatter = {
-  date?: string;
 };
 
 const staticLocaleRoutes: StaticLocaleRoute[] = [
@@ -38,17 +33,8 @@ function readDirSafe(target: string): string[] {
   return fs.readdirSync(target).filter((file) => file.endsWith(".mdx"));
 }
 
-function parseFrontmatterDate(filePath: string): Date {
-  const raw = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(raw);
-  const frontmatter = data as CaseStudyFrontmatter;
-  const parsedDate = new Date(frontmatter.date ?? "");
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return new Date();
-  }
-
-  return parsedDate;
+function getFileModifiedTime(filePath: string): Date {
+  return fs.statSync(filePath).mtime;
 }
 
 export function normalizeExportRoutePath(pathname: string): string {
@@ -110,7 +96,7 @@ export function getCaseStudyRouteEntries(): Array<{
         locale,
         slug,
         path: normalizeExportRoutePath(withLocalePath(locale, `/case-studies/${slug}`)),
-        lastModified: parseFrontmatterDate(filePath)
+        lastModified: getFileModifiedTime(filePath)
       };
     });
   });

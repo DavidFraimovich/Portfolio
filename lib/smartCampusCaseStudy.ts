@@ -144,8 +144,8 @@ export const smartCampusCaseStudyContent = {
           icon: "duration"
         },
         {
-          label: "Period",
-          value: "06/2018 - 06/2019",
+          label: "Project Start",
+          value: "06/2018",
           icon: "period"
         },
         {
@@ -480,8 +480,8 @@ export const smartCampusCaseStudyContent = {
           icon: "duration"
         },
         {
-          label: "תקופה",
-          value: ltr("06/2018 - 06/2019"),
+          label: "תאריך התחלה",
+          value: "06/2018",
           icon: "period"
         },
         {

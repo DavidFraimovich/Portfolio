@@ -72,8 +72,8 @@ export const instantLoanRequestSystemCaseStudyContent = {
     metadataTitle: "Project details",
     metadata: [
       {
-        label: "Timeline",
-        value: "About 3 months",
+        label: "Project Start",
+        value: "12/2023",
         icon: "timeline"
       },
       {
@@ -217,8 +217,8 @@ export const instantLoanRequestSystemCaseStudyContent = {
     metadataTitle: "פרטי הפרויקט",
     metadata: [
       {
-        label: "Timeline",
-        value: "כ־3 חודשים",
+        label: "תאריך התחלה",
+        value: "12/2023",
         icon: "timeline"
       },
       {

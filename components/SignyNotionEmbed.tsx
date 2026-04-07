@@ -1,6 +1,7 @@
 import {
   BriefcaseBusiness,
   Building2,
+  CalendarDays,
   FileSignature,
   Gauge,
   Map,
@@ -29,6 +30,7 @@ type Props = {
 const METADATA_ICONS: Record<SignyIconKey, LucideIcon> = {
   product: FileSignature,
   stage: Rocket,
+  startDate: CalendarDays,
   team: UsersRound,
   role: BriefcaseBusiness,
   validation: SearchCheck,

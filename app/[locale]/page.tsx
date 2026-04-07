@@ -6,7 +6,7 @@ import { SkillsRibbon } from "@/components/SkillsRibbon";
 import { TrackedLink } from "@/components/TrackedLink";
 import { WindmillsCtaSection } from "@/components/WindmillsCtaSection";
 import { getAllCaseStudies } from "@/lib/content";
-import { formatStableDate } from "@/lib/date";
+import { formatCaseStudyStartDate } from "@/lib/date";
 import { generateLocaleStaticParams, isLocale, withLocalePath } from "@/lib/i18n";
 import { buildDocumentTitle } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
@@ -68,7 +68,7 @@ export default async function LocalizedHomePage({ params }: Props) {
       <section className="grid" aria-label={site.home_selected_case_studies}>
         {caseStudies.map((item) => (
           <article key={item.slug} className="card">
-            <p className="meta">{formatStableDate(item.frontmatter.date)}</p>
+            <p className="meta">{formatCaseStudyStartDate(item.frontmatter.date)}</p>
             <h3>
               <TrackedLink
                 href={withLocalePath(locale, `/case-studies/${item.slug}`)}

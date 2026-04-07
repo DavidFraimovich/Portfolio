@@ -66,8 +66,8 @@ export const researchSearchCaseStudyContent = {
         hero: true
       },
       {
-        label: "Duration",
-        value: "6 months",
+        label: "Project Start",
+        value: "06/2024",
         icon: "duration",
         hero: true
       },
@@ -167,8 +167,8 @@ export const researchSearchCaseStudyContent = {
         hero: true
       },
       {
-        label: "משך הפרויקט",
-        value: "6 חודשים",
+        label: "תאריך התחלה",
+        value: "06/2024",
         icon: "duration",
         hero: true
       },

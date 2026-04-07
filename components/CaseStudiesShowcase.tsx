@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactElement } from "react";
 import { TrackedLink } from "@/components/TrackedLink";
 import type { CaseStudyFrontmatter, ParsedContent } from "@/lib/content";
-import { formatStableDate } from "@/lib/date";
+import { formatCaseStudyStartDate } from "@/lib/date";
 import type { Locale } from "@/lib/i18n";
 import { withLocalePath } from "@/lib/i18n";
 import { withVersionedAssetPath } from "@/lib/site";
@@ -85,6 +85,7 @@ const CASE_STUDY_PRIORITY = [
   "smart-campus-access-control-system",
   "smart-campus-learning-center-module",
   "smart-campus-maintenance-service-calls-module",
+  "rentil",
   "signy",
   "instant-loan-request-system"
 ] as const;
@@ -149,6 +150,13 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     mediaEligible: true,
     objectPosition: "center center",
     preferredSlot: "vertical"
+  },
+  rentil: {
+    accentTone: "slate",
+    imageSrc: withVersionedAssetPath("/images/case-studies/rentil/hero-system.svg"),
+    mediaEligible: true,
+    objectPosition: "center center",
+    preferredSlot: "stacked"
   },
   "website-as-product": {
     accentTone: "sky"
@@ -316,7 +324,7 @@ function renderHeroIntro(locale: Locale): ReactElement {
 }
 
 function renderDate(date: string): ReactElement {
-  return <span className={styles.cardDate}>{formatStableDate(date)}</span>;
+  return <span className={styles.cardDate}>{formatCaseStudyStartDate(date)}</span>;
 }
 
 function renderTags(tags: string[], limit: number, accent: boolean): ReactElement | null {

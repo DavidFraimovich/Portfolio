@@ -4,13 +4,14 @@ import { InstantLoanRequestCaseStudy } from "@/components/InstantLoanRequestCase
 import { MdxContent } from "@/components/MdxContent";
 import { PaamonimCaseStudy } from "@/components/PaamonimCaseStudy";
 import { ResearchSearchCaseStudy } from "@/components/ResearchSearchCaseStudy";
+import { RentilCaseStudy } from "@/components/RentilCaseStudy";
 import { SignyNotionEmbed } from "@/components/SignyNotionEmbed";
 import { SmartCampusCaseStudy } from "@/components/SmartCampusCaseStudy";
 import { SmartCampusLearningCenterCaseStudy } from "@/components/SmartCampusLearningCenterCaseStudy";
 import { SmartCampusMaintenanceServiceCallsCaseStudy } from "@/components/SmartCampusMaintenanceServiceCallsCaseStudy";
 import { WebsiteAsProductCaseStudy } from "@/components/WebsiteAsProductCaseStudy";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
-import { formatStableDate } from "@/lib/date";
+import { formatCaseStudyStartDate } from "@/lib/date";
 import { isLocale, locales, type Locale, withLocalePath } from "@/lib/i18n";
 import { buildDocumentTitle } from "@/lib/metadata";
 import { getSiteContent } from "@/lib/siteContent";
@@ -99,6 +100,9 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
   if (entry.slug === "research-search-engine-based-on-rag") {
     return <ResearchSearchCaseStudy locale={locale} />;
   }
+  if (entry.slug === "rentil") {
+    return <RentilCaseStudy locale={locale} />;
+  }
 
   const site = getSiteContent(locale);
   const isWebsiteAsProduct = entry.slug === "website-as-product";
@@ -109,7 +113,8 @@ export default async function LocalizedCaseStudyDetailPage({ params }: Props) {
         <h1>{entry.frontmatter.title}</h1>
         <p>{entry.frontmatter.description}</p>
         <p className="meta">
-          {formatStableDate(entry.frontmatter.date)} | {site.detail_role_label}: {entry.frontmatter.role}
+          {site.detail_start_date_label}: {formatCaseStudyStartDate(entry.frontmatter.date)} |{" "}
+          {site.detail_role_label}: {entry.frontmatter.role}
         </p>
         <div className="pill-row">
           {entry.frontmatter.tags.map((tag) => (

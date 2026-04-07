@@ -10,6 +10,7 @@ export const signyNotionEmbedUrls = {
 export type SignyIconKey =
   | "product"
   | "stage"
+  | "startDate"
   | "team"
   | "role"
   | "validation"
@@ -84,6 +85,11 @@ export const signyCaseStudyContent = {
         label: "Stage",
         value: "0→1 MVP",
         icon: "stage"
+      },
+      {
+        label: "Project Start",
+        value: "04/2021",
+        icon: "startDate"
       },
       {
         label: "Team",
@@ -214,6 +220,11 @@ export const signyCaseStudyContent = {
         label: "שלב",
         value: ltr("0→1 MVP"),
         icon: "stage"
+      },
+      {
+        label: "תאריך התחלה",
+        value: "04/2021",
+        icon: "startDate"
       },
       {
         label: "צוות",

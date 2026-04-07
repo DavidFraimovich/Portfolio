@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n";
 
 const ltr = (value: string): string => `\u2066${value}\u2069`;
 
-export type PaamonimMetadataIconKey = "organization" | "product" | "team" | "tags";
+export type PaamonimMetadataIconKey = "organization" | "product" | "startDate" | "team" | "tags";
 
 export type PaamonimMetricIconKey = "adoption" | "retention" | "engagement";
 
@@ -63,6 +63,11 @@ export const paamonimCaseStudyContent = {
         label: "Product",
         value: "Smart financial management app",
         icon: "product"
+      },
+      {
+        label: "Project Start",
+        value: "01/2023",
+        icon: "startDate"
       },
       {
         label: "Team",
@@ -162,6 +167,11 @@ export const paamonimCaseStudyContent = {
         label: "Product",
         value: "אפליקציית ניהול פיננסי חכמה",
         icon: "product"
+      },
+      {
+        label: "תאריך התחלה",
+        value: "01/2023",
+        icon: "startDate"
       },
       {
         label: "Team",
