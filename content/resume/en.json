@@ -1,25 +1,25 @@
 {
   "hero": {
     "eyebrow": "Resume",
-    "title": "Product Manager with 4+ years of experience.",
-    "summary": "Leading end-to-end Web and Mobile product lifecycles across B2B, Fintech, SaaS, and B2C."
+    "title": "Product Manager with 4+ years across B2B SaaS, Fintech, and digital products.",
+    "summary": "Combining end-to-end product ownership with hands-on AI-assisted execution, from discovery and requirements through integrations, prototyping, and delivery."
   },
   "quickFacts": [
     {
       "value": "4+ years",
-      "label": "End-to-end Web and Mobile products"
+      "label": "B2B, B2C, SaaS, Fintech, and digital & Mobile platforms"
     },
     {
-      "value": "B2B | Fintech | SaaS | B2C",
-      "label": "Product sectors"
+      "value": "Web | Mobile | ERP",
+      "label": "End-to-end product ownership"
     },
     {
-      "value": "IoT | API | Data-driven",
-      "label": "Core competencies"
+      "value": "Discovery | Roadmaps | Integrations",
+      "label": "Product and delivery scope"
     },
     {
-      "value": "Agile/Scrum | Cross-functional teams",
-      "label": "Delivery environment"
+      "value": "AI-assisted execution",
+      "label": "Rapid prototyping and delivery acceleration"
     }
   ],
   "strengths": {
@@ -27,109 +27,154 @@
     "items": [
       {
         "icon": "compass",
-        "title": "End-to-End Delivery",
-        "body": "Leading full Web and Mobile product lifecycles from concept, through planning, to delivery."
+        "title": "End-to-End Product Leadership",
+        "body": "Leading products from discovery, customer analysis, and requirement definition through execution, launch, and continuous improvement."
       },
       {
         "icon": "workflow",
-        "title": "B2B, IoT, and Integrations",
-        "body": "Experience in B2B product development, IoT projects, ERP systems, and complex API integrations."
+        "title": "Complex Integrations and Operations",
+        "body": "Planning and delivering API, ERP, government, and vendor integrations while aligning business, operational, and technical stakeholders."
       },
       {
         "icon": "layers",
-        "title": "Agile and Analytical Leadership",
-        "body": "Data-driven decisions, Agile/Scrum delivery, and leading cross-functional teams across product, design, engineering, and QA."
+        "title": "AI-Assisted Execution",
+        "body": "Using AI tools to speed up research, prototyping, product workflows, and lightweight implementation in fast-moving environments."
       }
     ]
   },
   "timeline": {
     "title": "Professional Experience",
-    "intro": "Each workplace shows the time period, total duration, roles held there, and the main responsibilities from the resume.",
     "items": [
       {
-        "company": "LoanWise",
+        "company": "Financial, early-stage startup",
         "city": "Petah Tikva",
-        "roles": ["Product Manager"],
+        "roles": [
+          "Product Manager"
+        ],
         "period": "May 2025 - Today",
         "duration": "11 months",
-        "summary": "Mortgages in Israel and abroad, early-stage startup.",
+        "summary": "Led a financial platform and ERP from pre-launch through MVP, with rapid execution across product, operations, vendors, and integrations.",
         "highlights": [
-          "Led product development prior to launch, including roadmap updates and task prioritization based on strategic changes.",
-          "Developed go-to-market strategy for competitive markets, integrating unique tech solutions with rapid market adaptations.",
-          "Managed strategic vendors (core systems and digital) ensuring technical quality and on-time delivery.",
-          "Directed blitzscaling efforts to penetrate multiple niches simultaneously.",
-          "Met aggressive targets within short timeframes, operated effectively under uncertainty, and optimized resource allocation."
+          "Led a financial platform and ERP from pre-launch through MVP in a fast-moving startup environment.",
+          "Owned roadmap updates, prioritization, and product requirements in response to strategic shifts and aggressive targets.",
+          "Managed strategic vendors across core systems and digital delivery while maintaining quality and execution speed.",
+          "Led integrations with external financial API providers and government services, and defined scalable cross-functional solutions.",
+          "Integrated AI workflows into day-to-day product operations, reporting, and prototyping to improve efficiency.",
+          "Delivered rapid prototypes and feature flows with AI-assisted tools, contributing to about 20% faster team delivery."
         ],
-        "chips": ["B2B", "Fintech", "Mortgages", "Early-stage", "Roadmap", "Go-to-market", "Vendors", "Blitzscaling"]
+        "chips": [
+          "B2B",
+          "Fintech",
+          "ERP",
+          "Pre-launch",
+          "MVP",
+          "API Integrations",
+          "Vendors",
+          "AI-assisted Delivery"
+        ]
       },
       {
         "company": "Moonsite",
         "city": "Rehovot",
-        "roles": ["Product Manager"],
+        "roles": [
+          "Product Manager"
+        ],
         "period": "Apr 2023 - May 2025",
         "duration": "2 years 1 month",
-        "summary": "Software development company in the Fintech sector.",
+        "summary": "Software development company delivering fintech and digital products for B2B and B2C clients.",
         "highlights": [
-          "Managed end-to-end delivery of Web and Fintech mobile applications, as well as B2C event, dating apps, and a smart AI search platform.",
-          "Designed and planned complex API integrations with ERP systems, governmental bodies, and external APIs.",
-          "Led a team of 10 (frontend, backend, QA, design, Scrum master, CTO) under Scrum of Scrums methodology.",
-          "Key clients: Menora Mivtachim, ERN, Bar-Ilan University, and LoanWise."
+          "Managed end-to-end delivery of Web, Mobile, and Fintech products for B2B and B2C clients.",
+          "Led product work from discovery and customer analysis through requirements, execution, launch, and customer satisfaction.",
+          "Planned and led complex integrations with ERP systems, government services, and external APIs.",
+          "Worked closely with design and engineering teams to expand existing products and shape new client-aligned solutions.",
+          "Coordinated delivery in a Scrum of Scrums environment, including feature prioritization, roadmap planning, and sprint packaging.",
+          "Worked across key domains and clients including Menora Mivtachim, ERN, Bar-Ilan University, Paamonim, and Funjoy."
         ],
-        "chips": ["B2B", "Fintech", "Web", "Mobile", "B2C", "API Integration", "ERP", "Scrum of Scrums", "Team of 10"]
-      },
-      {
-        "company": "Havat HaNoar Youth Village",
-        "city": "Kfar HaYarok",
-        "roles": ["Learning Center Manager"],
-        "period": "2020 - 2025",
-        "duration": "5 years",
-        "summary": "Managed 90 staff members and an 800,000 NIS budget, and specified and implemented a management information system.",
-        "highlights": [
-          "Managed 90 staff members across the learning center environment.",
-          "Owned an 800,000 NIS budget.",
-          "Specified and implemented a management information system."
-        ],
-        "chips": ["Leadership", "Operations", "90 staff", "800,000 NIS budget", "Management Information System", "Implementation"]
+        "chips": [
+          "B2B",
+          "Fintech",
+          "Web",
+          "Mobile",
+          "Discovery",
+          "API Integration",
+          "ERP",
+          "Scrum of Scrums",
+          "Client Products"
+        ]
       },
       {
         "company": "Signy",
-        "roles": ["Product Manager"],
-        "period": "Jun 2021 - Jun 2022",
-        "duration": "1 year",
-        "summary": "Digital signature platform.",
-        "highlights": [
-          "Managed an Agile/Kanban team of 6 (dev, design, QA).",
-          "Took the product from concept to MVP launch in 6 months.",
-          "Delivered full technical specifications (DB, ERD, UX), selected technologies, and designed system architecture."
+        "city": "Jerusalem",
+        "roles": [
+          "Product Manager"
         ],
-        "chips": ["Digital Signature", "0→1", "MVP", "Agile/Kanban", "Team of 6", "DB", "ERD", "UX"]
+        "period": "Jun 2021 - Jun 2023",
+        "duration": "2 years",
+        "summary": "B2B SaaS digital signature platform.",
+        "highlights": [
+          "Led a cross-functional team of 6 across engineering, design, and QA.",
+          "Took the product from concept to MVP launch within 6 months, reaching the first user during that period.",
+          "Conducted market research and customer validation to shape product direction and priorities.",
+          "Defined technical specifications, UX flows, database structure, and system architecture."
+        ],
+        "chips": [
+          "B2B SaaS",
+          "Digital Signature",
+          "0→1",
+          "MVP",
+          "Validation",
+          "UX",
+          "Database",
+          "Architecture"
+        ]
       },
       {
         "company": "Rent-il",
-        "roles": ["Systems Analyst"],
+        "city": "Jerusalem",
+        "roles": [
+          "System Analyst"
+        ],
         "period": "Jun 2020 - Jun 2021",
         "duration": "1 year",
-        "summary": "Led a team of 4 to build a long-term rental management system from scratch, designing a large and complex database.",
+        "summary": "Long-term rental management ERP.",
         "highlights": [
-          "Led a team of 4 through the system build.",
-          "Built the product from scratch.",
-          "Designed a large and complex database."
+          "Led a team of 4 through the product build.",
+          "Built the product from scratch as an organizational information system.",
+          "Defined requirements and designed a large, complex database."
         ],
-        "chips": ["Systems Analysis", "Team of 4", "0→1", "Long-term Rental", "Database Design", "Product Specs"]
+        "chips": [
+          "Systems Analysis",
+          "ERP",
+          "Team of 4",
+          "0→1",
+          "Database Design",
+          "Requirements"
+        ]
       },
       {
         "company": "Smart-Campus",
-        "roles": ["Business Analyst", "Assistant Product Manager (Part-time)"],
+        "city": "Jerusalem",
+        "roles": [
+          "System Analyst",
+          "Business Analyst"
+        ],
         "period": "Jun 2018 - Jun 2020",
         "duration": "2 years",
         "summary": "EdTech ERP and SaaS solutions for education organizations.",
         "highlights": [
-          "Produced technical specs for ERP modules.",
-          "Worked as Assistant Product Manager in a part-time capacity.",
-          "Led an IoT-based security project team with cameras and controllers.",
-          "Integrated hardware and software via secure communication protocols."
+          "Produced technical specifications for ERP modules and workflows.",
+          "Analyzed business processes to define structured requirements for development teams.",
+          "Worked on integrated hardware-software and IoT security projects connected to the central ERP system."
         ],
-        "chips": ["EdTech", "ERP", "SaaS", "IoT", "Technical Specs", "Assistant PM", "Security Project"]
+        "chips": [
+          "EdTech",
+          "ERP",
+          "SaaS",
+          "Business Analysis",
+          "Technical Specs",
+          "IoT",
+          "Hardware-Software"
+        ]
       }
     ]
   },
