@@ -221,8 +221,19 @@
 
 .editorialGrid {
   display: grid;
+  gap: 32px;
+}
+
+.showcaseRow {
+  display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 32px;
+  align-items: stretch;
+  direction: ltr;
+}
+
+.singleCardRow > * {
+  grid-column: 1 / -1;
 }
 
 .card {
@@ -407,27 +418,6 @@
   mix-blend-mode: screen;
 }
 
-.mediaLabel {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(10, 13, 21, 0.62);
-  border: 1px solid rgba(0, 245, 255, 0.16);
-  color: rgba(244, 247, 255, 0.9);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
 .featureCard {
   grid-column: span 8;
 }
@@ -535,35 +525,23 @@
   color: rgba(244, 247, 255, 0.82);
 }
 
-.secondarySection {
-  display: grid;
-  gap: 20px;
+.leadRowA > :first-child {
+  grid-column: 1 / span 8;
 }
 
-.secondaryHeading {
-  margin: 0;
-  color: var(--text-strong);
-  font-size: clamp(24px, 2.2vw, 32px);
-  line-height: 1.18;
-  letter-spacing: var(--site-heading-tracking);
+.leadRowA > :last-child {
+  grid-column: 9 / span 4;
 }
 
-.secondaryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+.leadRowB > :first-child {
+  grid-column: 1 / span 4;
 }
 
-.secondaryCard .cardTitle {
-  font-size: clamp(24px, 2vw, 32px);
-}
-
-.secondaryMedia {
-  min-height: 188px;
+.leadRowB > :last-child {
+  grid-column: 5 / span 8;
 }
 
 :global(.locale-root[dir="rtl"]) .heroCopy,
-:global(.locale-root[dir="rtl"]) .secondarySection,
 :global(.locale-root[dir="rtl"]) .cardContent {
   text-align: right;
 }
@@ -576,11 +554,6 @@
 
 :global(.locale-root[dir="rtl"]) .tagRow {
   justify-content: flex-end;
-}
-
-:global(.locale-root[dir="rtl"]) .mediaLabel {
-  left: auto;
-  right: 18px;
 }
 
 :global(html[data-theme="light"]) .heroBackdrop::before {
@@ -661,12 +634,6 @@
   background:
     linear-gradient(180deg, rgba(244, 247, 252, 0.04), rgba(244, 247, 252, 0.42)),
     linear-gradient(130deg, rgba(244, 247, 252, 0.12), rgba(244, 247, 252, 0));
-}
-
-:global(html[data-theme="light"]) .mediaLabel {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 157, 181, 0.16);
-  color: #32415f;
 }
 
 :global(html[data-theme="light"]) .accentCard {
@@ -760,12 +727,6 @@
       linear-gradient(130deg, rgba(244, 247, 252, 0.12), rgba(244, 247, 252, 0));
   }
 
-  :global(html:not([data-theme="dark"])) .mediaLabel {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(0, 157, 181, 0.16);
-    color: #32415f;
-  }
-
   :global(html:not([data-theme="dark"])) .accentCard {
     background:
       linear-gradient(140deg, color-mix(in srgb, var(--case-accent) 20%, rgba(255, 255, 255, 0) 80%) 0%, rgba(255, 255, 255, 0.9) 100%),
@@ -802,13 +763,17 @@
     gap: 24px;
   }
 
-  .featureCard,
-  .verticalCard,
-  .textCard,
-  .splitCard,
-  .stackedCard,
-  .accentCard {
-    grid-column: span 12;
+  .showcaseRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .showcaseRow > *,
+  .leadRowA > :first-child,
+  .leadRowA > :last-child,
+  .leadRowB > :first-child,
+  .leadRowB > :last-child {
+    grid-column: span 1;
   }
 
   .splitLink {
@@ -872,7 +837,6 @@
 
   .verticalMedia,
   .textMedia,
-  .secondaryMedia,
   .stackedMedia,
   .splitMedia {
     min-height: 220px;
@@ -905,8 +869,12 @@
     height: 40px;
   }
 
-  .secondaryGrid {
-    grid-template-columns: 1fr;
+  .showcaseRow > *,
+  .leadRowA > :first-child,
+  .leadRowA > :last-child,
+  .leadRowB > :first-child,
+  .leadRowB > :last-child {
+    grid-column: 1 / -1;
   }
 }
 

@@ -15,11 +15,9 @@ type Props = {
 
 type AccentTone = "violet" | "sky" | "mint" | "amber" | "slate";
 
-type MediaSlotId = "feature" | "vertical" | "split" | "stacked";
-
-type SlotId = MediaSlotId | "text-primary" | "text-secondary" | "accent";
-
 type CardVariant = "feature" | "vertical" | "text" | "split" | "stacked" | "accent";
+
+type ShowcaseRowLayout = "lead-a" | "lead-b";
 
 type CaseStudyListCardConfig = {
   accentTone: AccentTone;
@@ -27,23 +25,23 @@ type CaseStudyListCardConfig = {
   heroImageSrc?: string;
   heroObjectPosition?: string;
   imageSrc?: string;
-  mediaEligible?: boolean;
   objectPosition?: string;
-  preferredSlot?: MediaSlotId;
 };
 
 type CaseStudyToneStyle = CSSProperties & Record<"--case-accent" | "--case-accent-soft" | "--case-glow", string>;
 
-type CardSlot = {
-  id: SlotId;
-  mediaRequired: boolean;
+type AssignedCard = {
+  config: CaseStudyListCardConfig;
+  item: ParsedContent<CaseStudyFrontmatter>;
+  locationId: string;
   tagLimit: number;
   variant: CardVariant;
 };
 
-type AssignedCardSlot = CardSlot & {
-  config: CaseStudyListCardConfig;
-  item: ParsedContent<CaseStudyFrontmatter>;
+type ShowcaseRow = {
+  cards: AssignedCard[];
+  id: string;
+  layout: ShowcaseRowLayout;
 };
 
 type HeroMedia = {
@@ -51,44 +49,62 @@ type HeroMedia = {
   item: ParsedContent<CaseStudyFrontmatter>;
 };
 
+type RowBlueprint = {
+  id: string;
+  layout: ShowcaseRowLayout;
+  slots: Array<Pick<AssignedCard, "tagLimit" | "variant">>;
+};
+
 const heroCopy = {
   en: {
     eyebrow: "Selected Works",
-    overflowTitle: "More Case Studies",
     scrollLabel: "Scroll to explore"
   },
   he: {
     eyebrow: "עבודות נבחרות",
-    overflowTitle: "מחקרי מקרה נוספים",
     scrollLabel: "גללו כדי לראות עוד"
   }
-} satisfies Record<Locale, { eyebrow: string; overflowTitle: string; scrollLabel: string }>;
-
-const PRIMARY_SLOTS: CardSlot[] = [
-  { id: "text-primary", mediaRequired: false, tagLimit: 2, variant: "text" },
-  { id: "feature", mediaRequired: true, tagLimit: 3, variant: "feature" },
-  { id: "text-secondary", mediaRequired: false, tagLimit: 2, variant: "text" },
-  { id: "split", mediaRequired: true, tagLimit: 2, variant: "split" },
-  { id: "vertical", mediaRequired: true, tagLimit: 2, variant: "vertical" },
-  { id: "stacked", mediaRequired: true, tagLimit: 2, variant: "stacked" },
-  { id: "accent", mediaRequired: false, tagLimit: 1, variant: "accent" }
-];
+} satisfies Record<Locale, { eyebrow: string; scrollLabel: string }>;
 
 const HERO_PRIORITY = [
   "paamonim-smart-financial-management-app",
+  "research-search-engine-based-on-rag",
+  "smart-campus-learning-center-module"
+] as const;
+
+const CASE_STUDY_ORDER = [
+  "signy",
+  "research-search-engine-based-on-rag",
+  "instant-loan-request-system",
+  "smart-campus-learning-center-module",
+  "smart-campus-access-control-system",
+  "rentil",
+  "smart-campus-maintenance-service-calls-module",
+  "paamonim-smart-financial-management-app",
   "erp-government-api-integrations",
+  "checkout-optimization",
+  "website-as-product",
   "mvp-6-months"
 ] as const;
 
-const CASE_STUDY_PRIORITY = [
-  "paamonim-smart-financial-management-app",
-  "smart-campus-access-control-system",
-  "smart-campus-learning-center-module",
-  "smart-campus-maintenance-service-calls-module",
-  "rentil",
-  "signy",
-  "instant-loan-request-system"
-] as const;
+const ROW_BLUEPRINTS: RowBlueprint[] = [
+  {
+    id: "lead-row-a",
+    layout: "lead-a",
+    slots: [
+      { tagLimit: 3, variant: "feature" },
+      { tagLimit: 2, variant: "text" }
+    ]
+  },
+  {
+    id: "lead-row-b",
+    layout: "lead-b",
+    slots: [
+      { tagLimit: 2, variant: "text" },
+      { tagLimit: 3, variant: "split" }
+    ]
+  }
+];
 
 const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
   "paamonim-smart-financial-management-app": {
@@ -97,16 +113,12 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     heroImageSrc: withVersionedAssetPath("/images/case-studies/paamonim/hero-system.png"),
     heroObjectPosition: "center 34%",
     imageSrc: withVersionedAssetPath("/images/case-studies/paamonim/hero-system.png"),
-    mediaEligible: true,
-    objectPosition: "center 28%",
-    preferredSlot: "feature"
+    objectPosition: "center 28%"
   },
   "smart-campus-access-control-system": {
     accentTone: "sky",
     imageSrc: withVersionedAssetPath("/images/case-studies/smart-campus-security-module/hero.png"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "split"
+    objectPosition: "center center"
   },
   "smart-campus-learning-center-module": {
     accentTone: "mint",
@@ -118,23 +130,17 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
     imageSrc: withVersionedAssetPath(
       "/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
     ),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "vertical"
+    objectPosition: "center center"
   },
   "erp-government-api-integrations": {
     accentTone: "mint",
     imageSrc: withVersionedAssetPath("/images/featured/erp-gov.svg"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "split"
+    objectPosition: "center center"
   },
   "mvp-6-months": {
     accentTone: "amber",
     imageSrc: withVersionedAssetPath("/images/featured/mvp-6-months.svg"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "stacked"
+    objectPosition: "center center"
   },
   "instant-loan-request-system": {
     accentTone: "violet"
@@ -147,16 +153,12 @@ const CASE_STUDY_LIST_CONFIG: Record<string, CaseStudyListCardConfig> = {
   "research-search-engine-based-on-rag": {
     accentTone: "sky",
     imageSrc: withVersionedAssetPath("/images/case-studies/research-rag/hero-image.png"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "vertical"
+    objectPosition: "center center"
   },
   rentil: {
     accentTone: "slate",
     imageSrc: withVersionedAssetPath("/images/case-studies/rentil/hero-system.svg"),
-    mediaEligible: true,
-    objectPosition: "center center",
-    preferredSlot: "stacked"
+    objectPosition: "center center"
   },
   "website-as-product": {
     accentTone: "sky"
@@ -201,7 +203,7 @@ function getCardConfig(slug: string): CaseStudyListCardConfig {
 function prioritizeCaseStudies(
   caseStudies: ParsedContent<CaseStudyFrontmatter>[]
 ): ParsedContent<CaseStudyFrontmatter>[] {
-  const priorityMap = new Map<string, number>(CASE_STUDY_PRIORITY.map((slug, index) => [slug, index]));
+  const priorityMap = new Map<string, number>(CASE_STUDY_ORDER.map((slug, index) => [slug, index]));
   const originalOrder = new Map(caseStudies.map((item, index) => [item.slug, index]));
 
   return [...caseStudies].sort((left, right) => {
@@ -227,80 +229,55 @@ function resolveHeroMedia(
     }
   }
 
-  const fallback = caseStudies.find((item) => {
-    const config = getCardConfig(item.slug);
-    return config.mediaEligible && config.imageSrc;
-  });
+  const fallback = caseStudies.find((item) => Boolean(getCardConfig(item.slug).imageSrc));
 
   if (!fallback) return null;
 
   return { config: getCardConfig(fallback.slug), item: fallback };
 }
 
-function pickMediaCandidate(
-  caseStudies: ParsedContent<CaseStudyFrontmatter>[],
-  assigned: Set<string>,
-  slotId: MediaSlotId
-): ParsedContent<CaseStudyFrontmatter> | null {
-  const preferred = caseStudies.find((item) => {
-    const config = getCardConfig(item.slug);
+function buildRow(
+  items: ParsedContent<CaseStudyFrontmatter>[],
+  blueprint: RowBlueprint,
+  rowIndex = 0
+): ShowcaseRow | null {
+  const rowSuffix = rowIndex === 0 ? "" : `-${rowIndex + 1}`;
+  const cards = items.slice(0, blueprint.slots.length).map((item, index) => {
+    const slot = blueprint.slots[index];
 
-    return (
-      !assigned.has(item.slug) &&
-      config.mediaEligible &&
-      Boolean(config.imageSrc) &&
-      config.preferredSlot === slotId
-    );
-  });
-
-  if (preferred) return preferred;
-
-  return (
-    caseStudies.find((item) => {
-      const config = getCardConfig(item.slug);
-      return !assigned.has(item.slug) && config.mediaEligible && Boolean(config.imageSrc);
-    }) ?? null
-  );
-}
-
-function pickTextCandidate(
-  caseStudies: ParsedContent<CaseStudyFrontmatter>[],
-  assigned: Set<string>
-): ParsedContent<CaseStudyFrontmatter> | null {
-  const textOnly = caseStudies.find((item) => {
-    const config = getCardConfig(item.slug);
-    return !assigned.has(item.slug) && !config.mediaEligible;
-  });
-
-  if (textOnly) return textOnly;
-
-  return caseStudies.find((item) => !assigned.has(item.slug)) ?? null;
-}
-
-function assignPrimarySlots(
-  caseStudies: ParsedContent<CaseStudyFrontmatter>[]
-): { overflow: ParsedContent<CaseStudyFrontmatter>[]; primary: AssignedCardSlot[] } {
-  const assigned = new Set<string>();
-  const primary: AssignedCardSlot[] = [];
-
-  for (const slot of PRIMARY_SLOTS) {
-    const item = slot.mediaRequired
-      ? pickMediaCandidate(caseStudies, assigned, slot.id as MediaSlotId)
-      : pickTextCandidate(caseStudies, assigned);
-
-    if (!item) continue;
-
-    assigned.add(item.slug);
-    primary.push({
-      ...slot,
+    return {
       config: getCardConfig(item.slug),
-      item
-    });
+      item,
+      locationId: `${blueprint.id}${rowSuffix}_${index + 1}`,
+      tagLimit: slot.tagLimit,
+      variant: slot.variant
+    } satisfies AssignedCard;
+  });
+
+  if (cards.length === 0) return null;
+
+  return {
+    cards,
+    id: `${blueprint.id}${rowSuffix}`,
+    layout: blueprint.layout
+  };
+}
+
+function buildShowcaseRows(
+  caseStudies: ParsedContent<CaseStudyFrontmatter>[]
+): ShowcaseRow[] {
+  const rows: ShowcaseRow[] = [];
+
+  for (let index = 0; index < caseStudies.length; index += 2) {
+    const row = buildRow(
+      caseStudies.slice(index, index + 2),
+      ROW_BLUEPRINTS[(index / 2) % ROW_BLUEPRINTS.length],
+      index / 2
+    );
+    if (row) rows.push(row);
   }
 
-  const overflow = caseStudies.filter((item) => !assigned.has(item.slug));
-
-  return { overflow, primary };
+  return rows;
 }
 
 function renderHeroIntro(locale: Locale): ReactElement {
@@ -353,9 +330,7 @@ function renderTags(tags: string[], limit: number, accent: boolean): ReactElemen
 
 function renderMedia(
   config: CaseStudyListCardConfig,
-  title: string,
-  className: string,
-  showLabel = true
+  className: string
 ): ReactElement | null {
   if (!config.imageSrc) return null;
 
@@ -370,189 +345,176 @@ function renderMedia(
       />
       <div className={styles.mediaTint} />
       <div className={styles.mediaGlow} />
-      {showLabel ? <span className={styles.mediaLabel}>{title}</span> : null}
     </div>
   );
 }
 
 function renderTextCard(
-  slot: AssignedCardSlot,
+  card: AssignedCard,
   locale: Locale,
   extraClassName?: string
 ): ReactElement {
-  const isAccent = slot.variant === "accent";
-  const hasMedia = !isAccent && Boolean(slot.config.imageSrc);
+  const isAccent = card.variant === "accent";
+  const hasMedia = !isAccent && Boolean(card.config.imageSrc);
   const cardClassName = isAccent
     ? `${styles.card} ${styles.accentCard} ${extraClassName ?? ""}`.trim()
     : `${styles.card} ${styles.textCard} ${hasMedia ? styles.textCardWithMedia : ""} ${extraClassName ?? ""}`.trim();
 
   return (
-    <article className={cardClassName} key={slot.id} style={toneStyles[slot.config.accentTone]}>
+    <article className={cardClassName} key={card.item.slug} style={toneStyles[card.config.accentTone]}>
       <TrackedLink
         className={styles.cardLink}
-        href={withLocalePath(locale, `/case-studies/${slot.item.slug}`)}
+        href={withLocalePath(locale, `/case-studies/${card.item.slug}`)}
         tracking={{
           eventName: "case_study_click",
           kind: "internal",
-          label: slot.item.frontmatter.title,
+          label: card.item.frontmatter.title,
           locale,
-          location: `case_studies_${slot.id}`,
+          location: `case_studies_${card.locationId}`,
           section: "case_studies"
         }}
       >
-        {hasMedia ? renderMedia(slot.config, slot.item.frontmatter.title, styles.textMedia, false) : null}
+        {hasMedia ? renderMedia(card.config, styles.textMedia) : null}
         <div className={styles.cardContent}>
           <div className={styles.cardMetaRow}>
-            {renderDate(slot.item.frontmatter.date)}
+            {renderDate(card.item.frontmatter.date)}
             <span className={styles.cardRule} aria-hidden="true" />
           </div>
-          <h2 className={styles.cardTitle}>{slot.item.frontmatter.title}</h2>
+          <h2 className={styles.cardTitle}>{card.item.frontmatter.title}</h2>
           <p className={isAccent ? `${styles.cardSummary} ${styles.accentSummary}` : styles.cardSummary}>
-            {slot.item.frontmatter.description}
+            {card.item.frontmatter.description}
           </p>
-          {renderTags(slot.item.frontmatter.tags, slot.tagLimit, isAccent)}
+          {renderTags(card.item.frontmatter.tags, card.tagLimit, isAccent)}
         </div>
       </TrackedLink>
     </article>
   );
 }
 
-function renderPrimaryCard(slot: AssignedCardSlot, locale: Locale): ReactElement {
+function renderPrimaryCard(card: AssignedCard, locale: Locale): ReactElement {
   const commonTracking = {
     eventName: "case_study_click" as const,
     kind: "internal" as const,
-    label: slot.item.frontmatter.title,
+    label: card.item.frontmatter.title,
     locale,
-    location: `case_studies_${slot.id}`,
+    location: `case_studies_${card.locationId}`,
     section: "case_studies"
   };
 
-  if (slot.variant === "feature") {
+  if (card.variant === "feature") {
     return (
-      <article className={`${styles.card} ${styles.featureCard}`} key={slot.id} style={toneStyles[slot.config.accentTone]}>
+      <article className={`${styles.card} ${styles.featureCard}`} key={card.item.slug} style={toneStyles[card.config.accentTone]}>
         <TrackedLink
           className={styles.cardLink}
-          href={withLocalePath(locale, `/case-studies/${slot.item.slug}`)}
+          href={withLocalePath(locale, `/case-studies/${card.item.slug}`)}
           tracking={commonTracking}
         >
-          {renderMedia(slot.config, slot.item.frontmatter.title, styles.featureMedia)}
+          {renderMedia(card.config, styles.featureMedia)}
           <div className={`${styles.cardContent} ${styles.featureContent}`}>
             <div className={styles.cardMetaRow}>
-              {renderDate(slot.item.frontmatter.date)}
+              {renderDate(card.item.frontmatter.date)}
               <span className={styles.cardRule} aria-hidden="true" />
             </div>
-            <h2 className={`${styles.cardTitle} ${styles.featureTitle}`}>{slot.item.frontmatter.title}</h2>
+            <h2 className={`${styles.cardTitle} ${styles.featureTitle}`}>{card.item.frontmatter.title}</h2>
             <p className={`${styles.cardSummary} ${styles.featureSummary}`}>
-              {slot.item.frontmatter.description}
+              {card.item.frontmatter.description}
             </p>
-            {renderTags(slot.item.frontmatter.tags, slot.tagLimit, false)}
+            {renderTags(card.item.frontmatter.tags, card.tagLimit, false)}
           </div>
         </TrackedLink>
       </article>
     );
   }
 
-  if (slot.variant === "vertical") {
+  if (card.variant === "vertical") {
     return (
-      <article className={`${styles.card} ${styles.verticalCard}`} key={slot.id} style={toneStyles[slot.config.accentTone]}>
+      <article className={`${styles.card} ${styles.verticalCard}`} key={card.item.slug} style={toneStyles[card.config.accentTone]}>
         <TrackedLink
           className={styles.cardLink}
-          href={withLocalePath(locale, `/case-studies/${slot.item.slug}`)}
+          href={withLocalePath(locale, `/case-studies/${card.item.slug}`)}
           tracking={commonTracking}
         >
-          {renderMedia(slot.config, slot.item.frontmatter.title, styles.verticalMedia)}
+          {renderMedia(card.config, styles.verticalMedia)}
           <div className={`${styles.cardContent} ${styles.verticalContent}`}>
             <div className={styles.cardMetaRow}>
-              {renderDate(slot.item.frontmatter.date)}
+              {renderDate(card.item.frontmatter.date)}
             </div>
-            <h2 className={styles.cardTitle}>{slot.item.frontmatter.title}</h2>
-            <p className={styles.cardSummary}>{slot.item.frontmatter.description}</p>
-            {renderTags(slot.item.frontmatter.tags, slot.tagLimit, false)}
+            <h2 className={styles.cardTitle}>{card.item.frontmatter.title}</h2>
+            <p className={styles.cardSummary}>{card.item.frontmatter.description}</p>
+            {renderTags(card.item.frontmatter.tags, card.tagLimit, false)}
           </div>
         </TrackedLink>
       </article>
     );
   }
 
-  if (slot.variant === "split") {
+  if (card.variant === "split") {
     return (
-      <article className={`${styles.card} ${styles.splitCard}`} key={slot.id} style={toneStyles[slot.config.accentTone]}>
+      <article className={`${styles.card} ${styles.splitCard}`} key={card.item.slug} style={toneStyles[card.config.accentTone]}>
         <TrackedLink
           className={styles.splitLink}
-          href={withLocalePath(locale, `/case-studies/${slot.item.slug}`)}
+          href={withLocalePath(locale, `/case-studies/${card.item.slug}`)}
           tracking={commonTracking}
         >
-          {renderMedia(slot.config, slot.item.frontmatter.title, styles.splitMedia)}
+          {renderMedia(card.config, styles.splitMedia)}
           <div className={`${styles.cardContent} ${styles.splitContent}`}>
             <div className={styles.cardMetaRow}>
-              {renderDate(slot.item.frontmatter.date)}
+              {renderDate(card.item.frontmatter.date)}
             </div>
-            <h2 className={styles.cardTitle}>{slot.item.frontmatter.title}</h2>
-            <p className={styles.cardSummary}>{slot.item.frontmatter.description}</p>
-            {renderTags(slot.item.frontmatter.tags, slot.tagLimit, false)}
+            <h2 className={styles.cardTitle}>{card.item.frontmatter.title}</h2>
+            <p className={styles.cardSummary}>{card.item.frontmatter.description}</p>
+            {renderTags(card.item.frontmatter.tags, card.tagLimit, false)}
           </div>
         </TrackedLink>
       </article>
     );
   }
 
-  if (slot.variant === "stacked") {
+  if (card.variant === "stacked") {
     return (
-      <article className={`${styles.card} ${styles.stackedCard}`} key={slot.id} style={toneStyles[slot.config.accentTone]}>
+      <article className={`${styles.card} ${styles.stackedCard}`} key={card.item.slug} style={toneStyles[card.config.accentTone]}>
         <TrackedLink
           className={styles.cardLink}
-          href={withLocalePath(locale, `/case-studies/${slot.item.slug}`)}
+          href={withLocalePath(locale, `/case-studies/${card.item.slug}`)}
           tracking={commonTracking}
         >
           <div className={`${styles.cardContent} ${styles.stackedContent}`}>
             <div className={styles.cardMetaRow}>
-              {renderDate(slot.item.frontmatter.date)}
+              {renderDate(card.item.frontmatter.date)}
             </div>
-            <h2 className={styles.cardTitle}>{slot.item.frontmatter.title}</h2>
-            <p className={styles.cardSummary}>{slot.item.frontmatter.description}</p>
-            {renderTags(slot.item.frontmatter.tags, slot.tagLimit, false)}
+            <h2 className={styles.cardTitle}>{card.item.frontmatter.title}</h2>
+            <p className={styles.cardSummary}>{card.item.frontmatter.description}</p>
+            {renderTags(card.item.frontmatter.tags, card.tagLimit, false)}
           </div>
-          {renderMedia(slot.config, slot.item.frontmatter.title, styles.stackedMedia)}
+          {renderMedia(card.config, styles.stackedMedia)}
         </TrackedLink>
       </article>
     );
   }
 
-  return renderTextCard(slot, locale);
+  return renderTextCard(card, locale);
 }
 
-function renderOverflowCard(
-  item: ParsedContent<CaseStudyFrontmatter>,
-  locale: Locale
-): ReactElement {
-  const config = getCardConfig(item.slug);
-  const hasMedia = Boolean(config.imageSrc);
+function renderShowcaseCard(card: AssignedCard, locale: Locale): ReactElement {
+  return card.variant === "text" || card.variant === "accent"
+    ? renderTextCard(card, locale)
+    : renderPrimaryCard(card, locale);
+}
+
+function renderShowcaseRow(row: ShowcaseRow, locale: Locale): ReactElement {
+  const rowClassName = [
+    styles.showcaseRow,
+    row.layout === "lead-a" ? styles.leadRowA : "",
+    row.layout === "lead-b" ? styles.leadRowB : "",
+    row.cards.length === 1 ? styles.singleCardRow : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <article className={`${styles.card} ${styles.secondaryCard}`} key={item.slug} style={toneStyles[config.accentTone]}>
-      <TrackedLink
-        className={styles.cardLink}
-        href={withLocalePath(locale, `/case-studies/${item.slug}`)}
-        tracking={{
-          eventName: "case_study_click",
-          kind: "internal",
-          label: item.frontmatter.title,
-          locale,
-          location: "case_studies_secondary_grid",
-          section: "case_studies"
-        }}
-      >
-        {hasMedia ? renderMedia(config, item.frontmatter.title, styles.secondaryMedia, false) : null}
-        <div className={styles.cardContent}>
-          <div className={styles.cardMetaRow}>
-            {renderDate(item.frontmatter.date)}
-          </div>
-          <h2 className={styles.cardTitle}>{item.frontmatter.title}</h2>
-          <p className={styles.cardSummary}>{item.frontmatter.description}</p>
-          {renderTags(item.frontmatter.tags, 3, false)}
-        </div>
-      </TrackedLink>
-    </article>
+    <div className={rowClassName} key={row.id}>
+      {row.cards.map((card) => renderShowcaseCard(card, locale))}
+    </div>
   );
 }
 
@@ -564,7 +526,7 @@ export function CaseStudiesShowcase({
   const orderedCaseStudies = prioritizeCaseStudies(caseStudies);
   const copy = heroCopy[locale];
   const heroMedia = resolveHeroMedia(orderedCaseStudies);
-  const { overflow, primary } = assignPrimarySlots(orderedCaseStudies);
+  const rows = buildShowcaseRows(orderedCaseStudies);
 
   return (
     <div className={styles.page}>
@@ -619,19 +581,8 @@ export function CaseStudiesShowcase({
         <div className={`${styles.ambientGlow} ${styles.ambientGlowRight}`} aria-hidden="true" />
 
         <section className={styles.editorialGrid} id="case-studies-grid" aria-label={title}>
-          {primary.map((slot) => renderPrimaryCard(slot, locale))}
+          {rows.map((row) => renderShowcaseRow(row, locale))}
         </section>
-
-        {overflow.length > 0 ? (
-          <section className={styles.secondarySection} aria-labelledby="case-studies-overflow-title">
-            <h2 className={styles.secondaryHeading} id="case-studies-overflow-title">
-              {copy.overflowTitle}
-            </h2>
-            <div className={styles.secondaryGrid}>
-              {overflow.map((item) => renderOverflowCard(item, locale))}
-            </div>
-          </section>
-        ) : null}
       </div>
     </div>
   );

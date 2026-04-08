@@ -96,6 +96,27 @@ export function SmartCampusMaintenanceServiceCallsCaseStudy({ locale }: Props) {
     <div className={styles.root} data-locale={locale}>
       <section className={styles.heroSection} aria-labelledby={`maintenance-service-title-${locale}`}>
         <div className={styles.heroShell}>
+          <div className={styles.heroVisual} aria-hidden="true">
+            <div className={styles.placeholderPanel}>
+              <img
+                alt=""
+                className={styles.heroImage}
+                decoding="async"
+                fetchPriority="high"
+                height="1412"
+                loading="eager"
+                src={withVersionedAssetPath(
+                  "/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
+                )}
+                width="1765"
+              />
+              <span className={styles.heroImageScrim} aria-hidden="true" />
+              <span className={styles.placeholderGlow} aria-hidden="true" />
+              <span className={styles.placeholderGlowSecondary} aria-hidden="true" />
+              <span className={styles.placeholderHalo} aria-hidden="true" />
+            </div>
+          </div>
+
           <div className={styles.heroContent}>
             <div className={styles.heroNarrative}>
               <div className={styles.heroText}>
@@ -149,27 +170,6 @@ export function SmartCampusMaintenanceServiceCallsCaseStudy({ locale }: Props) {
                   <span>{content.hero.externalLinkLabel}</span>
                   <ArrowUpRight className={styles.externalLinkIcon} aria-hidden="true" strokeWidth={1.85} />
                 </TrackedLink>
-              </div>
-            </div>
-
-            <div className={styles.heroVisual}>
-              <div className={styles.placeholderPanel}>
-                <img
-                  alt={content.hero.mediaLabel}
-                  className={styles.heroImage}
-                  decoding="async"
-                  fetchPriority="high"
-                  height="1412"
-                  loading="eager"
-                  src={withVersionedAssetPath(
-                    "/images/case-studies/smart-campus-maintence/smart-campus-maintence-hero.png"
-                  )}
-                  width="1765"
-                />
-                <span className={styles.heroImageScrim} aria-hidden="true" />
-                <span className={styles.placeholderGlow} aria-hidden="true" />
-                <span className={styles.placeholderGlowSecondary} aria-hidden="true" />
-                <span className={styles.placeholderHalo} aria-hidden="true" />
               </div>
             </div>
           </div>
