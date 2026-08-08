@@ -43,8 +43,8 @@
   --sc-muted: rgba(186, 197, 220, 0.82);
   --sc-accent: color-mix(in srgb, var(--sc-cyan) 34%, var(--sc-indigo) 66%);
   --sc-accent-soft: var(--sc-violet);
-  --sc-gallery-landscape-width: min(76vw, 1200px);
-  --sc-gallery-portrait-width: min(34vw, 430px);
+  --gallery-landscape-width: min(76vw, 1200px);
+  --gallery-portrait-width: min(34vw, 430px);
   display: grid;
   gap: 24px;
 }
@@ -718,7 +718,7 @@
 }
 
 .galleryFigure {
-  --gallery-base-width: var(--sc-gallery-landscape-width);
+  --gallery-base-width: var(--gallery-landscape-width);
   --gallery-zoom: 1;
   width: calc(var(--gallery-base-width) * var(--gallery-zoom));
   max-width: none;
@@ -1056,8 +1056,8 @@
 
 @media (max-width: 980px) {
   .root {
-    --sc-gallery-landscape-width: min(88vw, 960px);
-    --sc-gallery-portrait-width: min(52vw, 430px);
+    --gallery-landscape-width: min(88vw, 960px);
+    --gallery-portrait-width: min(52vw, 430px);
   }
 
   .surface {
@@ -1142,8 +1142,8 @@
 
 @media (max-width: 640px) {
   .root {
-    --sc-gallery-landscape-width: min(92vw, 760px);
-    --sc-gallery-portrait-width: min(78vw, 420px);
+    --gallery-landscape-width: min(92vw, 760px);
+    --gallery-portrait-width: min(78vw, 420px);
     gap: 18px;
   }
 
