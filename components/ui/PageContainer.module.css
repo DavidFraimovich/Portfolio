@@ -1,0 +1,25 @@
+.root {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  inline-size: min(
+    var(--page-container-width),
+    calc(100% - var(--page-gutter, 40px) - var(--page-gutter, 40px))
+  );
+  margin-inline: auto;
+}
+
+.standard {
+  --page-container-width: var(--container-max, 1240px);
+}
+
+.wide {
+  --page-container-width: var(--container-wide, 1320px);
+}
+
+.reading {
+  --page-container-width: var(--container-reading, 760px);
+}
+
+.compatibility {
+  inline-size: min(1100px, 92vw);
+}
